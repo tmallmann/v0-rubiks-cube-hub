@@ -5,37 +5,42 @@ import type React from "react"
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Save, X, Edit2, ArrowLeft, RefreshCw } from 'lucide-react'
+import { Save, X, Edit2, ArrowLeft, RefreshCw, Upload, Download, Settings, Trash2 } from 'lucide-react'
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 interface LetterPair {
   id: string
   pair: string
   name: string
-  sound: string
-  edgesAlgorithm: string // New field for Edges algorithm
-  cornersAlgorithm: string // New field for Corners algorithm
+  edgesAlgorithm: string
+  cornersAlgorithm: string
   learned: boolean
 }
 
 interface FlipCase {
   id: string
-  piece: number
-  sound: string
+  piece: string // Changed to string
   name: string
   algorithm: string
-  learned: boolean // Added
+  learned: boolean
 }
 
 interface TwistCase {
   id: string
-  piece: number
-  sound: string
+  piece: string // Changed to string
   name: string
   algorithm1: string
   algorithm2: string
-  learned: boolean // Added
+  learned: boolean
 }
 
 export default function BLDPage() {
@@ -43,7 +48,6 @@ export default function BLDPage() {
   const [letterPairs, setLetterPairs] = useState<LetterPair[]>([])
   const [editingPairId, setEditingPairId] = useState<string | null>(null)
   const [editPairName, setEditPairName] = useState("")
-  const [editPairSound, setEditPairSound] = useState("")
   const [editPairEdgesAlgorithm, setEditPairEdgesAlgorithm] = useState("")
   const [editPairCornersAlgorithm, setEditPairCornersAlgorithm] = useState("")
   const [selectedLetter, setSelectedLetter] = useState<string>("A")
@@ -51,7 +55,6 @@ export default function BLDPage() {
   // Flips State
   const [flips, setFlips] = useState<FlipCase[]>([])
   const [editingFlipId, setEditingFlipId] = useState<string | null>(null)
-  const [editFlipSound, setEditFlipSound] = useState("")
   const [editFlipName, setEditFlipName] = useState("")
   const [editFlipAlgorithm, setEditFlipAlgorithm] = useState("")
   const [editFlipPiece, setEditFlipPiece] = useState("")
@@ -59,14 +62,14 @@ export default function BLDPage() {
   // Twists State
   const [twists, setTwists] = useState<TwistCase[]>([])
   const [editingTwistId, setEditingTwistId] = useState<string | null>(null)
-  const [editTwistSound, setEditTwistSound] = useState("")
-  const [editTwistName, setEditTwistName] = useState("")
+  const [editTwistName1, setEditTwistName1] = useState("")
+  const [editTwistName2, setEditTwistName2] = useState("")
   const [editTwistAlgorithm1, setEditTwistAlgorithm1] = useState("")
   const [editTwistAlgorithm2, setEditTwistAlgorithm2] = useState("")
   const [editTwistPiece, setEditTwistPiece] = useState("")
 
   // Table Selection State
-  const [selectedTable, setSelectedTable] = useState<"pairs" | "flips" | "twists">("pairs")
+  const [selectedTable, setSelectedTable] = useState<"edges" | "corners" | "flips" | "twists">("edges")
 
   // Trainer state
   const [currentTrainerPair, setCurrentTrainerPair] = useState<LetterPair | null>(null)
@@ -88,7 +91,6 @@ export default function BLDPage() {
             id: `pair-${pair}`,
             pair,
             name: "",
-            sound: "",
             edgesAlgorithm: "",
             cornersAlgorithm: "",
             learned: false,
@@ -102,14 +104,19 @@ export default function BLDPage() {
     if (savedFlips) {
       setFlips(JSON.parse(savedFlips))
     } else {
-      const defaultFlips: FlipCase[] = Array.from({ length: 11 }, (_, i) => ({
-        id: `flip-${i + 1}`,
-        piece: i + 1,
-        sound: "",
-        name: "",
-        algorithm: "",
-        learned: false, // Added
-      }))
+      const defaultFlips: FlipCase[] = [
+        { id: "flip-UB", piece: "UB", name: "", algorithm: "", learned: false },
+        { id: "flip-UR", piece: "UR", name: "", algorithm: "", learned: false },
+        { id: "flip-UL", piece: "UL", name: "", algorithm: "", learned: false },
+        { id: "flip-LF", piece: "LF", name: "", algorithm: "", learned: false },
+        { id: "flip-LD", piece: "LD", name: "", algorithm: "", learned: false },
+        { id: "flip-LB", piece: "LB", name: "", algorithm: "", learned: false },
+        { id: "flip-FR", piece: "FR", name: "", algorithm: "", learned: false },
+        { id: "flip-FD", piece: "FD", name: "", algorithm: "", learned: false },
+        { id: "flip-RB", piece: "RB", name: "", algorithm: "", learned: false },
+        { id: "flip-RD", piece: "RD", name: "", algorithm: "", learned: false },
+        { id: "flip-BD", piece: "BD", name: "", algorithm: "", learned: false },
+      ]
       setFlips(defaultFlips)
     }
 
@@ -117,15 +124,15 @@ export default function BLDPage() {
     if (savedTwists) {
       setTwists(JSON.parse(savedTwists))
     } else {
-      const defaultTwists: TwistCase[] = Array.from({ length: 7 }, (_, i) => ({
-        id: `twist-${i + 1}`,
-        piece: i + 1,
-        sound: "",
-        name: "",
-        algorithm1: "",
-        algorithm2: "",
-        learned: false, // Added
-      }))
+      const defaultTwists: TwistCase[] = [
+        { id: "twist-UBL", piece: "UBL", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-UBR", piece: "UBR", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-UFL", piece: "UFL", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-DFL", piece: "DFL", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-DFR", piece: "DFR", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-DBR", piece: "DBR", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-DBL", piece: "DBL", name: "", algorithm1: "", algorithm2: "", learned: false },
+      ]
       setTwists(defaultTwists)
     }
   }, [])
@@ -150,13 +157,11 @@ export default function BLDPage() {
   const handleEditPair = (
     id: string,
     currentName: string,
-    currentSound: string,
     currentEdgesAlgorithm: string,
     currentCornersAlgorithm: string,
   ) => {
     setEditingPairId(id)
     setEditPairName(currentName)
-    setEditPairSound(currentSound)
     setEditPairEdgesAlgorithm(currentEdgesAlgorithm)
     setEditPairCornersAlgorithm(currentCornersAlgorithm)
   }
@@ -165,13 +170,11 @@ export default function BLDPage() {
     if (editingPairId) {
       handleUpdatePair(editingPairId, {
         name: editPairName,
-        sound: editPairSound,
         edgesAlgorithm: editPairEdgesAlgorithm,
         cornersAlgorithm: editPairCornersAlgorithm,
       })
       setEditingPairId(null)
       setEditPairName("")
-      setEditPairSound("")
       setEditPairEdgesAlgorithm("")
       setEditPairCornersAlgorithm("")
     }
@@ -180,7 +183,6 @@ export default function BLDPage() {
   const handleCancelPair = () => {
     setEditingPairId(null)
     setEditPairName("")
-    setEditPairSound("")
     setEditPairEdgesAlgorithm("")
     setEditPairCornersAlgorithm("")
   }
@@ -199,14 +201,11 @@ export default function BLDPage() {
   const handleEditFlip = (
     id: string,
     currentPiece: string,
-    currentSound: string,
     currentName: string,
     currentAlgorithm: string,
-    currentLearned: boolean,
   ) => {
     setEditingFlipId(id)
     setEditFlipPiece(currentPiece)
-    setEditFlipSound(currentSound)
     setEditFlipName(currentName)
     setEditFlipAlgorithm(currentAlgorithm)
   }
@@ -215,22 +214,19 @@ export default function BLDPage() {
     if (editingFlipId) {
       handleUpdateFlip(editingFlipId, {
         piece: editFlipPiece,
-        sound: editFlipSound,
         name: editFlipName,
         algorithm: editFlipAlgorithm,
       })
-      setEditingFlipId("")
+      setEditingFlipId(null)
       setEditFlipPiece("")
-      setEditFlipSound("")
       setEditFlipName("")
       setEditFlipAlgorithm("")
     }
   }
 
   const handleCancelFlip = () => {
-    setEditingFlipId("")
+    setEditingFlipId(null)
     setEditFlipPiece("")
-    setEditFlipSound("")
     setEditFlipName("")
     setEditFlipAlgorithm("")
   }
@@ -247,16 +243,15 @@ export default function BLDPage() {
   const handleEditTwist = (
     id: string,
     currentPiece: string,
-    currentSound: string,
-    currentName: string,
+    currentName1: string,
+    currentName2: string,
     currentAlg1: string,
     currentAlg2: string,
-    currentLearned: boolean,
   ) => {
     setEditingTwistId(id)
     setEditTwistPiece(currentPiece)
-    setEditTwistSound(currentSound)
-    setEditTwistName(currentName)
+    setEditTwistName1(currentName1)
+    setEditTwistName2(currentName2)
     setEditTwistAlgorithm1(currentAlg1)
     setEditTwistAlgorithm2(currentAlg2)
   }
@@ -265,25 +260,24 @@ export default function BLDPage() {
     if (editingTwistId) {
       handleUpdateTwist(editingTwistId, {
         piece: editTwistPiece,
-        sound: editTwistSound,
-        name: editTwistName,
+        name: editTwistName1, // Assuming name1 is the primary name
         algorithm1: editTwistAlgorithm1,
         algorithm2: editTwistAlgorithm2,
       })
-      setEditingTwistId("")
+      setEditingTwistId(null)
       setEditTwistPiece("")
-      setEditTwistSound("")
-      setEditTwistName("")
+      setEditTwistName1("")
+      setEditTwistName2("")
       setEditTwistAlgorithm1("")
       setEditTwistAlgorithm2("")
     }
   }
 
   const handleCancelTwist = () => {
-    setEditingTwistId("")
+    setEditingTwistId(null)
     setEditTwistPiece("")
-    setEditTwistSound("")
-    setEditTwistName("")
+    setEditTwistName1("")
+    setEditTwistName2("")
     setEditTwistAlgorithm1("")
     setEditTwistAlgorithm2("")
   }
@@ -294,10 +288,10 @@ export default function BLDPage() {
 
   // --- Trainer functions ---
   const generateRandomPair = useCallback(() => {
-    const learnablePairs = letterPairs.filter((p) => p.name || p.sound)
+    const learnablePairs = letterPairs.filter((p) => p.name || p.edgesAlgorithm || p.cornersAlgorithm)
     if (learnablePairs.length === 0) {
       setCurrentTrainerPair(null)
-      setFeedbackMessage("No learnable pairs defined yet. Add names or sounds to your letter pairs!")
+      setFeedbackMessage("No learnable pairs defined yet. Add names or algorithms to your letter pairs!")
       return
     }
     const randomIndex = Math.floor(Math.random() * learnablePairs.length)
@@ -318,9 +312,14 @@ export default function BLDPage() {
 
     const normalizedInput = trainerInput.trim().toLowerCase()
     const normalizedName = currentTrainerPair.name.trim().toLowerCase()
-    const normalizedSound = currentTrainerPair.sound.trim().toLowerCase()
+    const normalizedEdgesAlg = currentTrainerPair.edgesAlgorithm.trim().toLowerCase()
+    const normalizedCornersAlg = currentTrainerPair.cornersAlgorithm.trim().toLowerCase()
 
-    if (normalizedInput === normalizedName || normalizedInput === normalizedSound) {
+    if (
+      normalizedInput === normalizedName ||
+      normalizedInput === normalizedEdgesAlg ||
+      normalizedInput === normalizedCornersAlg
+    ) {
       setFeedbackMessage("Correct!")
       setShowAnswer(false)
       setTimeout(generateRandomPair, 1000) // Generate new pair after a short delay
@@ -341,6 +340,105 @@ export default function BLDPage() {
     setFeedbackMessage("")
   }
 
+  // --- Import/Export Functions ---
+  const handleExportData = () => {
+    const data = {
+      letterPairs,
+      flips,
+      twists,
+    }
+    const jsonString = JSON.stringify(data, null, 2)
+    const blob = new Blob([jsonString], { type: "text/plain" })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement("a")
+    a.href = url
+    a.download = "bld_data.txt"
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
+
+  const handleImportData = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        try {
+          const content = e.target?.result as string
+          const importedData = JSON.parse(content)
+          if (importedData.letterPairs && importedData.flips && importedData.twists) {
+            setLetterPairs(importedData.letterPairs)
+            setFlips(importedData.flips)
+            setTwists(importedData.twists)
+            alert("BLD data imported successfully!")
+          } else {
+            alert("Invalid BLD data file format.")
+          }
+        } catch (error) {
+          console.error("Error parsing imported data:", error)
+          alert("Error importing data. Please ensure it's a valid BLD data file.")
+        }
+      }
+      reader.readAsText(file)
+    }
+  }
+
+  const handleClearData = () => {
+    if (confirm("Are you sure you want to clear all BLD data? This action cannot be undone.")) {
+      localStorage.removeItem("bld-pairs")
+      localStorage.removeItem("bld-flips")
+      localStorage.removeItem("bld-twists")
+      setLetterPairs([])
+      setFlips([])
+      setTwists([])
+      setCurrentTrainerPair(null) // Reset trainer as well
+      alert("All BLD data cleared.")
+      // Re-initialize default data after clearing
+      const pairs: LetterPair[] = []
+      for (let i = 65; i <= 90; i++) {
+        for (let j = 65; j <= 90; j++) {
+          const pair = String.fromCharCode(i) + String.fromCharCode(j)
+          pairs.push({
+            id: `pair-${pair}`,
+            pair,
+            name: "",
+            edgesAlgorithm: "",
+            cornersAlgorithm: "",
+            learned: false,
+          })
+        }
+      }
+      setLetterPairs(pairs)
+
+      const defaultFlips: FlipCase[] = [
+        { id: "flip-UB", piece: "UB", name: "", algorithm: "", learned: false },
+        { id: "flip-UR", piece: "UR", name: "", algorithm: "", learned: false },
+        { id: "flip-UL", piece: "UL", name: "", algorithm: "", learned: false },
+        { id: "flip-LF", piece: "LF", name: "", algorithm: "", learned: false },
+        { id: "flip-LD", piece: "LD", name: "", algorithm: "", learned: false },
+        { id: "flip-LB", piece: "LB", name: "", algorithm: "", learned: false },
+        { id: "flip-FR", piece: "FR", name: "", algorithm: "", learned: false },
+        { id: "flip-FD", piece: "FD", name: "", algorithm: "", learned: false },
+        { id: "flip-RB", piece: "RB", name: "", algorithm: "", learned: false },
+        { id: "flip-RD", piece: "RD", name: "", algorithm: "", learned: false },
+        { id: "flip-BD", piece: "BD", name: "", algorithm: "", learned: false },
+      ]
+      setFlips(defaultFlips)
+
+      const defaultTwists: TwistCase[] = [
+        { id: "twist-UBL", piece: "UBL", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-UBR", piece: "UBR", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-UFL", piece: "UFL", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-DFL", piece: "DFL", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-DFR", piece: "DFR", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-DBR", piece: "DBR", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-DBL", piece: "DBL", name: "", algorithm1: "", algorithm2: "", learned: false },
+      ]
+      setTwists(defaultTwists)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100">
       <div className="container mx-auto px-4 py-8">
@@ -353,14 +451,17 @@ export default function BLDPage() {
           </Link>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">BLD Methods</h1>
           <p className="text-xl text-gray-600">
-            Manage letter pair, flip, and twist associations for blindfolded solving
+            Manage algorithms for blindfolded solving
           </p>
         </div>
 
-        {/* Table Selection Buttons */}
-        <div className="mb-6 flex gap-4">
-          <Button variant={selectedTable === "pairs" ? "default" : "outline"} onClick={() => setSelectedTable("pairs")}>
-            Comms
+        {/* Table Selection Buttons and Settings */}
+        <div className="mb-6 flex gap-4 items-center">
+          <Button variant={selectedTable === "edges" ? "default" : "outline"} onClick={() => setSelectedTable("edges")}>
+            Edges
+          </Button>
+          <Button variant={selectedTable === "corners" ? "default" : "outline"} onClick={() => setSelectedTable("corners")}>
+            Corners
           </Button>
           <Button variant={selectedTable === "flips" ? "default" : "outline"} onClick={() => setSelectedTable("flips")}>
             Flips
@@ -371,10 +472,37 @@ export default function BLDPage() {
           >
             Twists
           </Button>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="ml-auto">
+                <Settings className="h-4 w-4 mr-2" />
+                Settings
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={handleExportData}>
+                <Download className="h-4 w-4 mr-2" />
+                Export Data
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <label className="flex items-center cursor-pointer w-full">
+                  <Upload className="h-4 w-4 mr-2" />
+                  Import Data
+                  <input type="file" accept=".txt" onChange={handleImportData} className="hidden" />
+                </label>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={handleClearData} className="text-red-600">
+                <Trash2 className="h-4 w-4 mr-2" />
+                Clear All Data
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         {/* Conditional Table Rendering */}
-        {selectedTable === "pairs" && (
+        {(selectedTable === "edges" || selectedTable === "corners") && (
           <>
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-3">Filter by first letter:</h3>
@@ -405,17 +533,18 @@ export default function BLDPage() {
                         Pair
                       </th>
                       <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-40">
-                        Sound
-                      </th>
-                      <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-40">
                         Image
                       </th>
-                      <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Edges (UF)
-                      </th>
-                      <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Corners (UFR)
-                      </th>
+                      {selectedTable === "edges" && (
+                        <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Commutator (UF) 
+                        </th>
+                      )}
+                      {selectedTable === "corners" && (
+                        <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Commutator (UFR)  
+                        </th>
+                      )}
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-100">
@@ -438,19 +567,6 @@ export default function BLDPage() {
                           {editingPairId === pair.id ? (
                             <input
                               type="text"
-                              value={editPairSound}
-                              onChange={(e) => setEditPairSound(e.target.value)}
-                              className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                              placeholder="Enter sound..."
-                            />
-                          ) : (
-                            <span className="text-sm text-gray-900">{pair.sound || "No sound"}</span>
-                          )}
-                        </td>
-                        <td className="px-4 py-2 w-40">
-                          {editingPairId === pair.id ? (
-                            <input
-                              type="text"
                               value={editPairName}
                               onChange={(e) => setEditPairName(e.target.value)}
                               className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
@@ -460,57 +576,84 @@ export default function BLDPage() {
                             <span className="text-sm text-gray-900">{pair.name || "Unnamed"}</span>
                           )}
                         </td>
-                        <td className="px-4 py-2">
-                          {editingPairId === pair.id ? (
-                            <input
-                              type="text"
-                              value={editPairEdgesAlgorithm}
-                              onChange={(e) => setEditPairEdgesAlgorithm(e.target.value)}
-                              className="w-full px-2 py-1 text-sm font-mono border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                              placeholder="Enter Edges algorithm..."
-                            />
-                          ) : (
-                            <code className="text-sm text-gray-700">{pair.edgesAlgorithm || "No algorithm"}</code>
-                          )}
-                        </td>
-                        <td className="px-4 py-2">
-                          {editingPairId === pair.id ? (
-                            <div className="flex items-center space-x-2">
-                              <input
-                                type="text"
-                                value={editPairCornersAlgorithm}
-                                onChange={(e) => setEditPairCornersAlgorithm(e.target.value)}
-                                className="flex-1 px-2 py-1 text-sm font-mono border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                                placeholder="Enter Corners algorithm..."
-                              />
-                              <Button size="sm" onClick={handleSavePair}>
-                                <Save className="h-3 w-3" />
-                              </Button>
-                              <Button size="sm" variant="outline" onClick={handleCancelPair}>
-                                <X className="h-3 w-3" />
-                              </Button>
-                            </div>
-                          ) : (
-                            <div className="flex items-center justify-between">
-                              <code className="text-sm text-gray-700">{pair.cornersAlgorithm || "No algorithm"}</code>
-                              <Button
-                                size="sm"
-                                variant="ghost"
-                                onClick={() =>
-                                  handleEditPair(
-                                    pair.id,
-                                    pair.name || "",
-                                    pair.sound || "",
-                                    pair.edgesAlgorithm || "",
-                                    pair.cornersAlgorithm || "",
-                                  )
-                                }
-                              >
-                                <Edit2 className="h-3 w-3" />
-                              </Button>
-                            </div>
-                          )}
-                        </td>
+                        {selectedTable === "edges" && (
+                          <td className="px-4 py-2">
+                            {editingPairId === pair.id ? (
+                              <div className="flex items-center space-x-2">
+                                <input
+                                  type="text"
+                                  value={editPairEdgesAlgorithm}
+                                  onChange={(e) => setEditPairEdgesAlgorithm(e.target.value)}
+                                  className="flex-1 px-2 py-1 text-sm font-mono border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                  placeholder="Enter algorithm..."
+                                />
+                                <Button size="sm" onClick={handleSavePair}>
+                                  <Save className="h-3 w-3" />
+                                </Button>
+                                <Button size="sm" variant="outline" onClick={handleCancelPair}>
+                                  <X className="h-3 w-3" />
+                                </Button>
+                              </div>
+                            ) : (
+                              <div className="flex items-center justify-between">
+                                <code className="text-sm text-gray-700">{pair.edgesAlgorithm || "No algorithm"}</code>
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  onClick={() =>
+                                    handleEditPair(
+                                      pair.id,
+                                      pair.name || "",
+                                      pair.edgesAlgorithm || "",
+                                      pair.cornersAlgorithm || "",
+                                    )
+                                  }
+                                >
+                                  <Edit2 className="h-3 w-3" />
+                                </Button>
+                              </div>
+                            )}
+                          </td>
+                        )}
+                        {selectedTable === "corners" && (
+                          <td className="px-4 py-2">
+                            {editingPairId === pair.id ? (
+                              <div className="flex items-center space-x-2">
+                                <input
+                                  type="text"
+                                  value={editPairCornersAlgorithm}
+                                  onChange={(e) => setEditPairCornersAlgorithm(e.target.value)}
+                                  className="flex-1 px-2 py-1 text-sm font-mono border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                  placeholder="Enter algorithm..."
+                                />
+                                <Button size="sm" onClick={handleSavePair}>
+                                  <Save className="h-3 w-3" />
+                                </Button>
+                                <Button size="sm" variant="outline" onClick={handleCancelPair}>
+                                  <X className="h-3 w-3" />
+                                </Button>
+                              </div>
+                            ) : (
+                              <div className="flex items-center justify-between">
+                                <code className="text-sm text-gray-700">{pair.cornersAlgorithm || "No algorithm"}</code>
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  onClick={() =>
+                                    handleEditPair(
+                                      pair.id,
+                                      pair.name || "",
+                                      pair.edgesAlgorithm || "",
+                                      pair.cornersAlgorithm || "",
+                                    )
+                                  }
+                                >
+                                  <Edit2 className="h-3 w-3" />
+                                </Button>
+                              </div>
+                            )}
+                          </td>
+                        )}
                       </tr>
                     ))}
                   </tbody>
@@ -533,13 +676,10 @@ export default function BLDPage() {
                       PIECE
                     </th>
                     <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-40">
-                      SOUND
-                    </th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-40">
                       IMAGE
                     </th>
                     <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      FLIP (UF)  
+                      FLIP (UF)   
                     </th>
                   </tr>
                 </thead>
@@ -559,7 +699,7 @@ export default function BLDPage() {
                       <td className="px-4 py-2 whitespace-nowrap text-sm font-mono font-medium text-gray-900 w-40">
                         {editingFlipId === flip.id ? (
                           <input
-                            type="text" // Changed to text
+                            type="text"
                             value={editFlipPiece}
                             onChange={(e) => setEditFlipPiece(e.target.value)}
                             className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
@@ -567,20 +707,7 @@ export default function BLDPage() {
                         ) : (
                           flip.piece
                         )}
-                      </td>
-                      <td className="px-4 py-2 w-40">
-                        {editingFlipId === flip.id ? (
-                          <input
-                            type="text"
-                            value={editFlipSound}
-                            onChange={(e) => setEditFlipSound(e.target.value)}
-                            className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            placeholder="Enter sound..."
-                          />
-                        ) : (
-                          <span className="text-sm text-gray-900">{flip.sound || "No sound"}</span>
-                        )}
-                      </td>
+                      </td>                      
                       <td className="px-4 py-2 w-40">
                         {editingFlipId === flip.id ? (
                           <input
@@ -618,7 +745,7 @@ export default function BLDPage() {
                               size="sm"
                               variant="ghost"
                               onClick={() =>
-                                handleEditFlip(flip.id, flip.piece, flip.sound, flip.name, flip.algorithm, flip.learned)
+                                handleEditFlip(flip.id, flip.piece, flip.name, flip.algorithm)
                               }
                             >
                               <Edit2 className="h-3 w-3" />
@@ -656,7 +783,7 @@ export default function BLDPage() {
                       TWIST CW   
                     </th>
                     <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      {"TWIST CCW"}
+                      TWIST CCW
                     </th>
                   </tr>
                 </thead>
@@ -676,7 +803,7 @@ export default function BLDPage() {
                       <td className="px-4 py-2 whitespace-nowrap text-sm font-mono font-medium text-gray-900 w-16">
                         {editingTwistId === twist.id ? (
                           <input
-                            type="text" // Changed to text
+                            type="text"
                             value={editTwistPiece}
                             onChange={(e) => setEditTwistPiece(e.target.value)}
                             className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
@@ -689,21 +816,21 @@ export default function BLDPage() {
                         {editingTwistId === twist.id ? (
                           <input
                             type="text"
-                            value={editTwistSound}
-                            onChange={(e) => setEditTwistSound(e.target.value)}
+                            value={editTwistName1}
+                            onChange={(e) => setEditTwistName1(e.target.value)}
                             className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            placeholder="Enter sound..."
+                            placeholder="Enter name..."
                           />
                         ) : (
-                          <span className="text-sm text-gray-900">{twist.sound || "No sound"}</span>
+                          <span className="text-sm text-gray-900">{twist.name || "Unnamed"}</span>
                         )}
                       </td>
                       <td className="px-4 py-2 w-40">
                         {editingTwistId === twist.id ? (
                           <input
                             type="text"
-                            value={editTwistName}
-                            onChange={(e) => setEditTwistName(e.target.value)}
+                            value={editTwistName2}
+                            onChange={(e) => setEditTwistName2(e.target.value)}
                             className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
                             placeholder="Enter name..."
                           />
@@ -718,7 +845,7 @@ export default function BLDPage() {
                             value={editTwistAlgorithm1}
                             onChange={(e) => setEditTwistAlgorithm1(e.target.value)}
                             className="w-full px-2 py-1 text-sm font-mono border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            placeholder="Enter ALG 1..."
+                            placeholder="Enter algorithm..."
                           />
                         ) : (
                           <code className="text-sm text-gray-700">{twist.algorithm1 || "No algorithm"}</code>
@@ -732,7 +859,7 @@ export default function BLDPage() {
                               value={editTwistAlgorithm2}
                               onChange={(e) => setEditTwistAlgorithm2(e.target.value)}
                               className="flex-1 px-2 py-1 text-sm font-mono border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                              placeholder="Enter ALG 2..."
+                              placeholder="Enter algorithm..."
                             />
                             <Button size="sm" onClick={handleSaveTwist}>
                               <Save className="h-3 w-3" />
@@ -751,11 +878,10 @@ export default function BLDPage() {
                                 handleEditTwist(
                                   twist.id,
                                   twist.piece,
-                                  twist.sound,
                                   twist.name,
+                                  twist.name, // Assuming name is used for both image fields
                                   twist.algorithm1,
                                   twist.algorithm2,
-                                  twist.learned,
                                 )
                               }
                             >
@@ -773,12 +899,12 @@ export default function BLDPage() {
         )}
 
         {/* BLD Trainer Section */}
-        <div className="mb-8 bg-white rounded-lg shadow-sm p-6">
+        <div className="mt-8 bg-white rounded-lg shadow-sm p-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">BLD Trainer</h2>
           {currentTrainerPair ? (
             <div className="flex flex-col items-center space-y-4">
               <div className="text-6xl font-bold text-purple-600">{currentTrainerPair.pair}</div>
-              <p className="text-lg text-gray-700">What is the sound or image for this pair?</p>
+              <p className="text-lg text-gray-700">What is the image for this pair?</p>
               <div className="flex w-full max-w-md space-x-2">
                 <Input
                   type="text"
@@ -803,16 +929,7 @@ export default function BLDPage() {
               {showAnswer && currentTrainerPair && (
                 <div className="text-md text-gray-800">
                   <p>
-                    Sound: <span className="font-semibold">{currentTrainerPair.sound || "N/A"}</span>
-                  </p>
-                  <p>
                     Image: <span className="font-semibold">{currentTrainerPair.name || "N/A"}</span>
-                  </p>
-                  <p>
-                    Edges (UF) Alg: <code className="font-mono">{currentTrainerPair.edgesAlgorithm || "N/A"}</code>
-                  </p>
-                  <p>
-                    Corners (UFR) Alg: <code className="font-mono">{currentTrainerPair.cornersAlgorithm || "N/A"}</code>
                   </p>
                 </div>
               )}
