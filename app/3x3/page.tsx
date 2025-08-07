@@ -37,13 +37,13 @@ export default function ThreeByThreePage() {
               <Link href="/3x3/cfop/oll">
                 <Button variant="outline" className="w-full justify-start bg-transparent">
                   <Eye className="h-4 w-4 mr-2" />
-                  OLL (Orient Last Layer)
+                  OLL (Orientation of Last Layer)
                 </Button>
               </Link>
               <Link href="/3x3/cfop/pll">
                 <Button variant="outline" className="w-full justify-start bg-transparent">
                   <Layers className="h-4 w-4 mr-2" />
-                  PLL (Permute Last Layer)
+                  PLL (Permutation of Last Layer)
                 </Button>
               </Link>
             </CardContent>

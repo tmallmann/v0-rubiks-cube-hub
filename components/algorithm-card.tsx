@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Edit2, Save, X, Upload, Trash2 } from "lucide-react"
+import { Edit2, Save, X, Upload, Trash2 } from 'lucide-react'
 import Image from "next/image"
 
 interface AlgorithmCardProps {
@@ -93,9 +93,11 @@ export function AlgorithmCard({ id, title, algorithm, image, onUpdate, onDelete 
               height={60}
               className="rounded-lg object-cover"
             />
-            <Button size="sm" variant="destructive" className="absolute top-2 right-2" onClick={handleRemoveImage}>
-              <X className="h-2 w-2" />
-            </Button>
+            {isEditing && (
+              <Button size="sm" variant="destructive" className="absolute top-2 right-2" onClick={handleRemoveImage}>
+                <X className="h-2 w-2" />
+              </Button>
+            )}
           </div>
         )}
 
@@ -113,15 +115,17 @@ export function AlgorithmCard({ id, title, algorithm, image, onUpdate, onDelete 
         )}
 
         <div className="flex space-x-2">
-          <label className="cursor-pointer">
-            <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
-            <Button size="sm" variant="outline" asChild>
-              <span>
-                <Upload className="h-3 w-3 mr-2" />
-                {image ? "Change Image" : "Add Image"}
-              </span>
-            </Button>
-          </label>
+          {isEditing && (
+            <label className="cursor-pointer">
+              <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
+              <Button size="sm" variant="outline" asChild>
+                <span>
+                  <Upload className="h-3 w-3 mr-2" />
+                  {image ? "Change Image" : "Add Image"}
+                </span>
+              </Button>
+            </label>
+          )}
         </div>
       </CardContent>
     </Card>

@@ -66,7 +66,7 @@ export default function F2LPage() {
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-4xl font-bold text-gray-900 mb-4">F2L Cases</h1>
-              <p className="text-xl text-gray-600">First Two Layers algorithms and cases</p>
+              <p className="text-xl text-gray-600">First Two Layers </p>
             </div>
             <Button onClick={handleAdd}>
               <Plus className="h-4 w-4 mr-2" />

@@ -66,7 +66,7 @@ export default function PLLPage() {
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-4xl font-bold text-gray-900 mb-4">PLL Cases</h1>
-              <p className="text-xl text-gray-600">Permute Last Layer algorithms</p>
+              <p className="text-xl text-gray-600">Permutation of Last Layer</p>
             </div>
             <Button onClick={handleAdd}>
               <Plus className="h-4 w-4 mr-2" />

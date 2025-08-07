@@ -5,7 +5,7 @@ import type React from "react"
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Save, X, Edit2, ArrowLeft, RefreshCw } from "lucide-react"
+import { Save, X, Edit2, ArrowLeft, RefreshCw } from 'lucide-react'
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 
@@ -355,60 +355,6 @@ export default function BLDPage() {
           <p className="text-xl text-gray-600">
             Manage letter pair, flip, and twist associations for blindfolded solving
           </p>
-        </div>
-
-        {/* BLD Trainer Section */}
-        <div className="mb-8 bg-white rounded-lg shadow-sm p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">BLD Trainer</h2>
-          {currentTrainerPair ? (
-            <div className="flex flex-col items-center space-y-4">
-              <div className="text-6xl font-bold text-purple-600">{currentTrainerPair.pair}</div>
-              <p className="text-lg text-gray-700">What is the sound or image for this pair?</p>
-              <div className="flex w-full max-w-md space-x-2">
-                <Input
-                  type="text"
-                  value={trainerInput}
-                  onChange={(e) => setTrainerInput(e.target.value)}
-                  onKeyPress={handleTrainerKeyPress}
-                  placeholder="Type your answer..."
-                  className="flex-1"
-                />
-                <Button onClick={checkTrainerAnswer}>Check</Button>
-                <Button variant="outline" onClick={handleShowAnswer}>
-                  Show Answer
-                </Button>
-              </div>
-              {feedbackMessage && (
-                <p
-                  className={`text-lg font-semibold ${feedbackMessage.startsWith("Correct") ? "text-green-600" : "text-red-600"}`}
-                >
-                  {feedbackMessage}
-                </p>
-              )}
-              {showAnswer && currentTrainerPair && (
-                <div className="text-md text-gray-800">
-                  <p>
-                    Sound: <span className="font-semibold">{currentTrainerPair.sound || "N/A"}</span>
-                  </p>
-                  <p>
-                    Image: <span className="font-semibold">{currentTrainerPair.name || "N/A"}</span>
-                  </p>
-                  <p>
-                    Edges (UF) Alg: <code className="font-mono">{currentTrainerPair.edgesAlgorithm || "N/A"}</code>
-                  </p>
-                  <p>
-                    Corners (UFR) Alg: <code className="font-mono">{currentTrainerPair.cornersAlgorithm || "N/A"}</code>
-                  </p>
-                </div>
-              )}
-              <Button variant="secondary" onClick={generateRandomPair}>
-                <RefreshCw className="h-4 w-4 mr-2" />
-                New Pair
-              </Button>
-            </div>
-          ) : (
-            <p className="text-center text-gray-600">Loading trainer or no learnable pairs available.</p>
-          )}
         </div>
 
         {/* Table Selection Buttons */}
@@ -825,6 +771,60 @@ export default function BLDPage() {
             </div>
           </div>
         )}
+
+        {/* BLD Trainer Section */}
+        <div className="mb-8 bg-white rounded-lg shadow-sm p-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">BLD Trainer</h2>
+          {currentTrainerPair ? (
+            <div className="flex flex-col items-center space-y-4">
+              <div className="text-6xl font-bold text-purple-600">{currentTrainerPair.pair}</div>
+              <p className="text-lg text-gray-700">What is the sound or image for this pair?</p>
+              <div className="flex w-full max-w-md space-x-2">
+                <Input
+                  type="text"
+                  value={trainerInput}
+                  onChange={(e) => setTrainerInput(e.target.value)}
+                  onKeyPress={handleTrainerKeyPress}
+                  placeholder="Type your answer..."
+                  className="flex-1"
+                />
+                <Button onClick={checkTrainerAnswer}>Check</Button>
+                <Button variant="outline" onClick={handleShowAnswer}>
+                  Show Answer
+                </Button>
+              </div>
+              {feedbackMessage && (
+                <p
+                  className={`text-lg font-semibold ${feedbackMessage.startsWith("Correct") ? "text-green-600" : "text-red-600"}`}
+                >
+                  {feedbackMessage}
+                </p>
+              )}
+              {showAnswer && currentTrainerPair && (
+                <div className="text-md text-gray-800">
+                  <p>
+                    Sound: <span className="font-semibold">{currentTrainerPair.sound || "N/A"}</span>
+                  </p>
+                  <p>
+                    Image: <span className="font-semibold">{currentTrainerPair.name || "N/A"}</span>
+                  </p>
+                  <p>
+                    Edges (UF) Alg: <code className="font-mono">{currentTrainerPair.edgesAlgorithm || "N/A"}</code>
+                  </p>
+                  <p>
+                    Corners (UFR) Alg: <code className="font-mono">{currentTrainerPair.cornersAlgorithm || "N/A"}</code>
+                  </p>
+                </div>
+              )}
+              <Button variant="secondary" onClick={generateRandomPair}>
+                <RefreshCw className="h-4 w-4 mr-2" />
+                New Pair
+              </Button>
+            </div>
+          ) : (
+            <p className="text-center text-gray-600">Loading trainer or no learnable pairs available.</p>
+          )}
+        </div>
       </div>
     </div>
   )
