@@ -14,10 +14,47 @@ interface Algorithm {
 }
 
 const defaultF2LCases: Algorithm[] = [
-  { id: "f2l-1", title: "Basic Corner-Edge Pair", algorithm: "R U' R'" },
-  { id: "f2l-2", title: "Corner Up, Edge in Slot", algorithm: "F R F' R U R U' R'" },
-  { id: "f2l-3", title: "Corner in Place, Edge Up", algorithm: "R U R' F R F'" },
-  { id: "f2l-4", title: "Both Pieces Up", algorithm: "R U' R' U R U R'" },
+  { id: "f2l-1", title: "F2L Case 1", algorithm: "", image: "/images/3x3/F2L/f2l-1.png" },
+  { id: "f2l-2", title: "F2L Case 2", algorithm: "", image: "/images/3x3/F2L/f2l-2.png" },
+  { id: "f2l-3", title: "F2L Case 3", algorithm: "", image: "/images/3x3/F2L/f2l-3.png" },
+  { id: "f2l-4", title: "F2L Case 4", algorithm: "", image: "/images/3x3/F2L/f2l-4.png" },
+  { id: "f2l-5", title: "F2L Case 5", algorithm: "", image: "/images/3x3/F2L/f2l-5.png" },
+  { id: "f2l-6", title: "F2L Case 6", algorithm: "", image: "/images/3x3/F2L/f2l-6.png" },
+  { id: "f2l-7", title: "F2L Case 7", algorithm: "", image: "/images/3x3/F2L/f2l-7.png" },
+  { id: "f2l-8", title: "F2L Case 8", algorithm: "", image: "/images/3x3/F2L/f2l-8.png" },
+  { id: "f2l-9", title: "F2L Case 9", algorithm: "", image: "/images/3x3/F2L/f2l-9.png" },
+  { id: "f2l-10", title: "F2L Case 10", algorithm: "", image: "/images/3x3/F2L/f2l-10.png" },
+  { id: "f2l-11", title: "F2L Case 11", algorithm: "", image: "/images/3x3/F2L/f2l-11.png" },
+  { id: "f2l-12", title: "F2L Case 12", algorithm: "", image: "/images/3x3/F2L/f2l-12.png" },
+  { id: "f2l-13", title: "F2L Case 13", algorithm: "", image: "/images/3x3/F2L/f2l-13.png" },
+  { id: "f2l-14", title: "F2L Case 14", algorithm: "", image: "/images/3x3/F2L/f2l-14.png" },
+  { id: "f2l-15", title: "F2L Case 15", algorithm: "", image: "/images/3x3/F2L/f2l-15.png" },
+  { id: "f2l-16", title: "F2L Case 16", algorithm: "", image: "/images/3x3/F2L/f2l-16.png" },
+  { id: "f2l-17", title: "F2L Case 17", algorithm: "", image: "/images/3x3/F2L/f2l-17.png" },
+  { id: "f2l-18", title: "F2L Case 18", algorithm: "", image: "/images/3x3/F2L/f2l-18.png" },
+  { id: "f2l-19", title: "F2L Case 19", algorithm: "", image: "/images/3x3/F2L/f2l-19.png" },
+  { id: "f2l-20", title: "F2L Case 20", algorithm: "", image: "/images/3x3/F2L/f2l-20.png" },
+  { id: "f2l-21", title: "F2L Case 21", algorithm: "", image: "/images/3x3/F2L/f2l-21.png" },
+  { id: "f2l-22", title: "F2L Case 22", algorithm: "", image: "/images/3x3/F2L/f2l-22.png" },
+  { id: "f2l-23", title: "F2L Case 23", algorithm: "", image: "/images/3x3/F2L/f2l-23.png" },
+  { id: "f2l-24", title: "F2L Case 24", algorithm: "", image: "/images/3x3/F2L/f2l-24.png" },
+  { id: "f2l-25", title: "F2L Case 25", algorithm: "", image: "/images/3x3/F2L/f2l-25.png" },
+  { id: "f2l-26", title: "F2L Case 26", algorithm: "", image: "/images/3x3/F2L/f2l-26.png" },
+  { id: "f2l-27", title: "F2L Case 27", algorithm: "", image: "/images/3x3/F2L/f2l-27.png" },
+  { id: "f2l-28", title: "F2L Case 28", algorithm: "", image: "/images/3x3/F2L/f2l-28.png" },
+  { id: "f2l-29", title: "F2L Case 29", algorithm: "", image: "/images/3x3/F2L/f2l-29.png" },
+  { id: "f2l-30", title: "F2L Case 30", algorithm: "", image: "/images/3x3/F2L/f2l-30.png" },
+  { id: "f2l-31", title: "F2L Case 31", algorithm: "", image: "/images/3x3/F2L/f2l-31.png" },
+  { id: "f2l-32", title: "F2L Case 32", algorithm: "", image: "/images/3x3/F2L/f2l-32.png" },
+  { id: "f2l-33", title: "F2L Case 33", algorithm: "", image: "/images/3x3/F2L/f2l-33.png" },
+  { id: "f2l-34", title: "F2L Case 34", algorithm: "", image: "/images/3x3/F2L/f2l-34.png" },
+  { id: "f2l-35", title: "F2L Case 35", algorithm: "", image: "/images/3x3/F2L/f2l-35.png" },
+  { id: "f2l-36", title: "F2L Case 36", algorithm: "", image: "/images/3x3/F2L/f2l-36.png" },
+  { id: "f2l-37", title: "F2L Case 37", algorithm: "", image: "/images/3x3/F2L/f2l-37.png" },
+  { id: "f2l-38", title: "F2L Case 38", algorithm: "", image: "/images/3x3/F2L/f2l-38.png" },
+  { id: "f2l-39", title: "F2L Case 39", algorithm: "", image: "/images/3x3/F2L/f2l-39.png" },
+  { id: "f2l-40", title: "F2L Case 40", algorithm: "", image: "/images/3x3/F2L/f2l-40.png" },
+  { id: "f2l-41", title: "F2L Case 41", algorithm: "", image: "/images/3x3/F2L/f2l-41.png" },
 ]
 
 export default function F2LPage() {
@@ -26,7 +63,12 @@ export default function F2LPage() {
   useEffect(() => {
     const saved = localStorage.getItem("3x3-f2l-algorithms")
     if (saved) {
-      setAlgorithms(JSON.parse(saved))
+      const parsed = JSON.parse(saved)
+      const merged = defaultF2LCases.map((defaultCase) => {
+        const savedCase = parsed.find((c: Algorithm) => c.id === defaultCase.id)
+        return savedCase ? { ...defaultCase, title: savedCase.title, algorithm: savedCase.algorithm } : defaultCase
+      })
+      setAlgorithms(merged)
     } else {
       setAlgorithms(defaultF2LCases)
     }
@@ -66,7 +108,7 @@ export default function F2LPage() {
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-4xl font-bold text-gray-900 mb-4">F2L Cases</h1>
-              <p className="text-xl text-gray-600">First Two Layers </p>
+              <p className="text-xl text-gray-600">First Two Layers - 41 Cases</p>
             </div>
             <Button onClick={handleAdd}>
               <Plus className="h-4 w-4 mr-2" />

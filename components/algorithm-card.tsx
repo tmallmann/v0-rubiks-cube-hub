@@ -1,13 +1,11 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Edit2, Save, X, Upload, Trash2 } from 'lucide-react'
+import { Edit2, Save, X, Trash2 } from "lucide-react"
 import Image from "next/image"
 
 interface AlgorithmCardProps {
@@ -15,7 +13,7 @@ interface AlgorithmCardProps {
   title: string
   algorithm: string
   image?: string
-  onUpdate: (id: string, updates: { title?: string; algorithm?: string; image?: string }) => void
+  onUpdate: (id: string, updates: { title?: string; algorithm?: string }) => void
   onDelete?: (id: string) => void
 }
 
@@ -33,22 +31,6 @@ export function AlgorithmCard({ id, title, algorithm, image, onUpdate, onDelete 
     setEditTitle(title)
     setEditAlgorithm(algorithm)
     setIsEditing(false)
-  }
-
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (file) {
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        const imageData = e.target?.result as string
-        onUpdate(id, { image: imageData })
-      }
-      reader.readAsDataURL(file)
-    }
-  }
-
-  const handleRemoveImage = () => {
-    onUpdate(id, { image: undefined })
   }
 
   return (
@@ -93,11 +75,6 @@ export function AlgorithmCard({ id, title, algorithm, image, onUpdate, onDelete 
               height={60}
               className="rounded-lg object-cover"
             />
-            {isEditing && (
-              <Button size="sm" variant="destructive" className="absolute top-2 right-2" onClick={handleRemoveImage}>
-                <X className="h-2 w-2" />
-              </Button>
-            )}
           </div>
         )}
 
@@ -113,20 +90,6 @@ export function AlgorithmCard({ id, title, algorithm, image, onUpdate, onDelete 
             <code>{algorithm || "No algorithm set"}</code>
           </div>
         )}
-
-        <div className="flex space-x-2">
-          {isEditing && (
-            <label className="cursor-pointer">
-              <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
-              <Button size="sm" variant="outline" asChild>
-                <span>
-                  <Upload className="h-3 w-3 mr-2" />
-                  {image ? "Change Image" : "Add Image"}
-                </span>
-              </Button>
-            </label>
-          )}
-        </div>
       </CardContent>
     </Card>
   )

@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Plus } from "lucide-react"
 import { AlgorithmCard } from "@/components/algorithm-card"
+import { validateAndCleanImages } from "@/lib/image-validator"
 
 interface Algorithm {
   id: string
@@ -25,7 +26,9 @@ export default function FourByFourPLLPage() {
   useEffect(() => {
     const saved = localStorage.getItem("4x4-pll-algorithms")
     if (saved) {
-      setAlgorithms(JSON.parse(saved))
+      const parsed = JSON.parse(saved)
+      const cleaned = validateAndCleanImages(parsed)
+      setAlgorithms(cleaned)
     } else {
       setAlgorithms(default4x4PLLCases)
     }
