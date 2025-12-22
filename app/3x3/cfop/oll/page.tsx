@@ -14,88 +14,108 @@ interface Algorithm {
 }
 
 const defaultOLLCases: Algorithm[] = [
-  { id: "oll-1", title: "OLL 1", algorithm: "", image: "/images/3x3/oll/oll-1.png" },
-  { id: "oll-2", title: "OLL 2", algorithm: "", image: "/images/3x3/oll/oll-2.png" },
-  { id: "oll-3", title: "OLL 3", algorithm: "", image: "/images/3x3/oll/oll-3.png" },
-  { id: "oll-4", title: "OLL 4", algorithm: "", image: "/images/3x3/oll/oll-4.png" },
-  { id: "oll-5", title: "OLL 5", algorithm: "", image: "/images/3x3/oll/oll-5.png" },
-  { id: "oll-6", title: "OLL 6", algorithm: "", image: "/images/3x3/oll/oll-6.png" },
-  { id: "oll-7", title: "OLL 7", algorithm: "", image: "/images/3x3/oll/oll-7.png" },
-  { id: "oll-8", title: "OLL 8", algorithm: "", image: "/images/3x3/oll/oll-8.png" },
-  { id: "oll-9", title: "OLL 9", algorithm: "", image: "/images/3x3/oll/oll-9.png" },
-  { id: "oll-10", title: "OLL 10", algorithm: "", image: "/images/3x3/oll/oll-10.png" },
-  { id: "oll-11", title: "OLL 11", algorithm: "", image: "/images/3x3/oll/oll-11.png" },
-  { id: "oll-12", title: "OLL 12", algorithm: "", image: "/images/3x3/oll/oll-12.png" },
-  { id: "oll-13", title: "OLL 13", algorithm: "", image: "/images/3x3/oll/oll-13.png" },
-  { id: "oll-14", title: "OLL 14", algorithm: "", image: "/images/3x3/oll/oll-14.png" },
-  { id: "oll-15", title: "OLL 15", algorithm: "", image: "/images/3x3/oll/oll-15.png" },
-  { id: "oll-16", title: "OLL 16", algorithm: "", image: "/images/3x3/oll/oll-16.png" },
-  { id: "oll-17", title: "OLL 17", algorithm: "", image: "/images/3x3/oll/oll-17.png" },
-  { id: "oll-18", title: "OLL 18", algorithm: "", image: "/images/3x3/oll/oll-18.png" },
-  { id: "oll-19", title: "OLL 19", algorithm: "", image: "/images/3x3/oll/oll-19.png" },
-  { id: "oll-20", title: "OLL 20", algorithm: "", image: "/images/3x3/oll/oll-20.png" },
-  { id: "oll-21", title: "OLL 21", algorithm: "", image: "/images/3x3/oll/oll-21.png" },
-  { id: "oll-22", title: "OLL 22", algorithm: "", image: "/images/3x3/oll/oll-22.png" },
-  { id: "oll-23", title: "OLL 23", algorithm: "", image: "/images/3x3/oll/oll-23.png" },
-  { id: "oll-24", title: "OLL 24", algorithm: "", image: "/images/3x3/oll/oll-24.png" },
-  { id: "oll-25", title: "OLL 25", algorithm: "", image: "/images/3x3/oll/oll-25.png" },
-  { id: "oll-26", title: "OLL 26", algorithm: "", image: "/images/3x3/oll/oll-26.png" },
-  { id: "oll-27", title: "OLL 27", algorithm: "", image: "/images/3x3/oll/oll-27.png" },
-  { id: "oll-28", title: "OLL 28", algorithm: "", image: "/images/3x3/oll/oll-28.png" },
-  { id: "oll-29", title: "OLL 29", algorithm: "", image: "/images/3x3/oll/oll-29.png" },
-  { id: "oll-30", title: "OLL 30", algorithm: "", image: "/images/3x3/oll/oll-30.png" },
-  { id: "oll-31", title: "OLL 31", algorithm: "", image: "/images/3x3/oll/oll-31.png" },
-  { id: "oll-32", title: "OLL 32", algorithm: "", image: "/images/3x3/oll/oll-32.png" },
-  { id: "oll-33", title: "OLL 33", algorithm: "", image: "/images/3x3/oll/oll-33.png" },
-  { id: "oll-34", title: "OLL 34", algorithm: "", image: "/images/3x3/oll/oll-34.png" },
-  { id: "oll-35", title: "OLL 35", algorithm: "", image: "/images/3x3/oll/oll-35.png" },
-  { id: "oll-36", title: "OLL 36", algorithm: "", image: "/images/3x3/oll/oll-36.png" },
-  { id: "oll-37", title: "OLL 37", algorithm: "", image: "/images/3x3/oll/oll-37.png" },
-  { id: "oll-38", title: "OLL 38", algorithm: "", image: "/images/3x3/oll/oll-38.png" },
-  { id: "oll-39", title: "OLL 39", algorithm: "", image: "/images/3x3/oll/oll-39.png" },
-  { id: "oll-40", title: "OLL 40", algorithm: "", image: "/images/3x3/oll/oll-40.png" },
-  { id: "oll-41", title: "OLL 41", algorithm: "", image: "/images/3x3/oll/oll-41.png" },
-  { id: "oll-42", title: "OLL 42", algorithm: "", image: "/images/3x3/oll/oll-42.png" },
-  { id: "oll-43", title: "OLL 43", algorithm: "", image: "/images/3x3/oll/oll-43.png" },
-  { id: "oll-44", title: "OLL 44", algorithm: "", image: "/images/3x3/oll/oll-44.png" },
-  { id: "oll-45", title: "OLL 45", algorithm: "", image: "/images/3x3/oll/oll-45.png" },
-  { id: "oll-46", title: "OLL 46", algorithm: "", image: "/images/3x3/oll/oll-46.png" },
-  { id: "oll-47", title: "OLL 47", algorithm: "", image: "/images/3x3/oll/oll-47.png" },
-  { id: "oll-48", title: "OLL 48", algorithm: "", image: "/images/3x3/oll/oll-48.png" },
-  { id: "oll-49", title: "OLL 49", algorithm: "", image: "/images/3x3/oll/oll-49.png" },
-  { id: "oll-50", title: "OLL 50", algorithm: "", image: "/images/3x3/oll/oll-50.png" },
-  { id: "oll-51", title: "OLL 51", algorithm: "", image: "/images/3x3/oll/oll-51.png" },
-  { id: "oll-52", title: "OLL 52", algorithm: "", image: "/images/3x3/oll/oll-52.png" },
-  { id: "oll-53", title: "OLL 53", algorithm: "", image: "/images/3x3/oll/oll-53.png" },
-  { id: "oll-54", title: "OLL 54", algorithm: "", image: "/images/3x3/oll/oll-54.png" },
-  { id: "oll-55", title: "OLL 55", algorithm: "", image: "/images/3x3/oll/oll-55.png" },
-  { id: "oll-56", title: "OLL 56", algorithm: "", image: "/images/3x3/oll/oll-56.png" },
-  { id: "oll-57", title: "OLL 57", algorithm: "", image: "/images/3x3/oll/oll-57.png" },
+  { id: "oll-1", title: "OLL 1", algorithm: "R U2 R2' F R F' U2 R' F R F'", image: "/images/3x3/oll/oll-1.png" },
+  { id: "oll-2", title: "OLL 2", algorithm: "F R U R' U' F' f R U R' U' f'", image: "/images/3x3/oll/oll-2.png" },
+  { id: "oll-3", title: "OLL 3", algorithm: "f R U R' U' f' U' F R U R' U' F'", image: "/images/3x3/oll/oll-3.png" },
+  { id: "oll-4", title: "OLL 4", algorithm: "f R U R' U' f' U F R U R' U' F'", image: "/images/3x3/oll/oll-4.png" },
+  { id: "oll-5", title: "OLL 5", algorithm: "Rw' U2 R U R' U Rw", image: "/images/3x3/oll/oll-5.png" },
+  { id: "oll-6", title: "OLL 6", algorithm: "Rw U2 R' U' R U' Rw'", image: "/images/3x3/oll/oll-6.png" },
+  { id: "oll-7", title: "OLL 7", algorithm: "Rw U R' U R U2 Rw'", image: "/images/3x3/oll/oll-7.png" },
+  { id: "oll-8", title: "OLL 8", algorithm: "Rw' U' R U' R' U2 Rw", image: "/images/3x3/oll/oll-8.png" },
+  { id: "oll-9", title: "OLL 9", algorithm: "R U R' U' R' F R R2 U R' U' F'", image: "/images/3x3/oll/oll-9.png" },
+  { id: "oll-10", title: "OLL 10", algorithm: "R U R' U R' F R F' R U2 R'", image: "/images/3x3/oll/oll-10.png" },
+  { id: "oll-11", title: "OLL 11", algorithm: "Rw U R' U R' F R F' R U2 Rw'", image: "/images/3x3/oll/oll-11.png" },
+  { id: "oll-12", title: "OLL 12", algorithm: "M' R' U' R U' R' U2 R U' M", image: "/images/3x3/oll/oll-12.png" },
+  { id: "oll-13", title: "OLL 13", algorithm: "F U R U' R2 F' R U R U' R'", image: "/images/3x3/oll/oll-13.png" },
+  { id: "oll-14", title: "OLL 14", algorithm: "R' F R U R' F' R Fw U' Rw'", image: "/images/3x3/oll/oll-14.png" },
+  { id: "oll-15", title: "OLL 15", algorithm: "Rw' U' Rw R' U' R U Rw' U Rw", image: "/images/3x3/oll/oll-15.png" },
+  { id: "oll-16", title: "OLL 16", algorithm: "Rw U Rw' R U R' U' Rw U' Rw'", image: "/images/3x3/oll/oll-16.png" },
+  { id: "oll-17", title: "OLL 17", algorithm: "R U R' U R' F R F' U2 R' F R F'", image: "/images/3x3/oll/oll-17.png" },
+  { id: "oll-18", title: "OLL 18", algorithm: "Rw U R' U' Rw' R U R U' R' U2 Rw", image: "/images/3x3/oll/oll-18.png" },
+  { id: "oll-19", title: "OLL 19", algorithm: "M U R U R' U' M' R' F R F'", image: "/images/3x3/oll/oll-19.png" },
+  { id: "oll-20", title: "OLL 20", algorithm: "M U R U R' U' M2' U R U' Rw'", image: "/images/3x3/oll/oll-20.png" },
+  { id: "oll-21", title: "OLL 21", algorithm: "R U2 R' U' R U R' U' R U' R'", image: "/images/3x3/oll/oll-21.png" },
+  { id: "oll-22", title: "OLL 22", algorithm: "R U2 R2' U' R2 U' R2' U2 R", image: "/images/3x3/oll/oll-22.png" },
+  { id: "oll-23", title: "OLL 23", algorithm: "R2 D' R U2 R' D R U2 R", image: "/images/3x3/oll/oll-23.png" },
+  { id: "oll-24", title: "OLL 24", algorithm: "Rw U R' U' Rw' F R F'", image: "/images/3x3/oll/oll-24.png" },
+  { id: "oll-25", title: "OLL 25", algorithm: "F' Rw U R' U' Rw' F R", image: "/images/3x3/oll/oll-25.png" },
+  { id: "oll-26", title: "OLL 26", algorithm: "R U2 R' U' R U' R'", image: "/images/3x3/oll/oll-26.png" },
+  { id: "oll-27", title: "OLL 27", algorithm: "R U R' U R U2 R'", image: "/images/3x3/oll/oll-27.png" },
+  { id: "oll-28", title: "OLL 28", algorithm: "Rw U R' U' Rw' R U R U' R'", image: "/images/3x3/oll/oll-28.png" },
+  { id: "oll-29", title: "OLL 29", algorithm: "M U R U R' U' M' R' F R F'", image: "/images/3x3/oll/oll-29.png" },
+  { id: "oll-30", title: "OLL 30", algorithm: "F U R U2 R' U' R U R' F'", image: "/images/3x3/oll/oll-30.png" },
+  { id: "oll-31", title: "OLL 31", algorithm: "R' U' F U R U' R' F' R", image: "/images/3x3/oll/oll-31.png" },
+  { id: "oll-32", title: "OLL 32", algorithm: "S R U R' U' R' F R f'", image: "/images/3x3/oll/oll-32.png" },
+  { id: "oll-33", title: "OLL 33", algorithm: "R U R' U' R' F R F'", image: "/images/3x3/oll/oll-33.png" },
+  { id: "oll-34", title: "OLL 34", algorithm: "R U R2' U' R' F R U R U' F'", image: "/images/3x3/oll/oll-34.png" },
+  { id: "oll-35", title: "OLL 35", algorithm: "R U2 R2' F R F' R U2 R'", image: "/images/3x3/oll/oll-35.png" },
+  { id: "oll-36", title: "OLL 36", algorithm: "R' U' R U' R' U R U Rw B' Rw'", image: "/images/3x3/oll/oll-36.png" },
+  { id: "oll-37", title: "OLL 37", algorithm: "F R U' R' U' R U R' F'", image: "/images/3x3/oll/oll-37.png" },
+  { id: "oll-38", title: "OLL 38", algorithm: "R U R' U R U' R' U' R' F R F'", image: "/images/3x3/oll/oll-38.png" },
+  { id: "oll-39", title: "OLL 39", algorithm: "R U R' F' U' F U R U2 R'", image: "/images/3x3/oll/oll-39.png" },
+  { id: "oll-40", title: "OLL 40", algorithm: "R' F R U R' U' F' U R", image: "/images/3x3/oll/oll-40.png" },
+  { id: "oll-41", title: "OLL 41", algorithm: "R U R' U R U2 R' F R U R' U' F'", image: "/images/3x3/oll/oll-41.png" },
+  { id: "oll-42", title: "OLL 42", algorithm: "R' U' R U' R' U2 R F R U R' U' F'", image: "/images/3x3/oll/oll-42.png",},
+  { id: "oll-43", title: "OLL 43", algorithm: "F' U' L' U L F", image: "/images/3x3/oll/oll-43.png" },
+  { id: "oll-44", title: "OLL 44", algorithm: "F U R U' R' F'", image: "/images/3x3/oll/oll-44.png" },
+  { id: "oll-45", title: "OLL 45", algorithm: "F R U R' U' F'", image: "/images/3x3/oll/oll-45.png" },
+  { id: "oll-46", title: "OLL 46", algorithm: "R' U' R' F R F' U R", image: "/images/3x3/oll/oll-46.png" },
+  { id: "oll-47", title: "OLL 47", algorithm: "R' U' R' F R F' R' F R F' U R", image: "/images/3x3/oll/oll-47.png" },
+  { id: "oll-48", title: "OLL 48", algorithm: "F R U R' U' R U R' U' F'", image: "/images/3x3/oll/oll-48.png" },
+  { id: "oll-49", title: "OLL 49", algorithm: "R B' R2 F R2 B R2 F' R", image: "/images/3x3/oll/oll-49.png" },
+  { id: "oll-50", title: "OLL 50", algorithm: "R' F R2 B' R2 F' R2 B R'", image: "/images/3x3/oll/oll-50.png" },
+  { id: "oll-51", title: "OLL 51", algorithm: "F U R U' R' U R U' R' F'", image: "/images/3x3/oll/oll-51.png" },
+  { id: "oll-52", title: "OLL 52", algorithm: "R' U' R U' R' U F' U F R", image: "/images/3x3/oll/oll-52.png" },
+  { id: "oll-53", title: "OLL 53", algorithm: "Rw' U2 R U R' U' R U R' U Rw", image: "/images/3x3/oll/oll-53.png" },
+  { id: "oll-54", title: "OLL 54", algorithm: "Rw U2 R' U' R U R' U' R U' Rw'", image: "/images/3x3/oll/oll-54.png" },
+  { id: "oll-55", title: "OLL 55", algorithm: "R' F R U R U' R2 F' R2 U' R' U R U R'", image: "/images/3x3/oll/oll-55.png",},
+  { id: "oll-56", title: "OLL 56", algorithm: "Rw U Rw' U R U' R' U R U' R' Rw U' Rw'", image: "/images/3x3/oll/oll-56.png",},
+  { id: "oll-57", title: "OLL 57", algorithm: "R U R' U' M' U R U' Rw'", image: "/images/3x3/oll/oll-57.png" },
 ]
 
 export default function OLLPage() {
-  const [algorithms, setAlgorithms] = useState<Algorithm[]>([])
+  const [algorithms, setAlgorithms] = useState<Algorithm[]>(defaultOLLCases)
 
   useEffect(() => {
     const saved = localStorage.getItem("3x3-oll-algorithms")
     if (saved) {
-      const parsed = JSON.parse(saved)
-      const merged = defaultOLLCases.map((defaultCase) => {
-        const savedCase = parsed.find((c: Algorithm) => c.id === defaultCase.id)
-        return savedCase ? { ...defaultCase, title: savedCase.title, algorithm: savedCase.algorithm } : defaultCase
-      })
-      setAlgorithms(merged)
-    } else {
-      setAlgorithms(defaultOLLCases)
+      try {
+        const parsed = JSON.parse(saved)
+        const merged = defaultOLLCases.map((defaultCase) => {
+          const savedCase = parsed.find((c: Algorithm) => c.id === defaultCase.id)
+          if (savedCase) {
+            return {
+              ...defaultCase,
+              title: savedCase.title || defaultCase.title,
+              algorithm: savedCase.algorithm || defaultCase.algorithm,
+            }
+          }
+          return defaultCase
+        })
+        setAlgorithms(merged)
+      } catch (e) {
+        console.error("[v0] Failed to parse saved OLL algorithms:", e)
+        setAlgorithms(defaultOLLCases)
+      }
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem("3x3-oll-algorithms", JSON.stringify(algorithms))
+    if (algorithms.length > 0) {
+      localStorage.setItem("3x3-oll-algorithms", JSON.stringify(algorithms))
+    }
   }, [algorithms])
 
   const handleUpdate = (id: string, updates: Partial<Algorithm>) => {
-    setAlgorithms((prev) => prev.map((alg) => (alg.id === id ? { ...alg, ...updates } : alg)))
+    setAlgorithms((prev) =>
+      prev.map((alg) => {
+        if (alg.id === id) {
+          const { image, ...allowedUpdates } = updates
+          return { ...alg, ...allowedUpdates }
+        }
+        return alg
+      }),
+    )
   }
 
   const handleDelete = (id: string) => {

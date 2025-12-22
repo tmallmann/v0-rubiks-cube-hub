@@ -65,15 +65,15 @@ export function AlgorithmCard({ id, title, algorithm, image, onUpdate, onDelete 
           )}
         </div>
       </CardHeader>
-      <CardContent className="space-y-2 px-3 pb-3">
+      <CardContent className="space-y-8 px-3 pb-3">
         {image && (
-          <div className="relative">
+          <div className="relative w-full h-24 flex items-center justify-center rounded-lg">
             <Image
               src={image || "/placeholder.svg"}
               alt={title}
-              width={80}
-              height={60}
-              className="rounded-lg object-cover"
+              width={120}
+              height={96}
+              className="rounded-lg object-contain"
             />
           </div>
         )}
@@ -83,11 +83,11 @@ export function AlgorithmCard({ id, title, algorithm, image, onUpdate, onDelete 
             value={editAlgorithm}
             onChange={(e) => setEditAlgorithm(e.target.value)}
             placeholder="Enter algorithm..."
-            className="font-mono text-xs h-16"
+            className="font-mono text-xs h-20 resize-none"
           />
         ) : (
-          <div className="bg-gray-100 p-2 rounded text-xs">
-            <code>{algorithm || "No algorithm set"}</code>
+          <div className="bg-gray-50 p-2 rounded border border-gray-200 min-h-[3rem]">
+            <p className="font-mono text-xs text-gray-900 break-words">{algorithm || "No algorithm set"}</p>
           </div>
         )}
       </CardContent>

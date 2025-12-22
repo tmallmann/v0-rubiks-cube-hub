@@ -36,7 +36,7 @@ const defaultF2LCases: Algorithm[] = [
   { id: "f2l-20", title: "F2L Case 20", algorithm: "U' R U' R2' F R F' R U' R'", image: "/images/3x3/F2L/f2l-20.png" },
   { id: "f2l-21", title: "F2L Case 21", algorithm: "U2' R U R' U R U' R'", image: "/images/3x3/F2L/f2l-21.png" },
   { id: "f2l-22", title: "F2L Case 22", algorithm: "Rw U' Rw' U2 Rw U Rw'", image: "/images/3x3/F2L/f2l-22.png" },
-  { id: "f2l-23", title: "F2L Case 23", algorithm: "U R U' R' U' R U' R' U R U' R'", image: "/images/3x3/F2L/f2l-23.png" },
+  { id: "f2l-23", title: "F2L Case 23", algorithm: "U R U' R' U' R U' R' U R U' R'", image: "/images/3x3/F2L/f2l-23.png",},
   { id: "f2l-24", title: "F2L Case 24", algorithm: "F U R U' R' F' R U' R'", image: "/images/3x3/F2L/f2l-24.png" },
   { id: "f2l-25", title: "F2L Case 25", algorithm: "U' R' F R F' R U R'", image: "/images/3x3/F2L/f2l-25.png" },
   { id: "f2l-26", title: "F2L Case 26", algorithm: "U R U' R' F R' F' R", image: "/images/3x3/F2L/f2l-26.png" },
@@ -45,20 +45,20 @@ const defaultF2LCases: Algorithm[] = [
   { id: "f2l-29", title: "F2L Case 29", algorithm: "M' U R U' R' U R U' Rw'", image: "/images/3x3/F2L/f2l-29.png" },
   { id: "f2l-30", title: "F2L Case 30", algorithm: "R U R' U' R U R'", image: "/images/3x3/F2L/f2l-30.png" },
   { id: "f2l-31", title: "F2L Case 31", algorithm: "U' R' F R F' R U' R'", image: "/images/3x3/F2L/f2l-31.png" },
-  { id: "f2l-32", title: "F2L Case 32", algorithm: "U R U' R' U R U' R' U R U' R'", image: "/images/3x3/F2L/f2l-32.png" },
+  { id: "f2l-32", title: "F2L Case 32", algorithm: "U R U' R' U R U' R' U R U' R'", image: "/images/3x3/F2L/f2l-32.png",},
   { id: "f2l-33", title: "F2L Case 33", algorithm: "U' R U' R' U2 R U' R'", image: "/images/3x3/F2L/f2l-33.png" },
   { id: "f2l-34", title: "F2L Case 34", algorithm: "U R U R' U2 R U R'", image: "/images/3x3/F2L/f2l-34.png" },
   { id: "f2l-35", title: "F2L Case 35", algorithm: "U M' U R U' Rw' R U' R'", image: "/images/3x3/F2L/f2l-35.png" },
   { id: "f2l-36", title: "F2L Case 36", algorithm: "U2 R' F R F' U2 R U R'", image: "/images/3x3/F2L/f2l-36.png" },
   { id: "f2l-37", title: "F2L Case 37", algorithm: "R2' U2' F R2 F' U2' R' U R'", image: "/images/3x3/F2L/f2l-37.png" },
-  { id: "f2l-38", title: "F2L Case 38", algorithm: "R U' R' U' R U R' U2 R U' R'", image: "/images/3x3/F2L/f2l-38.png" },
-  { id: "f2l-39", title: "F2L Case 39", algorithm: "R U' R' U R U2' R' U R U' R'", image: "/images/3x3/F2L/f2l-39.png" },
+  { id: "f2l-38", title: "F2L Case 38", algorithm: "R U' R' U' R U R' U2 R U' R'", image: "/images/3x3/F2L/f2l-38.png",},
+  { id: "f2l-39", title: "F2L Case 39", algorithm: "R U' R' U R U2' R' U R U' R'", image: "/images/3x3/F2L/f2l-39.png",},
   { id: "f2l-40", title: "F2L Case 40", algorithm: "F' L' U2 L F R U R'", image: "/images/3x3/F2L/f2l-40.png" },
   { id: "f2l-41", title: "F2L Case 41", algorithm: "R U' R' F' L' U2 L F", image: "/images/3x3/F2L/f2l-41.png" },
 ]
 
 export default function F2LPage() {
-  const [algorithms, setAlgorithms] = useState<Algorithm[]>([])
+  const [algorithms, setAlgorithms] = useState<Algorithm[]>(defaultF2LCases)
 
   useEffect(() => {
     const saved = localStorage.getItem("3x3-f2l-algorithms")
@@ -66,16 +66,23 @@ export default function F2LPage() {
       const parsed = JSON.parse(saved)
       const merged = defaultF2LCases.map((defaultCase) => {
         const savedCase = parsed.find((c: Algorithm) => c.id === defaultCase.id)
-        return savedCase ? { ...defaultCase, title: savedCase.title, algorithm: savedCase.algorithm } : defaultCase
+        if (savedCase) {
+          return {
+            ...defaultCase,
+            title: savedCase.title || defaultCase.title,
+            algorithm: savedCase.algorithm || defaultCase.algorithm,
+          }
+        }
+        return defaultCase
       })
       setAlgorithms(merged)
-    } else {
-      setAlgorithms(defaultF2LCases)
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem("3x3-f2l-algorithms", JSON.stringify(algorithms))
+    if (algorithms.length > 0) {
+      localStorage.setItem("3x3-f2l-algorithms", JSON.stringify(algorithms))
+    }
   }, [algorithms])
 
   const handleUpdate = (id: string, updates: Partial<Algorithm>) => {

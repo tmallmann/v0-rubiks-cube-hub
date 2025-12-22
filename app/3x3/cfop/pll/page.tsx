@@ -16,8 +16,8 @@ interface Algorithm {
 const defaultPLLCases: Algorithm[] = [
   { id: "pll-1", title: "Aa", algorithm: "x L2 D2' L' U' L D2' L' U L' x'", image: "/images/3x3/pll/pll-1.png" },
   { id: "pll-2", title: "Ab", algorithm: "x L U' L D2' L' U L D2' L2", image: "/images/3x3/pll/pll-2.png" },
-  { id: "pll-3", title: "E", algorithm: "x' R U' R' D R U R' D' R U R' D R U' R' D' x", image: "/images/3x3/pll/pll-3.png" },
-  { id: "pll-4", title: "F", algorithm: "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R", image: "/images/3x3/pll/pll-4.png" },
+  { id: "pll-3", title: "E", algorithm: "x' R U' R' D R U R' D' R U R' D R U' R' D' x", image: "/images/3x3/pll/pll-3.png",},
+  { id: "pll-4", title: "F", algorithm: "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R", image: "/images/3x3/pll/pll-4.png",},
   { id: "pll-5", title: "Ga", algorithm: "R2 U R' U R' U' R U' R2 D U' R' U R D'", image: "/images/3x3/pll/pll-5.png" },
   { id: "pll-6", title: "Gb", algorithm: "R' U' R U D' R2 U R' U R U' R U' R2 D", image: "/images/3x3/pll/pll-6.png" },
   { id: "pll-7", title: "Gc", algorithm: "R2' Uw' R U' R U R' Uw R2 Fw R' Fw'", image: "/images/3x3/pll/pll-7.png" },
@@ -25,20 +25,20 @@ const defaultPLLCases: Algorithm[] = [
   { id: "pll-9", title: "H", algorithm: "M2' U M2' U2 M2' U M2'", image: "/images/3x3/pll/pll-9.png" },
   { id: "pll-10", title: "Ja", algorithm: "x R2' F R F' R U2' Rw' U Rw U2' x'", image: "/images/3x3/pll/pll-10.png" },
   { id: "pll-11", title: "Jb", algorithm: "R U R' F' R U R' U' R' F R2 U' R'", image: "/images/3x3/pll/pll-11.png" },
-  { id: "pll-12", title: "Na", algorithm: "z U R' D R2 U' R U D' R' D R2 U' R D' z'", image: "/images/3x3/pll/pll-12.png" },
-  { id: "pll-13", title: "Nb", algorithm: "z U' R D' R2 U R' U' D R D' R2 U R' D z'", image: "/images/3x3/pll/pll-13.png" },
+  { id: "pll-12", title: "Na", algorithm: "z U R' D R2 U' R U D' R' D R2 U' R D' z'", image: "/images/3x3/pll/pll-12.png",},
+  { id: "pll-13", title: "Nb", algorithm: "z U' R D' R2 U R' U' D R D' R2 U R' D z'", image: "/images/3x3/pll/pll-13.png",},
   { id: "pll-14", title: "Ra", algorithm: "L U2 L' U2' L F' L' U' L U L F L2'", image: "/images/3x3/pll/pll-14.png" },
   { id: "pll-15", title: "Rb", algorithm: "R' U2 R U2' R' F R U R' U' R' F' R2", image: "/images/3x3/pll/pll-15.png" },
   { id: "pll-16", title: "T", algorithm: "R U R' U' R' F R2 U' R' U' R U R' F'", image: "/images/3x3/pll/pll-16.png" },
   { id: "pll-17", title: "Ua", algorithm: "M2 U M' U2 M U M2", image: "/images/3x3/pll/pll-17.png" },
   { id: "pll-18", title: "Ub", algorithm: "M2 U' M' U2 M U' M2", image: "/images/3x3/pll/pll-18.png" },
-  { id: "pll-19", title: "V", algorithm: "R' U R' U' R D' R' D R' U D' R2 U' R2' D R2", image: "/images/3x3/pll/pll-19.png" },
-  { id: "pll-20", title: "Y", algorithm: "F R U' R' U' R U R' F' R U R' U' R' F R F'", image: "/images/3x3/pll/pll-20.png" },
+  { id: "pll-19", title: "V", algorithm: "R' U R' U' R D' R' D R' U D' R2 U' R2' D R2", image: "/images/3x3/pll/pll-19.png",},
+  { id: "pll-20", title: "Y", algorithm: "F R U' R' U' R U R' F' R U R' U' R' F R F'", image: "/images/3x3/pll/pll-20.png",},
   { id: "pll-21", title: "Z", algorithm: "M2 U M2 U M' U2 M2 U2 M'", image: "/images/3x3/pll/pll-21.png" },
 ]
 
 export default function PLLPage() {
-  const [algorithms, setAlgorithms] = useState<Algorithm[]>([])
+  const [algorithms, setAlgorithms] = useState<Algorithm[]>(defaultPLLCases)
 
   useEffect(() => {
     const saved = localStorage.getItem("3x3-pll-algorithms")
@@ -47,25 +47,27 @@ export default function PLLPage() {
         const savedAlgorithms = JSON.parse(saved)
         const merged = defaultPLLCases.map((defaultCase) => {
           const saved = savedAlgorithms.find((s: Algorithm) => s.id === defaultCase.id)
-          return saved
-            ? {
-                ...defaultCase,
-                title: saved.title,
-                algorithm: saved.algorithm,
-              }
-            : defaultCase
+          if (saved) {
+            return {
+              ...defaultCase,
+              title: saved.title || defaultCase.title,
+              algorithm: saved.algorithm || defaultCase.algorithm,
+            }
+          }
+          return defaultCase
         })
         setAlgorithms(merged)
       } catch (e) {
+        console.error("[v0] Failed to parse saved PLL algorithms:", e)
         setAlgorithms(defaultPLLCases)
       }
-    } else {
-      setAlgorithms(defaultPLLCases)
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem("3x3-pll-algorithms", JSON.stringify(algorithms))
+    if (algorithms.length > 0) {
+      localStorage.setItem("3x3-pll-algorithms", JSON.stringify(algorithms))
+    }
   }, [algorithms])
 
   const handleUpdate = (id: string, updates: Partial<Algorithm>) => {
