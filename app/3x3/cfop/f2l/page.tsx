@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Plus } from "lucide-react"
 import { AlgorithmCard } from "@/components/algorithm-card"
 
 type LearningState = "not-learned" | "learning" | "learned"

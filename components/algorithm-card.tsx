@@ -1,126 +1,78 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Edit2, Save, X, Circle, CircleDot, CheckCircle2 } from "lucide-react"
+import { Edit2, Save, X, Circle, CircleDot, CheckCircle2, RotateCw } from "lucide-react"
 import Image from "next/image"
 
 type LearningState = "not-learned" | "learning" | "learned"
 
-interface AlgorithmCardProps {
+type AlgorithmCardProps = {
   id: string
   title: string
   algorithm: string
+  algorithms?: string[]
   image?: string
   learningState?: LearningState
-  onUpdate: (id: string, updates: { title?: string; algorithm?: string; learningState?: LearningState }) => void
+  onUpdate?: (id: string, updates: Record<string, unknown>) => void
+  onDelete?: (id: string) => void
 }
 
-export function AlgorithmCard({ id, title, algorithm, image, learningState = "not-learned", onUpdate }: AlgorithmCardProps) {
+const orientations = [0, 90, 180, 270]
+
+export function AlgorithmCard({ id, title, algorithm, algorithms, image, learningState = "not-learned", onUpdate }: AlgorithmCardProps) {
   const [isEditing, setIsEditing] = useState(false)
-  const [editTitle, setEditTitle] = useState(title)
-  const [editAlgorithm, setEditAlgorithm] = useState(algorithm)
+  const [orientation, setOrientation] = useState(0)
+  const [editAlgorithms, setEditAlgorithms] = useState(() => {
+    const values = algorithms?.length ? algorithms : [algorithm]
+    return [...values, "", "", ""].slice(0, 4)
+  })
 
-  const handleSave = () => {
-    onUpdate(id, { title: editTitle, algorithm: editAlgorithm })
+  useEffect(() => {
+    const values = algorithms?.length ? algorithms : [algorithm]
+    setEditAlgorithms([...values, "", "", ""].slice(0, 4))
+  }, [algorithm, algorithms])
+
+  const currentAlgorithms = algorithms?.length ? [...algorithms, "", "", ""].slice(0, 4) : [algorithm, "", "", ""]
+  const currentAlgorithm = currentAlgorithms[orientation / 90] || "No algorithm set"
+  const save = () => {
+    onUpdate?.(id, { algorithms: editAlgorithms })
     setIsEditing(false)
   }
-
-  const handleCancel = () => {
-    setEditTitle(title)
-    setEditAlgorithm(algorithm)
+  const cancel = () => {
+    setEditAlgorithms(currentAlgorithms)
     setIsEditing(false)
   }
-
   const cycleLearningState = () => {
-    const nextState: Record<LearningState, LearningState> = {
-      "not-learned": "learning",
-      "learning": "learned",
-      "learned": "not-learned"
-    }
-    onUpdate(id, { learningState: nextState[learningState] })
+    const next: Record<LearningState, LearningState> = { "not-learned": "learning", learning: "learned", learned: "not-learned" }
+    onUpdate?.(id, { learningState: next[learningState] })
   }
-
-  const getLearningStateIcon = () => {
-    switch (learningState) {
-      case "not-learned":
-        return <Circle className="h-4 w-4 text-gray-400" />
-      case "learning":
-        return <CircleDot className="h-4 w-4 text-yellow-500" />
-      case "learned":
-        return <CheckCircle2 className="h-4 w-4 text-green-500" />
-    }
-  }
-
-  const getLearningStateColor = () => {
-    switch (learningState) {
-      case "not-learned":
-        return "border-l-gray-300"
-      case "learning":
-        return "border-l-yellow-400"
-      case "learned":
-        return "border-l-green-500"
-    }
-  }
+  const statusIcon = learningState === "learned" ? <CheckCircle2 /> : learningState === "learning" ? <CircleDot /> : <Circle />
 
   return (
-    <Card className={`w-full border-l-4 ${getLearningStateColor()}`}>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 px-3 py-2">
-        {isEditing ? (
-          <Input value={editTitle} onChange={(e) => setEditTitle(e.target.value)} className="text-sm font-semibold" />
-        ) : (
-          <CardTitle className="text-sm">{title}</CardTitle>
-        )}
-        <div className="flex space-x-2">
-          {isEditing ? (
-            <>
-              <Button size="sm" onClick={handleSave}>
-                <Save className="h-3 w-3" />
-              </Button>
-              <Button size="sm" variant="outline" onClick={handleCancel}>
-                <X className="h-3 w-3" />
-              </Button>
-            </>
-          ) : (
-            <>
-              <Button size="sm" variant="ghost" onClick={cycleLearningState} title={`Status: ${learningState}`}>
-                {getLearningStateIcon()}
-              </Button>
-              <Button size="sm" variant="outline" onClick={() => setIsEditing(true)}>
-                <Edit2 className="h-3 w-3" />
-              </Button>
-            </>
-          )}
+    <Card className="w-full overflow-hidden border-l-4 border-l-primary">
+      <CardHeader className="flex flex-row items-center justify-between gap-2 px-3 py-2">
+        <CardTitle className="truncate text-sm" title={title}>{title}</CardTitle>
+        <div className="flex shrink-0 items-center gap-1">
+          {isEditing ? <>
+            <Button size="sm" onClick={save} aria-label="Save algorithms"><Save data-icon="inline-start" />Save</Button>
+            <Button size="sm" variant="outline" onClick={cancel} aria-label="Cancel editing"><X /></Button>
+          </> : <>
+            <Button size="sm" variant="ghost" onClick={cycleLearningState} aria-label={`Learning status: ${learningState}`}>{statusIcon}</Button>
+            <Button size="sm" variant="outline" onClick={() => setIsEditing(true)} aria-label={`Edit ${title}`}><Edit2 /></Button>
+          </>}
         </div>
       </CardHeader>
-      <CardContent className="space-y-2 px-3 pb-3">
-        {image && (
-          <div className="relative w-full h-24 flex items-center justify-center rounded-lg">
-            <Image
-              src={image || "/placeholder.svg"}
-              alt={title}
-              width={120}
-              height={96}
-              className="rounded-lg object-contain"
-            />
-          </div>
-        )}
-
-        {isEditing ? (
-          <Textarea
-            value={editAlgorithm}
-            onChange={(e) => setEditAlgorithm(e.target.value)}
-            placeholder="Enter algorithm..."
-            className="font-mono text-xs h-20 resize-none"
-          />
-        ) : (
-          <div className="bg-gray-50 p-2 rounded border border-gray-200 min-h-[3rem]">
-            <p className="font-mono text-xs text-gray-900 break-words">{algorithm || "No algorithm set"}</p>
-          </div>
-        )}
+      <CardContent className="flex flex-col gap-2 px-3 pb-3">
+        {image && <div className="relative flex h-24 items-center justify-center overflow-hidden rounded-lg bg-muted/30">
+          <Image src={image} alt={`${title} case`} width={120} height={96} className="rounded-lg object-contain transition-transform duration-300" style={{ transform: `rotate(${orientation}deg)` }} />
+          <Button type="button" size="icon" variant="secondary" className="absolute bottom-1 right-1 size-8" onClick={() => setOrientation((value) => (value + 90) % 360)} aria-label={`Rotate case image to ${(orientation + 90) % 360} degrees`} title={`Orientation: ${orientation}°`}><RotateCw /></Button>
+        </div>}
+        {isEditing ? <div className="grid gap-2">
+          {orientations.map((degrees, index) => <label key={degrees} className="flex flex-col gap-1 text-xs font-medium">{degrees}° algorithm<Input value={editAlgorithms[index]} onChange={(event) => setEditAlgorithms((current) => current.map((value, i) => i === index ? event.target.value : value))} placeholder={`${degrees}° algorithm`} className="font-mono text-xs" /></label>)}
+        </div> : <div className="flex flex-col gap-1"><div className="flex items-center justify-between text-xs text-muted-foreground"><span>{orientation}° orientation</span><span>Rotate to switch</span></div><div className="min-h-12 rounded border bg-muted/40 p-2"><p className="break-words font-mono text-xs">{currentAlgorithm}</p></div></div>}
       </CardContent>
     </Card>
   )

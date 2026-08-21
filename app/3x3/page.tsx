@@ -1,55 +1,9 @@
 import Link from "next/link"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Zap, RotateCcw, Eye, Layers } from "lucide-react"
+import { ArrowLeft, Zap } from "lucide-react"
+import { MethodSection } from "@/components/method-section"
+import { ThreeXThreeF2LCases, ThreeXThreeOLLCases, ThreeXThreePLLCases } from "@/lib/method-data"
 
 export default function ThreeByThreePage() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-100">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <Link href="/">
-            <Button variant="ghost" className="mb-4">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Button>
-          </Link>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">3×3 Cube Methods</h1>
-          <p className="text-xl text-gray-600">Choose your solving method and start practicing algorithms.</p>
-        </div>
-
-        <div className="grid md:grid-cols-1 gap-8 max-w-2xl mx-auto">
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader className="text-center">
-              <div className="flex justify-center mb-4">
-                <Zap className="h-12 w-12 text-orange-600" />
-              </div>
-              <CardTitle className="text-2xl">CFOP Method</CardTitle>
-              <CardDescription>Cross, F2L, OLL, PLL - The most popular speedcubing method</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <Link href="/3x3/cfop/f2l">
-                <Button variant="outline" className="w-full justify-start bg-transparent">
-                  <RotateCcw className="h-4 w-4 mr-2" />
-                  F2L (First Two Layers)
-                </Button>
-              </Link>
-              <Link href="/3x3/cfop/oll">
-                <Button variant="outline" className="w-full justify-start bg-transparent">
-                  <Eye className="h-4 w-4 mr-2" />
-                  OLL (Orientation of Last Layer)
-                </Button>
-              </Link>
-              <Link href="/3x3/cfop/pll">
-                <Button variant="outline" className="w-full justify-start bg-transparent">
-                  <Layers className="h-4 w-4 mr-2" />
-                  PLL (Permutation of Last Layer)
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </div>
-  )
+  return <main className="min-h-screen bg-gradient-to-br from-red-50 to-orange-100"><div className="container mx-auto flex flex-col gap-8 px-4 py-8"><header className="flex flex-col gap-4"><Link href="/"><Button variant="ghost" className="w-fit"><ArrowLeft data-icon="inline-start" />Back to Home</Button></Link><div className="flex items-start gap-4"><Zap className="mt-1 text-orange-600" /><div><h1 className="text-balance text-4xl font-bold text-foreground">3×3 Cube Methods</h1><p className="mt-2 text-pretty text-lg text-muted-foreground">Practice F2L, OLL, and PLL cases directly from one focused workspace.</p></div></div></header><div className="flex flex-col gap-10"><MethodSection cube="3x3" method="F2L" description="First Two Layers" cases={ThreeXThreeF2LCases} accent="from-orange-100 to-red-100" /><MethodSection cube="3x3" method="OLL" description="Orientation of Last Layer" cases={ThreeXThreeOLLCases} accent="from-yellow-100 to-orange-100" /><MethodSection cube="3x3" method="PLL" description="Permutation of Last Layer" cases={ThreeXThreePLLCases} accent="from-green-100 to-blue-100" /></div></div></main>
 }
