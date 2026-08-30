@@ -36,6 +36,8 @@ export function AlgorithmCard({ id, title, algorithm, algorithms, image, learnin
   }, [algorithm, algorithms])
 
   const currentAlgorithms = algorithms?.length ? [...algorithms, "", "", ""].slice(0, 4) : [algorithm, "", "", ""]
+  const isF2LCase = image?.includes("/F2L/") && /^f2l\d+\.png$/.test(image.split("/").pop() ?? "")
+  const f2lImage = isF2LCase ? image?.replace(/f2l(\d+)\.png$/, `f2l$1${orientation / 90 + 1}.png`) : image
   const currentAlgorithm = currentAlgorithms[orientation / 90] || "No algorithm set"
   const save = () => {
     onUpdate?.(id, { algorithms: editAlgorithms })
@@ -66,8 +68,8 @@ export function AlgorithmCard({ id, title, algorithm, algorithms, image, learnin
         </div>
       </CardHeader>
       <CardContent className="flex flex-col gap-2 px-3 pb-3">
-        {image && <div className="relative flex h-24 items-center justify-center overflow-hidden rounded-lg bg-muted/30">
-          <Image src={image} alt={`${title} case`} width={120} height={96} className="rounded-lg object-contain transition-transform duration-300" style={{ transform: `rotate(${orientation}deg)` }} />
+        {f2lImage && <div className="relative flex h-24 items-center justify-center overflow-hidden rounded-lg bg-muted/30">
+          <Image src={f2lImage} alt={`${title} case`} width={120} height={96} className="rounded-lg object-contain transition-transform duration-300" style={{ transform: `rotate(${orientation}deg)` }} />
           <Button type="button" size="icon" variant="secondary" className="absolute bottom-1 right-1 size-8" onClick={() => setOrientation((value) => (value + 90) % 360)} aria-label={`Rotate case image to ${(orientation + 90) % 360} degrees`} title={`Orientation: ${orientation}°`}><RotateCw /></Button>
         </div>}
         {isEditing ? <div className="grid gap-2">
