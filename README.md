@@ -12,4 +12,4 @@ Interactive website designed for cubers who want to learn and practice CFOP algo
 ## Deployment
 Project is live at:
 
-**https://v0-algsdatabase.vercel.app/**
+**https://v0-algs-database.vercel.app/**
