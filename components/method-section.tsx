@@ -13,6 +13,7 @@ type Props = {
   description: string
   cases: MethodCase[]
   accent: string
+  rotateImage?: boolean
 }
 
 function normalizeCase(item: MethodCase): MethodCase {
@@ -23,7 +24,7 @@ function normalizeCase(item: MethodCase): MethodCase {
   } as MethodCase
 }
 
-export function MethodSection({ cube, method, description, cases, accent }: Props) {
+export function MethodSection({ cube, method, description, cases, accent, rotateImage }: Props) {
   const storageKey = `${cube}-${method.toLowerCase()}-algorithms`
   const [items, setItems] = useState<MethodCase[]>(() => cases.map(normalizeCase))
 
@@ -67,7 +68,7 @@ export function MethodSection({ cube, method, description, cases, accent }: Prop
       </Card>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {items.map((item) => (
-          <AlgorithmCard key={item.id} {...item} onUpdate={updateCase} />
+          <AlgorithmCard key={item.id} {...item} rotateImage={rotateImage} onUpdate={updateCase} />
         ))}
       </div>
     </section>

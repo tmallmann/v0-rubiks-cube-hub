@@ -140,15 +140,34 @@ export const FourXFourF2LCases = [
 
 
 export const FourXFourOLLCases = [
-  { id: "4x4-oll-1", title: "4x4 OLL Parity", algorithm: "Rw U2 x Rw U2 Rw U2 Rw' U2 Lw U2 Rw' U2 Rw U2 Rw' U2 Rw'" },
-  { id: "4x4-oll-2", title: "Standard OLL 1", algorithm: "R U2 R2 F R F' U2 R' F R F'" },
-  { id: "4x4-oll-3", title: "Standard OLL 2", algorithm: "F R U R' U' F'" },
+  { id: "4x4-oll-1", title: "OLL Parity 1", algorithm: "Rw U2 x Rw U2 Rw U2 Rw' U2 Lw U2 Rw' U2 Rw U2 Rw' U2 Rw'", image: "/images/4x4/oll-parity/ollp1.png" },
+  { id: "4x4-oll-2", title: "OLL Parity 2", algorithm: "Rw U2 x Rw U2 Rw U2 Rw' U2 Lw U2 Rw' U2 Rw U2 Rw' U2 Rw'", image: "/images/4x4/oll-parity/ollp2.png" },
+  { id: "4x4-oll-3", title: "OLL Parity 3", algorithm: "Rw U2 x Rw U2 Rw U2 Rw' U2 Lw U2 Rw' U2 Rw U2 Rw' U2 Rw'", image: "/images/4x4/oll-parity/ollp3.png" },
 ]
 
 
 export const FourXFourPLLCases = [
-  { id: "4x4-pll-1", title: "4x4 PLL Parity", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2" },
-  { id: "4x4-pll-2", title: "Standard Aa Perm", algorithm: "x R' U R' D2 R U' R' D2 R2 x'" },
-  { id: "4x4-pll-3", title: "Standard T Perm", algorithm: "R U R' F' R U R' U' R' F R2 U' R'" },
+  { id: "4x4-pll-1", title: "PLL Parity 1", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp1.png" },
+  { id: "4x4-pll-2", title: "PLL Parity 2", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp2.png" },
+  { id: "4x4-pll-3", title: "PLL Parity 3", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp3.png" },
+  { id: "4x4-pll-4", title: "PLL Parity 4", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp4.png" },
+  { id: "4x4-pll-5", title: "PLL Parity 5", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp5.png" },
+  { id: "4x4-pll-6", title: "PLL Parity 6", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp6.png" },
+  { id: "4x4-pll-7", title: "PLL Parity 7", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp7.png" },
+  { id: "4x4-pll-8", title: "PLL Parity 8", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp8.png" },
+  { id: "4x4-pll-9", title: "PLL Parity 9", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp9.png" },
+  { id: "4x4-pll-10", title: "PLL Parity 10", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp10.png" },
+  { id: "4x4-pll-11", title: "PLL Parity 11", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp11.png" },
+  { id: "4x4-pll-12", title: "PLL Parity 12", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp12.png" },
+  { id: "4x4-pll-13", title: "PLL Parity 13", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp13.png" },
+  { id: "4x4-pll-14", title: "PLL Parity 14", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp14.png" },
+  { id: "4x4-pll-15", title: "PLL Parity 15", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp15.png" },
+  { id: "4x4-pll-16", title: "PLL Parity 16", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp16.png" },
+  { id: "4x4-pll-17", title: "PLL Parity 17", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp17.png" },
+  { id: "4x4-pll-18", title: "PLL Parity 18", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp18.png" },
+  { id: "4x4-pll-19", title: "PLL Parity 19", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp19.png" },
+  { id: "4x4-pll-20", title: "PLL Parity 20", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp20.png" },
+  { id: "4x4-pll-21", title: "PLL Parity 21", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp21.png" },
+  { id: "4x4-pll-22", title: "PLL Parity 22", algorithm: "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2", image: "/images/4x4/pll-parity/pllp22.png" }
 ]
 
