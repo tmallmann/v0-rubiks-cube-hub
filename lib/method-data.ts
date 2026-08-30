@@ -132,12 +132,6 @@ export const ThreeXThreePLLCases = [
 ]
 
 
-export const FourXFourF2LCases = [
-  { id: "4x4-f2l-1", title: "4x4 Edge Pairing", algorithm: "Uw R U' R' F R F' Uw'" },
-  { id: "4x4-f2l-2", title: "Center Building", algorithm: "r U r' F r F' r'" },
-  { id: "4x4-f2l-3", title: "3x3 Stage F2L", algorithm: "R U' R' U R U R'" },
-]
-
 
 export const FourXFourOLLCases = [
   { id: "4x4-oll-1", title: "OLL Parity 1", algorithm: "Rw U2 x Rw U2 Rw U2 Rw' U2 Lw U2 Rw' U2 Rw U2 Rw' U2 Rw'", image: "/images/4x4/oll-parity/ollp1.png" },
