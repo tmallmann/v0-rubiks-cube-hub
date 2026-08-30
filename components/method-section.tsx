@@ -9,7 +9,7 @@ import type { MethodCase } from "@/lib/method-data"
 
 type Props = {
   cube: "3x3" | "4x4"
-  method: "F2L" | "OLL" | "PLL"
+  method: "F2L" | "OLL" | "PLL" | "OLL Parity" | "PLL Parity"
   description: string
   cases: MethodCase[]
   accent: string

@@ -69,8 +69,8 @@ export function AlgorithmCard({ id, title, algorithm, algorithms, image, learnin
       </CardHeader>
       <CardContent className="flex flex-col gap-2 px-3 pb-3">
         {f2lImage && <div className="relative flex h-24 items-center justify-center overflow-hidden rounded-lg bg-muted/30">
-          <Image src={f2lImage} alt={`${title} case`} width={120} height={96} className="rounded-lg object-contain transition-transform duration-300" style={{ transform: `rotate(${orientation}deg)` }} />
-          <Button type="button" size="icon" variant="secondary" className="absolute bottom-1 right-1 size-8" onClick={() => setOrientation((value) => (value + 90) % 360)} aria-label={`Rotate case image to ${(orientation + 90) % 360} degrees`} title={`Orientation: ${orientation}°`}><RotateCw /></Button>
+          <Image src={f2lImage} alt={`${title} case`} width={120} height={96} className="rounded-lg object-contain" />
+          <Button type="button" size="icon" variant="secondary" className="absolute bottom-1 right-1 size-8" onClick={() => setOrientation((value) => (value + 90) % 360)} aria-label={`Switch to case image ${orientation / 90 + 2 > 4 ? 1 : orientation / 90 + 2}`} title={`Image ${orientation / 90 + 1} of 4`}><RotateCw /></Button>
         </div>}
         {isEditing ? <div className="grid gap-2">
           {orientations.map((degrees, index) => <label key={degrees} className="flex flex-col gap-1 text-xs font-medium">{degrees}° algorithm<Input value={editAlgorithms[index]} onChange={(event) => setEditAlgorithms((current) => current.map((value, i) => i === index ? event.target.value : value))} placeholder={`${degrees}° algorithm`} className="font-mono text-xs" /></label>)}
