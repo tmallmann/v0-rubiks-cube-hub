@@ -47,7 +47,7 @@ export const ThreeXThreeF2LCases = [
 
 
 export const ThreeXThreeOLLCases = [
-  { id: "oll-1", title: "OLL 1", algorithm: "R U2 R2' F R F' U2 R' F R F'", algorithms: ["", "", "", ""], image: "/images/3x3/oll/oll-1.png" },
+  { id: "oll-1", title: "OLL 1", algorithm: "R U2 R2' F R F' U2 R' F R F'", algorithms: ["A", "B", "C", "D"], image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2", title: "OLL 2", algorithm: "F R U R' U' F' f R U R' U' f'", algorithms: ["", "", "", ""], image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3", title: "OLL 3", algorithm: "f R U R' U' f' U' F R U R' U' F'", algorithms: ["", "", "", ""], image: "/images/3x3/oll/oll-3.png" },
   { id: "oll-4", title: "OLL 4", algorithm: "f R U R' U' f' U F R U R' U' F'", algorithms: ["", "", "", ""], image: "/images/3x3/oll/oll-4.png" },
