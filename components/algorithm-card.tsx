@@ -70,7 +70,7 @@ export function AlgorithmCard({ id, title, algorithm, algorithms, image, learnin
       </CardHeader>
       <CardContent className="flex flex-col gap-2 px-3 pb-3">
         {displayedImage && <div className="relative flex h-20 items-center justify-center overflow-hidden rounded-lg bg-transparent">
-          <Image src={displayedImage} alt={`${title} case`} width={isF2LCase ? 92 : 64} height={isF2LCase ? 72 : 50} className="rounded-lg object-contain" style={isF2LCase || !rotateImage ? undefined : { transform: `rotate(${orientation}deg)` }} />
+          <Image src={displayedImage} alt={`${title} case`} width={isF2LCase ? 92 : 72} height={isF2LCase ? 72 : 56} className="rounded-lg object-contain" style={isF2LCase || !rotateImage ? undefined : { transform: `rotate(${orientation}deg)` }} />
           {(isF2LCase || rotateImage) && <Button type="button" size="icon" variant="secondary" className="absolute bottom-1 right-1 size-8" onClick={() => setOrientation((value) => (value + 90) % 360)} aria-label={isF2LCase ? `Switch to case image ${orientation / 90 + 2 > 4 ? 1 : orientation / 90 + 2}` : `Rotate case image to ${(orientation + 90) % 360} degrees`} title={isF2LCase ? `Image ${orientation / 90 + 1} of 4` : `Orientation: ${orientation}°`}><RotateCw /></Button>}
         </div>}
         {isEditing ? <div className="grid gap-2">

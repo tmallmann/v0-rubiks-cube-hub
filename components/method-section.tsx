@@ -20,7 +20,7 @@ function normalizeCase(item: MethodCase): MethodCase {
   const legacy = item as MethodCase & { algorithms?: string[] }
   return {
     ...item,
-    algorithms: legacy.algorithms?.length ? legacy.algorithms.slice(0, 4) : [item.algorithm || "", "", "", ""],
+    algorithms: legacy.algorithms ? [...legacy.algorithms, "", "", ""].slice(0, 4) : [item.algorithm || "", "", "", ""],
   } as MethodCase
 }
 
