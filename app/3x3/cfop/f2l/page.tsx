@@ -6,11 +6,14 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Plus } from "lucide-react"
 import { AlgorithmCard } from "@/components/algorithm-card"
 
+type LearningState = "not-learned" | "learning" | "learned"
+
 interface Algorithm {
   id: string
   title: string
   algorithm: string
   image?: string
+  learningState?: LearningState
 }
 
 const defaultF2LCases: Algorithm[] = [
