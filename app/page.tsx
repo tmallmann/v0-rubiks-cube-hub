@@ -10,7 +10,7 @@ export default function HomePage() {
           <div className="flex justify-center mb-4">
             <Cube className="h-16 w-16 text-indigo-600" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Rubik's Cube Hub</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Algs Database</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Master the cube with comprehensive algorithm collections and practice tools for speedcubing and blindfolded
             solving.
