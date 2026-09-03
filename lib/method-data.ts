@@ -18,7 +18,7 @@ export interface MethodCase {
 
 // Every orientation is represented explicitly so algorithms can be filled in independently.
 
-export const ThreeXThreeF2LCasesOrientation1: MethodOrientation[] = [
+export const F2L1: MethodOrientation[] = [
   { id: "f2l-1-1", title: "F2L Case 1", algorithm: "U R U' R'", image: "/images/3x3/F2L/f2l11.png" },
   { id: "f2l-2-1", title: "F2L Case 2", algorithm: "F R' F' R", image: "/images/3x3/F2L/f2l21.png" },
   { id: "f2l-3-1", title: "F2L Case 3", algorithm: "F' U' F", image: "/images/3x3/F2L/f2l31.png" },
@@ -62,7 +62,7 @@ export const ThreeXThreeF2LCasesOrientation1: MethodOrientation[] = [
   { id: "f2l-41-1", title: "F2L Case 41", algorithm: "R U' R' F' L' U2 L F", image: "/images/3x3/F2L/f2l411.png" },
 ]
 
-export const ThreeXThreeF2LCasesOrientation2: MethodOrientation[] = [
+export const F2L2: MethodOrientation[] = [
   { id: "f2l-1-2", title: "F2L Case 1", algorithm: "", image: "/images/3x3/F2L/f2l12.png" },
   { id: "f2l-2-2", title: "F2L Case 2", algorithm: "", image: "/images/3x3/F2L/f2l22.png" },
   { id: "f2l-3-2", title: "F2L Case 3", algorithm: "", image: "/images/3x3/F2L/f2l32.png" },
@@ -106,7 +106,7 @@ export const ThreeXThreeF2LCasesOrientation2: MethodOrientation[] = [
   { id: "f2l-41-2", title: "F2L Case 41", algorithm: "", image: "/images/3x3/F2L/f2l412.png" },
 ]
 
-export const ThreeXThreeF2LCasesOrientation3: MethodOrientation[] = [
+export const F2L3: MethodOrientation[] = [
   { id: "f2l-1-3", title: "F2L Case 1", algorithm: "", image: "/images/3x3/F2L/f2l13.png" },
   { id: "f2l-2-3", title: "F2L Case 2", algorithm: "", image: "/images/3x3/F2L/f2l23.png" },
   { id: "f2l-3-3", title: "F2L Case 3", algorithm: "", image: "/images/3x3/F2L/f2l33.png" },
@@ -150,7 +150,7 @@ export const ThreeXThreeF2LCasesOrientation3: MethodOrientation[] = [
   { id: "f2l-41-3", title: "F2L Case 41", algorithm: "", image: "/images/3x3/F2L/f2l413.png" },
 ]
 
-export const ThreeXThreeF2LCasesOrientation4: MethodOrientation[] = [
+export const F2L4: MethodOrientation[] = [
   { id: "f2l-1-4", title: "F2L Case 1", algorithm: "", image: "/images/3x3/F2L/f2l14.png" },
   { id: "f2l-2-4", title: "F2L Case 2", algorithm: "", image: "/images/3x3/F2L/f2l24.png" },
   { id: "f2l-3-4", title: "F2L Case 3", algorithm: "", image: "/images/3x3/F2L/f2l34.png" },
@@ -194,11 +194,11 @@ export const ThreeXThreeF2LCasesOrientation4: MethodOrientation[] = [
   { id: "f2l-41-4", title: "F2L Case 41", algorithm: "", image: "/images/3x3/F2L/f2l414.png" },
 ]
 
-export const ThreeXThreeF2LCases: MethodCase[] = ThreeXThreeF2LCasesOrientation1.map((item, index) => ({
+export const ThreeXThreeF2LCases: MethodCase[] = F2L1.map((item, index) => ({
   ...item,
-  algorithm: ThreeXThreeF2LCasesOrientation1[index].algorithm,
-  algorithms: [ThreeXThreeF2LCasesOrientation1[index].algorithm, ThreeXThreeF2LCasesOrientation2[index].algorithm, ThreeXThreeF2LCasesOrientation3[index].algorithm, ThreeXThreeF2LCasesOrientation4[index].algorithm],
-  orientations: [ThreeXThreeF2LCasesOrientation1[index], ThreeXThreeF2LCasesOrientation2[index], ThreeXThreeF2LCasesOrientation3[index], ThreeXThreeF2LCasesOrientation4[index]],
+  algorithm: F2L1[index].algorithm,
+  algorithms: [F2L1[index].algorithm, F2L2[index].algorithm, F2L3[index].algorithm, F2L4[index].algorithm],
+  orientations: [F2L1[index], F2L2[index], F2L3[index], F2L4[index]],
 }))
 
 const threeXThreeOLLBase: MethodCase[] = [
@@ -287,7 +287,7 @@ const threeXThreePLLBase: MethodCase[] = [
 ]
 
 
-export const ThreeXThreeOLLBaseOrientation1: MethodOrientation[] = [
+export const OLL1: MethodOrientation[] = [
   { id: "oll-1-1", title: "OLL 1", algorithm: "R U2' R2' F R F' U2 R' F R F'", image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2-1", title: "OLL 2", algorithm: "r U r' U2 r U2 R' U2 R U' r'", image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3-1", title: "OLL 3", algorithm: "r' R2 U R' U r U2' r' U M'", image: "/images/3x3/oll/oll-3.png" },
@@ -346,7 +346,7 @@ export const ThreeXThreeOLLBaseOrientation1: MethodOrientation[] = [
   { id: "oll-57-1", title: "OLL 57", algorithm: "R U R' U' M' U R U' r'", image: "/images/3x3/oll/oll-57.png" },
 ]
 
-export const ThreeXThreeOLLBaseOrientation2: MethodOrientation[] = [
+export const OLL2: MethodOrientation[] = [
   { id: "oll-1-2", title: "OLL 1", algorithm: "", image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2-2", title: "OLL 2", algorithm: "", image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3-2", title: "OLL 3", algorithm: "", image: "/images/3x3/oll/oll-3.png" },
@@ -405,7 +405,7 @@ export const ThreeXThreeOLLBaseOrientation2: MethodOrientation[] = [
   { id: "oll-57-2", title: "OLL 57", algorithm: "", image: "/images/3x3/oll/oll-57.png" },
 ]
 
-export const ThreeXThreeOLLBaseOrientation3: MethodOrientation[] = [
+export const OLL3: MethodOrientation[] = [
   { id: "oll-1-3", title: "OLL 1", algorithm: "", image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2-3", title: "OLL 2", algorithm: "", image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3-3", title: "OLL 3", algorithm: "", image: "/images/3x3/oll/oll-3.png" },
@@ -464,7 +464,7 @@ export const ThreeXThreeOLLBaseOrientation3: MethodOrientation[] = [
   { id: "oll-57-3", title: "OLL 57", algorithm: "", image: "/images/3x3/oll/oll-57.png" },
 ]
 
-export const ThreeXThreeOLLBaseOrientation4: MethodOrientation[] = [
+export const OLL4: MethodOrientation[] = [
   { id: "oll-1-4", title: "OLL 1", algorithm: "", image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2-4", title: "OLL 2", algorithm: "", image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3-4", title: "OLL 3", algorithm: "", image: "/images/3x3/oll/oll-3.png" },
@@ -523,7 +523,7 @@ export const ThreeXThreeOLLBaseOrientation4: MethodOrientation[] = [
   { id: "oll-57-4", title: "OLL 57", algorithm: "", image: "/images/3x3/oll/oll-57.png" },
 ]
 
-export const ThreeXThreePLLBaseOrientation1: MethodOrientation[] = [
+export const PLL1: MethodOrientation[] = [
   { id: "pll-1-1", title: "Aa", algorithm: "x L2 D2' L' U' L D2' L' U L' x'", image: "/images/3x3/pll/pll-1.png" },
   { id: "pll-2-1", title: "Ab", algorithm: "x L U' L D2' L' U L D2' L2", image: "/images/3x3/pll/pll-2.png" },
   { id: "pll-3-1", title: "E", algorithm: "x' R U' R' D R U R' D' R U R' D R U' R' D' x", image: "/images/3x3/pll/pll-3.png" },
@@ -547,7 +547,7 @@ export const ThreeXThreePLLBaseOrientation1: MethodOrientation[] = [
   { id: "pll-21-1", title: "Z", algorithm: "M2 U M2 U M' U2 M2 U2 M'", image: "/images/3x3/pll/pll-21.png" },
 ]
 
-export const ThreeXThreePLLBaseOrientation2: MethodOrientation[] = [
+export const PLL2: MethodOrientation[] = [
   { id: "pll-1-2", title: "Aa", algorithm: "", image: "/images/3x3/pll/pll-1.png" },
   { id: "pll-2-2", title: "Ab", algorithm: "", image: "/images/3x3/pll/pll-2.png" },
   { id: "pll-3-2", title: "E", algorithm: "", image: "/images/3x3/pll/pll-3.png" },
@@ -571,7 +571,7 @@ export const ThreeXThreePLLBaseOrientation2: MethodOrientation[] = [
   { id: "pll-21-2", title: "Z", algorithm: "", image: "/images/3x3/pll/pll-21.png" },
 ]
 
-export const ThreeXThreePLLBaseOrientation3: MethodOrientation[] = [
+export const PLL3: MethodOrientation[] = [
   { id: "pll-1-3", title: "Aa", algorithm: "", image: "/images/3x3/pll/pll-1.png" },
   { id: "pll-2-3", title: "Ab", algorithm: "", image: "/images/3x3/pll/pll-2.png" },
   { id: "pll-3-3", title: "E", algorithm: "", image: "/images/3x3/pll/pll-3.png" },
@@ -595,7 +595,7 @@ export const ThreeXThreePLLBaseOrientation3: MethodOrientation[] = [
   { id: "pll-21-3", title: "Z", algorithm: "", image: "/images/3x3/pll/pll-21.png" },
 ]
 
-export const ThreeXThreePLLBaseOrientation4: MethodOrientation[] = [
+export const PLL4: MethodOrientation[] = [
   { id: "pll-1-4", title: "Aa", algorithm: "", image: "/images/3x3/pll/pll-1.png" },
   { id: "pll-2-4", title: "Ab", algorithm: "", image: "/images/3x3/pll/pll-2.png" },
   { id: "pll-3-4", title: "E", algorithm: "", image: "/images/3x3/pll/pll-3.png" },
@@ -619,8 +619,8 @@ export const ThreeXThreePLLBaseOrientation4: MethodOrientation[] = [
   { id: "pll-21-4", title: "Z", algorithm: "", image: "/images/3x3/pll/pll-21.png" },
 ]
 
-export const ThreeXThreeOLLCases: MethodCase[] = ThreeXThreeOLLBaseOrientation1.map((item, index) => ({ ...item, algorithms: [ThreeXThreeOLLBaseOrientation1[index].algorithm, ThreeXThreeOLLBaseOrientation2[index].algorithm, ThreeXThreeOLLBaseOrientation3[index].algorithm, ThreeXThreeOLLBaseOrientation4[index].algorithm], orientations: [ThreeXThreeOLLBaseOrientation1[index], ThreeXThreeOLLBaseOrientation2[index], ThreeXThreeOLLBaseOrientation3[index], ThreeXThreeOLLBaseOrientation4[index]] }))
-export const ThreeXThreePLLCases: MethodCase[] = ThreeXThreePLLBaseOrientation1.map((item, index) => ({ ...item, algorithms: [ThreeXThreePLLBaseOrientation1[index].algorithm, ThreeXThreePLLBaseOrientation2[index].algorithm, ThreeXThreePLLBaseOrientation3[index].algorithm, ThreeXThreePLLBaseOrientation4[index].algorithm], orientations: [ThreeXThreePLLBaseOrientation1[index], ThreeXThreePLLBaseOrientation2[index], ThreeXThreePLLBaseOrientation3[index], ThreeXThreePLLBaseOrientation4[index]] }))
+export const ThreeXThreeOLLCases: MethodCase[] = OLL1.map((item, index) => ({ ...item, algorithms: [OLL1[index].algorithm, OLL2[index].algorithm, OLL3[index].algorithm, OLL4[index].algorithm], orientations: [OLL1[index], OLL2[index], OLL3[index], OLL4[index]] }))
+export const ThreeXThreePLLCases: MethodCase[] = PLL1.map((item, index) => ({ ...item, algorithms: [PLL1[index].algorithm, PLL2[index].algorithm, PLL3[index].algorithm, PLL4[index].algorithm], orientations: [PLL1[index], PLL2[index], PLL3[index], PLL4[index]] }))
 
 export const FourXFourOLLCases = [
   { id: "4x4-oll-1", title: "OLL Parity 1", algorithm: "Rw' U2' Rw U2 Rw U2' Rw2' F2 Rw' U2 Rw' U2' F2 Rw2' F2'", image: "/images/4x4/oll-parity/ollp1.png" },
