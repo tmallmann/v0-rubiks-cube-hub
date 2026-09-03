@@ -1,6 +1,11 @@
 export type LearningState = "not-learned" | "learning" | "learned";
 export interface MethodCase { id: string; title: string; algorithm: string; algorithms?: string[]; image?: string; learningState?: LearningState; }
 
+export function withRotations(item: MethodCase): MethodCase {
+  const base = item.algorithm || ""
+  return { ...item, algorithms: [base, `y ${base} y'`, `y2 ${base} y2`, `y' ${base} y`] }
+}
+
 export const ThreeXThreeF2LCases = [
   { id: "f2l-1", title: "F2L Case 1", algorithm: "U R U' R'", image: "/images/3x3/F2L/f2l1.png" },
   { id: "f2l-2", title: "F2L Case 2", algorithm: "F R' F' R", image: "/images/3x3/F2L/f2l2.png" },
@@ -46,7 +51,7 @@ export const ThreeXThreeF2LCases = [
 ]
 
 
-export const ThreeXThreeOLLCases = [
+const threeXThreeOLLBase: MethodCase[] = [
   { id: "oll-1", title: "OLL 1", algorithm: "R U2' R2' F R F' U2 R' F R F'", image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2", title: "OLL 2", algorithm: "r U r' U2 r U2 R' U2 R U' r'", image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3", title: "OLL 3", algorithm: "r' R2 U R' U r U2' r' U M'", image: "/images/3x3/oll/oll-3.png" },
@@ -107,7 +112,7 @@ export const ThreeXThreeOLLCases = [
 ]
 
 
-export const ThreeXThreePLLCases = [
+const threeXThreePLLBase: MethodCase[] = [
   { id: "pll-1", title: "Aa", algorithm: "x L2 D2' L' U' L D2' L' U L' x'", image: "/images/3x3/pll/pll-1.png" },
   { id: "pll-2", title: "Ab", algorithm: "x L U' L D2' L' U L D2' L2", image: "/images/3x3/pll/pll-2.png" },
   { id: "pll-3", title: "E", algorithm: "x' R U' R' D R U R' D' R U R' D R U' R' D' x", image: "/images/3x3/pll/pll-3.png",},
@@ -131,6 +136,9 @@ export const ThreeXThreePLLCases = [
   { id: "pll-21", title: "Z", algorithm: "M2 U M2 U M' U2 M2 U2 M'", image: "/images/3x3/pll/pll-21.png" },
 ]
 
+
+export const ThreeXThreeOLLCases = threeXThreeOLLBase.map(withRotations)
+export const ThreeXThreePLLCases = threeXThreePLLBase.map(withRotations)
 
 export const FourXFourOLLCases = [
   { id: "4x4-oll-1", title: "OLL Parity 1", algorithm: "Rw' U2' Rw U2 Rw U2' Rw2' F2 Rw' U2 Rw' U2' F2 Rw2' F2'", image: "/images/4x4/oll-parity/ollp1.png" },
