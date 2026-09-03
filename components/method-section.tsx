@@ -25,7 +25,7 @@ function normalizeCase(item: MethodCase): MethodCase {
 }
 
 export function MethodSection({ cube, method, description, cases, accent, rotateImage }: Props) {
-  const storageKey = `${cube}-${method.toLowerCase()}-algorithms`
+  const storageKey = `${cube}-${method.toLowerCase()}-algorithms-v2`
   const [items, setItems] = useState<MethodCase[]>(() => cases.map(normalizeCase))
 
   useEffect(() => {

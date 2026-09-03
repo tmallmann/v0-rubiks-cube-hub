@@ -288,7 +288,7 @@ const threeXThreePLLBase: MethodCase[] = [
 
 
 export const OLL1: MethodOrientation[] = [
-  { id: "oll-1-1", title: "OLL 1", algorithm: "testeR U2' R2' F R F' U2 R' F R F'", image: "/images/3x3/oll/oll-1.png" },
+  { id: "oll-1-1", title: "OLL 1", algorithm: "R U2' R2' F R F' U2 R' F R F'", image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2-1", title: "OLL 2", algorithm: "r U r' U2 r U2 R' U2 R U' r'", image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3-1", title: "OLL 3", algorithm: "r' R2 U R' U r U2' r' U M'", image: "/images/3x3/oll/oll-3.png" },
   { id: "oll-4-1", title: "OLL 4", algorithm: "l L2 U' L U' l' U2 l U' M'", image: "/images/3x3/oll/oll-4.png" },
@@ -347,7 +347,7 @@ export const OLL1: MethodOrientation[] = [
 ]
 
 export const OLL2: MethodOrientation[] = [
-  { id: "oll-1-2", title: "OLL 1", algorithm: "oll2", image: "/images/3x3/oll/oll-1.png" },
+  { id: "oll-1-2", title: "OLL 1", algorithm: "teste2", image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2-2", title: "OLL 2", algorithm: "", image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3-2", title: "OLL 3", algorithm: "", image: "/images/3x3/oll/oll-3.png" },
   { id: "oll-4-2", title: "OLL 4", algorithm: "", image: "/images/3x3/oll/oll-4.png" },
@@ -406,7 +406,7 @@ export const OLL2: MethodOrientation[] = [
 ]
 
 export const OLL3: MethodOrientation[] = [
-  { id: "oll-1-3", title: "OLL 1", algorithm: "oll3", image: "/images/3x3/oll/oll-1.png" },
+  { id: "oll-1-3", title: "OLL 1", algorithm: "teste3", image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2-3", title: "OLL 2", algorithm: "", image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3-3", title: "OLL 3", algorithm: "", image: "/images/3x3/oll/oll-3.png" },
   { id: "oll-4-3", title: "OLL 4", algorithm: "", image: "/images/3x3/oll/oll-4.png" },
@@ -618,9 +618,15 @@ export const PLL4: MethodOrientation[] = [
   { id: "pll-20-4", title: "Y", algorithm: "", image: "/images/3x3/pll/pll-20.png" },
   { id: "pll-21-4", title: "Z", algorithm: "", image: "/images/3x3/pll/pll-21.png" },
 ]
+export const ThreeXThreeOLLCases: MethodCase[] = OLL1.map((item, index) => ({
+  ...item,
+  orientations: [OLL1[index], OLL2[index], OLL3[index], OLL4[index]],
+}))
 
-export const ThreeXThreeOLLCases: MethodCase[] = OLL1.map((item, index) => ({ ...item, algorithms: [OLL1[index].algorithm, OLL2[index].algorithm, OLL3[index].algorithm, OLL4[index].algorithm], orientations: [OLL1[index], OLL2[index], OLL3[index], OLL4[index]] }))
-export const ThreeXThreePLLCases: MethodCase[] = PLL1.map((item, index) => ({ ...item, algorithms: [PLL1[index].algorithm, PLL2[index].algorithm, PLL3[index].algorithm, PLL4[index].algorithm], orientations: [PLL1[index], PLL2[index], PLL3[index], PLL4[index]] }))
+export const ThreeXThreePLLCases: MethodCase[] = PLL1.map((item, index) => ({
+  ...item,
+  orientations: [PLL1[index], PLL2[index], PLL3[index], PLL4[index]],
+}))
 
 export const FourXFourOLLCases = [
   { id: "4x4-oll-1", title: "OLL Parity 1", algorithm: "Rw' U2' Rw U2 Rw U2' Rw2' F2 Rw' U2 Rw' U2' F2 Rw2' F2'", image: "/images/4x4/oll-parity/ollp1.png" },
