@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { BrainCog as BrainCog, Brain } from "lucide-react"
+import { BrainCog as BrainCog, Brain, Timer } from "lucide-react"
 
 export default function HomePage() {
   return (
@@ -93,7 +93,7 @@ export default function HomePage() {
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">⏱️</span>
+                    <Timer className="h-12 w-12 text-white" />
                   </div>
                 </div>
                 <CardTitle className="text-2xl">Speedcubing Timer</CardTitle>
