@@ -17,11 +17,11 @@ type Props = {
 }
 
 function normalizeCase(item: MethodCase): MethodCase {
-  const legacy = item as MethodCase & { algorithms?: string[] }
+  const sourceAlgorithms = item.algorithms ?? item.orientations?.map((orientation) => orientation.algorithm) ?? [item.algorithm]
   return {
     ...item,
-    algorithms: legacy.algorithms ? [...legacy.algorithms, "", "", ""].slice(0, 4) : [item.algorithm || "", "", "", ""],
-  } as MethodCase
+    algorithms: [...sourceAlgorithms, "", "", ""].slice(0, 4),
+  }
 }
 
 export function MethodSection({ cube, method, description, cases, accent, rotateImage }: Props) {
@@ -36,7 +36,15 @@ export function MethodSection({ cube, method, description, cases, accent, rotate
       const savedById = new Map(parsed.map((item) => [item.id, item]))
       setItems(cases.map((item) => {
         const savedItem = savedById.get(item.id)
-        return normalizeCase({ ...item, ...savedItem, title: item.title, image: item.image })
+        const savedAlgorithms = savedItem?.algorithms
+        const hasSavedAlgorithms = savedAlgorithms?.some((value) => value.trim().length > 0)
+        return normalizeCase({
+          ...item,
+          ...(hasSavedAlgorithms ? savedItem : undefined),
+          title: item.title,
+          image: item.image,
+          orientations: item.orientations,
+        })
       }))
     } catch (error) {
       console.error("[v0] Failed to load method cases:", error)

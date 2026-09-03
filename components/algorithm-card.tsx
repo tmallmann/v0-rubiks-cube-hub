@@ -27,19 +27,20 @@ const orientations = [0, 90, 180, 270]
 export function AlgorithmCard({ id, title, algorithm, algorithms, orientations: orientationRecords, image, learningState = "not-learned", onUpdate, rotateImage = true }: AlgorithmCardProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [orientation, setOrientation] = useState(0)
-  const currentAlgorithms = algorithms?.length ? [...algorithms, "", "", ""].slice(0, 4) : [algorithm, "", "", ""]
+  const orientationAlgorithms = orientationRecords?.map((record) => record.algorithm) ?? []
+  const currentAlgorithms = algorithms?.length
+    ? [...algorithms, "", "", ""].slice(0, 4)
+    : [...orientationAlgorithms, "", "", ""].slice(0, 4)
   const [editAlgorithms, setEditAlgorithms] = useState(currentAlgorithms)
 
   useEffect(() => {
     setEditAlgorithms(currentAlgorithms)
   }, [algorithm, algorithms])
 
-  const isF2LCase = image?.includes("/F2L/") && /^f2l\d+\.png$/.test(image.split("/").pop() ?? "")
+  const isF2LCase = Boolean(orientationRecords?.length === 4 && orientationRecords.some((record) => record.image && record.image !== image))
   const orientationCase = orientationRecords?.[orientation / 90]
-  const displayedImage = isF2LCase
-    ? image?.replace(/f2l(\d+)\.png$/, `f2l$1${orientation / 90 + 1}.png`)
-    : image
-  const currentAlgorithm = currentAlgorithms[rotateImage ? orientation / 90 : 0] || orientationCase?.algorithm || "No algorithm set"
+  const displayedImage = orientationCase?.image ?? image
+  const currentAlgorithm = currentAlgorithms[rotateImage ? orientation / 90 : 0] || "No algorithm set"
   const save = () => {
     onUpdate?.(id, { algorithms: editAlgorithms })
     setIsEditing(false)
