@@ -14,6 +14,7 @@ type AlgorithmCardProps = {
   title: string
   algorithm: string
   algorithms?: string[]
+  orientations?: { id: string; title: string; algorithm: string; image?: string }[]
   image?: string
   learningState?: LearningState
   onUpdate?: (id: string, updates: Record<string, unknown>) => void
@@ -23,23 +24,22 @@ type AlgorithmCardProps = {
 
 const orientations = [0, 90, 180, 270]
 
-export function AlgorithmCard({ id, title, algorithm, algorithms, image, learningState = "not-learned", onUpdate, rotateImage = true }: AlgorithmCardProps) {
+export function AlgorithmCard({ id, title, algorithm, algorithms, orientations: orientationRecords, image, learningState = "not-learned", onUpdate, rotateImage = true }: AlgorithmCardProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [orientation, setOrientation] = useState(0)
-  const [editAlgorithms, setEditAlgorithms] = useState(() => {
-    const values = algorithms?.length ? algorithms : [algorithm]
-    return [...values, "", "", ""].slice(0, 4)
-  })
+  const currentAlgorithms = algorithms?.length ? [...algorithms, "", "", ""].slice(0, 4) : [algorithm, "", "", ""]
+  const [editAlgorithms, setEditAlgorithms] = useState(currentAlgorithms)
 
   useEffect(() => {
-    const values = algorithms?.length ? algorithms : [algorithm]
-    setEditAlgorithms([...values, "", "", ""].slice(0, 4))
+    setEditAlgorithms(currentAlgorithms)
   }, [algorithm, algorithms])
 
-  const currentAlgorithms = algorithms?.length ? [...algorithms, "", "", ""].slice(0, 4) : [algorithm, "", "", ""]
   const isF2LCase = image?.includes("/F2L/") && /^f2l\d+\.png$/.test(image.split("/").pop() ?? "")
-  const displayedImage = isF2LCase ? image?.replace(/f2l(\d+)\.png$/, `f2l$1${orientation / 90 + 1}.png`) : image
-  const currentAlgorithm = currentAlgorithms[rotateImage ? orientation / 90 : 0] || "No algorithm set"
+  const orientationCase = orientationRecords?.[orientation / 90]
+  const displayedImage = isF2LCase
+    ? image?.replace(/f2l(\d+)\.png$/, `f2l$1${orientation / 90 + 1}.png`)
+    : image
+  const currentAlgorithm = currentAlgorithms[rotateImage ? orientation / 90 : 0] || orientationCase?.algorithm || "No algorithm set"
   const save = () => {
     onUpdate?.(id, { algorithms: editAlgorithms })
     setIsEditing(false)

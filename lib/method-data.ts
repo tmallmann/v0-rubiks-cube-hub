@@ -1,9 +1,32 @@
 export type LearningState = "not-learned" | "learning" | "learned";
-export interface MethodCase { id: string; title: string; algorithm: string; algorithms?: string[]; image?: string; learningState?: LearningState; }
+export interface MethodOrientation {
+  id: string
+  title: string
+  algorithm: string
+  image?: string
+}
 
+export interface MethodCase {
+  id: string
+  title: string
+  algorithm: string
+  algorithms?: string[]
+  orientations?: MethodOrientation[]
+  image?: string
+  learningState?: LearningState
+}
+
+// Keep every orientation explicit in the data model. Algorithms are intentionally
+// empty placeholders so each orientation can be filled with its own algorithm.
 export function withRotations(item: MethodCase): MethodCase {
-  const base = item.algorithm || ""
-  return { ...item, algorithms: [base, `y ${base} y'`, `y2 ${base} y2`, `y' ${base} y`] }
+  const orientations: MethodOrientation[] = [0, 90, 180, 270].map((_, index) => ({
+    id: `${item.id}-${index + 1}`,
+    title: item.title,
+    algorithm: "",
+    image: item.image,
+  }))
+
+  return { ...item, algorithm: "", algorithms: ["", "", "", ""], orientations }
 }
 
 export const ThreeXThreeF2LCases = [
