@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { BrainCog as BrainCog, Brain, Zap } from "lucide-react"
+import { BrainCog as BrainCog, Brain } from "lucide-react"
 
 export default function HomePage() {
   return (
@@ -32,7 +32,7 @@ export default function HomePage() {
               <CardContent>
                 <div className="flex justify-center space-x-4">
                   <div className="flex items-center text-sm text-gray-600">
-                    <Zap className="h-4 w-4 mr-1" />
+                    <span className="mr-1">🎯</span>
                     CFOP
                   </div>
                 </div>
@@ -54,7 +54,7 @@ export default function HomePage() {
               <CardContent>
                 <div className="flex justify-center space-x-4">
                   <div className="flex items-center text-sm text-gray-600">
-                    <Zap className="h-4 w-4 mr-1" />
+                    <span className="mr-1">🎯</span>
                     CFOP
                   </div>
                 </div>
@@ -76,7 +76,7 @@ export default function HomePage() {
               <CardContent>
                 <div className="flex justify-center space-x-4">
                   <div className="flex items-center text-sm text-gray-600">
-                    <span className="mr-1">👁️</span>
+                    <span className="mr-1">🆎</span>
                     Letter Pairs
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
