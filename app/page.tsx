@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { CuboidIcon as Cube, Brain, Zap } from "lucide-react"
+import { CuboidIcon as BrainCog, Brain, Zap } from "lucide-react"
 
 export default function HomePage() {
   return (
@@ -8,7 +8,7 @@ export default function HomePage() {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
           <div className="flex justify-center mb-4">
-            <Cube className="h-16 w-16 text-indigo-600" />
+            <BrainCog className="h-16 w-16 text-indigo-600" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Algs Database</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
