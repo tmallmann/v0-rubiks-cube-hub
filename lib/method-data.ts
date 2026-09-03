@@ -347,7 +347,7 @@ export const OLL1: MethodOrientation[] = [
 ]
 
 export const OLL2: MethodOrientation[] = [
-  { id: "oll-1-2", title: "OLL 1", algorithm: "", image: "/images/3x3/oll/oll-1.png" },
+  { id: "oll-1-2", title: "OLL 1", algorithm: "oll2", image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2-2", title: "OLL 2", algorithm: "", image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3-2", title: "OLL 3", algorithm: "", image: "/images/3x3/oll/oll-3.png" },
   { id: "oll-4-2", title: "OLL 4", algorithm: "", image: "/images/3x3/oll/oll-4.png" },
@@ -406,7 +406,7 @@ export const OLL2: MethodOrientation[] = [
 ]
 
 export const OLL3: MethodOrientation[] = [
-  { id: "oll-1-3", title: "OLL 1", algorithm: "", image: "/images/3x3/oll/oll-1.png" },
+  { id: "oll-1-3", title: "OLL 1", algorithm: "oll3", image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2-3", title: "OLL 2", algorithm: "", image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3-3", title: "OLL 3", algorithm: "", image: "/images/3x3/oll/oll-3.png" },
   { id: "oll-4-3", title: "OLL 4", algorithm: "", image: "/images/3x3/oll/oll-4.png" },
@@ -465,7 +465,7 @@ export const OLL3: MethodOrientation[] = [
 ]
 
 export const OLL4: MethodOrientation[] = [
-  { id: "oll-1-4", title: "OLL 1", algorithm: "", image: "/images/3x3/oll/oll-1.png" },
+  { id: "oll-1-4", title: "OLL 1", algorithm: "oll4", image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2-4", title: "OLL 2", algorithm: "", image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3-4", title: "OLL 3", algorithm: "", image: "/images/3x3/oll/oll-3.png" },
   { id: "oll-4-4", title: "OLL 4", algorithm: "", image: "/images/3x3/oll/oll-4.png" },
@@ -548,7 +548,7 @@ export const PLL1: MethodOrientation[] = [
 ]
 
 export const PLL2: MethodOrientation[] = [
-  { id: "pll-1-2", title: "Aa", algorithm: "", image: "/images/3x3/pll/pll-1.png" },
+  { id: "pll-1-2", title: "Aa", algorithm: "aa pll2", image: "/images/3x3/pll/pll-1.png" },
   { id: "pll-2-2", title: "Ab", algorithm: "", image: "/images/3x3/pll/pll-2.png" },
   { id: "pll-3-2", title: "E", algorithm: "", image: "/images/3x3/pll/pll-3.png" },
   { id: "pll-4-2", title: "F", algorithm: "", image: "/images/3x3/pll/pll-4.png" },
@@ -572,7 +572,7 @@ export const PLL2: MethodOrientation[] = [
 ]
 
 export const PLL3: MethodOrientation[] = [
-  { id: "pll-1-3", title: "Aa", algorithm: "", image: "/images/3x3/pll/pll-1.png" },
+  { id: "pll-1-3", title: "Aa", algorithm: "aa pll3", image: "/images/3x3/pll/pll-1.png" },
   { id: "pll-2-3", title: "Ab", algorithm: "", image: "/images/3x3/pll/pll-2.png" },
   { id: "pll-3-3", title: "E", algorithm: "", image: "/images/3x3/pll/pll-3.png" },
   { id: "pll-4-3", title: "F", algorithm: "", image: "/images/3x3/pll/pll-4.png" },
@@ -596,7 +596,7 @@ export const PLL3: MethodOrientation[] = [
 ]
 
 export const PLL4: MethodOrientation[] = [
-  { id: "pll-1-4", title: "Aa", algorithm: "", image: "/images/3x3/pll/pll-1.png" },
+  { id: "pll-1-4", title: "Aa", algorithm: "aa pll4", image: "/images/3x3/pll/pll-1.png" },
   { id: "pll-2-4", title: "Ab", algorithm: "", image: "/images/3x3/pll/pll-2.png" },
   { id: "pll-3-4", title: "E", algorithm: "", image: "/images/3x3/pll/pll-3.png" },
   { id: "pll-4-4", title: "F", algorithm: "", image: "/images/3x3/pll/pll-4.png" },
