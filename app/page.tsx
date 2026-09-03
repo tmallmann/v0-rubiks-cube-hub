@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { CuboidIcon as BrainCog, Brain, Zap } from "lucide-react"
+import { BrainCog as BrainCog, Brain, Zap } from "lucide-react"
 
 export default function HomePage() {
   return (
@@ -12,7 +12,7 @@ export default function HomePage() {
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Algs Database</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Master the cube with comprehensive algorithm collections and practice tools for speedcubing and blindfolded
+            Master the Rubik's Cube with comprehensive algorithm collections and practice tools for speedcubing and blindfolded
             solving.
           </p>
         </div>
