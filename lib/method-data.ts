@@ -288,7 +288,7 @@ const threeXThreePLLBase: MethodCase[] = [
 
 
 export const OLL1: MethodOrientation[] = [
-  { id: "oll-1-1", title: "OLL 1", algorithm: "R U2' R2' F R F' U2 R' F R F'", image: "/images/3x3/oll/oll-1.png" },
+  { id: "oll-1-1", title: "OLL 1", algorithm: "testeR U2' R2' F R F' U2 R' F R F'", image: "/images/3x3/oll/oll-1.png" },
   { id: "oll-2-1", title: "OLL 2", algorithm: "r U r' U2 r U2 R' U2 R U' r'", image: "/images/3x3/oll/oll-2.png" },
   { id: "oll-3-1", title: "OLL 3", algorithm: "r' R2 U R' U r U2' r' U M'", image: "/images/3x3/oll/oll-3.png" },
   { id: "oll-4-1", title: "OLL 4", algorithm: "l L2 U' L U' l' U2 l U' M'", image: "/images/3x3/oll/oll-4.png" },
