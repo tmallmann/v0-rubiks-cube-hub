@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { CuboidIcon as Cube, Brain, Zap } from "lucide-react"
+import { Scroll as Scroll, Brain, Timer } from "lucide-react"
 
 export default function HomePage() {
   return (
@@ -8,11 +8,11 @@ export default function HomePage() {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
           <div className="flex justify-center mb-4">
-            <Cube className="h-16 w-16 text-indigo-600" />
+            <Scroll className="h-16 w-16 text-indigo-600" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Rubik's Cube Hub</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Algs Database</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Master the cube with comprehensive algorithm collections and practice tools for speedcubing and blindfolded
+            Master the Rubik's Cube with comprehensive algorithm collections and practice tools for speedcubing and blindfolded
             solving.
           </p>
         </div>
@@ -32,7 +32,7 @@ export default function HomePage() {
               <CardContent>
                 <div className="flex justify-center space-x-4">
                   <div className="flex items-center text-sm text-gray-600">
-                    <Zap className="h-4 w-4 mr-1" />
+                    <span className="mr-1">🎯</span>
                     CFOP
                   </div>
                 </div>
@@ -54,7 +54,7 @@ export default function HomePage() {
               <CardContent>
                 <div className="flex justify-center space-x-4">
                   <div className="flex items-center text-sm text-gray-600">
-                    <Zap className="h-4 w-4 mr-1" />
+                    <span className="mr-1">🎯</span>
                     CFOP
                   </div>
                 </div>
@@ -76,7 +76,7 @@ export default function HomePage() {
               <CardContent>
                 <div className="flex justify-center space-x-4">
                   <div className="flex items-center text-sm text-gray-600">
-                    <span className="mr-1">👁️</span>
+                    <span className="mr-1">🆎</span>
                     Letter Pairs
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
@@ -93,7 +93,7 @@ export default function HomePage() {
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">⏱️</span>
+                    <Timer className="h-12 w-12 text-white" />
                   </div>
                 </div>
                 <CardTitle className="text-2xl">Speedcubing Timer</CardTitle>
