@@ -8,8 +8,6 @@ import { Button } from "@/components/ui/button"
 import { Save, X, Edit2, ArrowLeft, RefreshCw, Upload, Download, Settings, Trash2 } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
-import { ImageBrowser } from "@/components/image-browser"
-import { validateAndCleanImages } from "@/lib/image-validator"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -81,17 +79,12 @@ export default function BLDPage() {
   const [feedbackMessage, setFeedbackMessage] = useState("")
   const [showAnswer, setShowAnswer] = useState(false)
 
-  // Image Browser State
-  const [showImageBrowser, setShowImageBrowser] = useState(false)
-  const [editingImageFor, setEditingImageFor] = useState<{ type: "pair" | "flip" | "twist"; id: string } | null>(null)
-
   // --- Load/Save Data from Local Storage ---
   useEffect(() => {
     const savedPairs = localStorage.getItem("bld-pairs")
     if (savedPairs) {
       const parsed = JSON.parse(savedPairs)
-      const cleaned = validateAndCleanImages(parsed)
-      setLetterPairs(cleaned)
+      setLetterPairs(parsed)
     } else {
       const pairs: LetterPair[] = []
       for (let i = 65; i <= 90; i++) {
@@ -113,8 +106,7 @@ export default function BLDPage() {
     const savedFlips = localStorage.getItem("bld-flips")
     if (savedFlips) {
       const parsed = JSON.parse(savedFlips)
-      const cleaned = validateAndCleanImages(parsed)
-      setFlips(cleaned)
+      setFlips(parsed)
     } else {
       const defaultFlips: FlipCase[] = [
         { id: "flip-UB", piece: "UB", name: "", algorithm: "", learned: false },
@@ -135,8 +127,7 @@ export default function BLDPage() {
     const savedTwists = localStorage.getItem("bld-twists")
     if (savedTwists) {
       const parsed = JSON.parse(savedTwists)
-      const cleaned = validateAndCleanImages(parsed)
-      setTwists(cleaned)
+      setTwists(parsed)
     } else {
       const defaultTwists: TwistCase[] = [
         { id: "twist-UBL", piece: "UBL", name: "", algorithm1: "", algorithm2: "", learned: false },
@@ -377,10 +368,9 @@ export default function BLDPage() {
           const content = e.target?.result as string
           const importedData = JSON.parse(content)
           if (importedData.letterPairs && importedData.flips && importedData.twists) {
-            // Validate and clean imported images
-            const cleanedPairs = validateAndCleanImages(importedData.letterPairs)
-            const cleanedFlips = validateAndCleanImages(importedData.flips)
-            const cleanedTwists = validateAndCleanImages(importedData.twists)
+            const cleanedPairs = importedData.letterPairs
+            const cleanedFlips = importedData.flips
+            const cleanedTwists = importedData.twists
 
             setLetterPairs(cleanedPairs)
             setFlips(cleanedFlips)
@@ -451,26 +441,6 @@ export default function BLDPage() {
       ]
       setTwists(defaultTwists)
     }
-  }
-
-  // --- Image Selection Functions ---
-  const handleImageSelect = (imagePath: string) => {
-    if (editingImageFor) {
-      if (editingImageFor.type === "pair") {
-        handleUpdatePair(editingImageFor.id, { image: imagePath })
-      } else if (editingImageFor.type === "flip") {
-        handleUpdateFlip(editingImageFor.id, { image: imagePath })
-      } else if (editingImageFor.type === "twist") {
-        handleUpdateTwist(editingImageFor.id, { image: imagePath })
-      }
-    }
-    setShowImageBrowser(false)
-    setEditingImageFor(null)
-  }
-
-  const openImageBrowser = (type: "pair" | "flip" | "twist", id: string) => {
-    setEditingImageFor({ type, id })
-    setShowImageBrowser(true)
   }
 
   return (
@@ -567,9 +537,6 @@ export default function BLDPage() {
                       <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
                         Pair
                       </th>
-                      <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-40">
-                        Image
-                      </th>
                       {selectedTable === "edges" && (
                         <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Commutator (UF)
@@ -597,33 +564,6 @@ export default function BLDPage() {
                         </td>
                         <td className="px-4 py-2 whitespace-nowrap text-sm font-mono font-medium text-gray-900 w-16">
                           {pair.pair}
-                        </td>
-                        <td className="px-4 py-2 w-40">
-                          {editingPairId === pair.id ? (
-                            <input
-                              type="text"
-                              value={editPairName}
-                              onChange={(e) => setEditPairName(e.target.value)}
-                              className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                              placeholder="Enter name..."
-                            />
-                          ) : (
-                            <div className="flex items-center justify-between">
-                              {pair.image ? (
-                                <img
-                                  src={pair.image || "/placeholder.svg"}
-                                  alt="Pair Image"
-                                  className="h-8 w-8 mr-2 cursor-pointer"
-                                  onClick={() => openImageBrowser("pair", pair.id)}
-                                />
-                              ) : (
-                                <span className="text-sm text-gray-900">Unnamed</span>
-                              )}
-                              <Button size="sm" variant="outline" onClick={() => openImageBrowser("pair", pair.id)}>
-                                Add Image
-                              </Button>
-                            </div>
-                          )}
                         </td>
                         {selectedTable === "edges" && (
                           <td className="px-4 py-2">
@@ -724,9 +664,7 @@ export default function BLDPage() {
                     <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
                       PIECE
                     </th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-40">
-                      IMAGE
-                    </th>
+
                     <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       FLIP (UF)
                     </th>
@@ -755,33 +693,6 @@ export default function BLDPage() {
                           />
                         ) : (
                           flip.piece
-                        )}
-                      </td>
-                      <td className="px-4 py-2 w-40">
-                        {editingFlipId === flip.id ? (
-                          <input
-                            type="text"
-                            value={editFlipName}
-                            onChange={(e) => setEditFlipName(e.target.value)}
-                            className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            placeholder="Enter name..."
-                          />
-                        ) : (
-                          <div className="flex items-center justify-between">
-                            {flip.image ? (
-                              <img
-                                src={flip.image || "/placeholder.svg"}
-                                alt="Flip Image"
-                                className="h-8 w-8 mr-2 cursor-pointer"
-                                onClick={() => openImageBrowser("flip", flip.id)}
-                              />
-                            ) : (
-                              <span className="text-sm text-gray-900">Unnamed</span>
-                            )}
-                            <Button size="sm" variant="outline" onClick={() => openImageBrowser("flip", flip.id)}>
-                              Add Image
-                            </Button>
-                          </div>
                         )}
                       </td>
                       <td className="px-4 py-2">
@@ -834,12 +745,6 @@ export default function BLDPage() {
                     <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
                       PIECE
                     </th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-40">
-                      IMAGE CW
-                    </th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-40">
-                      IMAGE CCW
-                    </th>
                     <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       TWIST CW
                     </th>
@@ -871,60 +776,6 @@ export default function BLDPage() {
                           />
                         ) : (
                           twist.piece
-                        )}
-                      </td>
-                      <td className="px-4 py-2 w-40">
-                        {editingTwistId === twist.id ? (
-                          <input
-                            type="text"
-                            value={editTwistName1}
-                            onChange={(e) => setEditTwistName1(e.target.value)}
-                            className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            placeholder="Enter name..."
-                          />
-                        ) : (
-                          <div className="flex items-center justify-between">
-                            {twist.image ? (
-                              <img
-                                src={twist.image || "/placeholder.svg"}
-                                alt="Twist Image CW"
-                                className="h-8 w-8 mr-2 cursor-pointer"
-                                onClick={() => openImageBrowser("twist", twist.id)}
-                              />
-                            ) : (
-                              <span className="text-sm text-gray-900">Unnamed</span>
-                            )}
-                            <Button size="sm" variant="outline" onClick={() => openImageBrowser("twist", twist.id)}>
-                              Add Image
-                            </Button>
-                          </div>
-                        )}
-                      </td>
-                      <td className="px-4 py-2 w-40">
-                        {editingTwistId === twist.id ? (
-                          <input
-                            type="text"
-                            value={editTwistName2}
-                            onChange={(e) => setEditTwistName2(e.target.value)}
-                            className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            placeholder="Enter name..."
-                          />
-                        ) : (
-                          <div className="flex items-center justify-between">
-                            {twist.image ? (
-                              <img
-                                src={twist.image || "/placeholder.svg"}
-                                alt="Twist Image CCW"
-                                className="h-8 w-8 mr-2 cursor-pointer"
-                                onClick={() => openImageBrowser("twist", twist.id)}
-                              />
-                            ) : (
-                              <span className="text-sm text-gray-900">Unnamed</span>
-                            )}
-                            <Button size="sm" variant="outline" onClick={() => openImageBrowser("twist", twist.id)}>
-                              Add Image
-                            </Button>
-                          </div>
                         )}
                       </td>
                       <td className="px-4 py-2">
@@ -1031,17 +882,6 @@ export default function BLDPage() {
             <p className="text-center text-gray-600">Loading trainer or no learnable pairs available.</p>
           )}
         </div>
-
-        {/* Image Browser */}
-        <ImageBrowser
-          isOpen={showImageBrowser}
-          onClose={() => {
-            setShowImageBrowser(false)
-            setEditingImageFor(null)
-          }}
-          onSelectImage={handleImageSelect}
-          category="BLD"
-        />
       </div>
     </div>
   )
