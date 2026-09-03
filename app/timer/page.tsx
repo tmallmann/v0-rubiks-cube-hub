@@ -189,44 +189,48 @@ export default function TimerPage() {
     }
   }, [isRunning])
 
-  const handleKeyPress = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.code === "Space") {
-        event.preventDefault()
-        if (isRunning) {
-          // Stop timer
-          setIsRunning(false)
-          const newSolve: Solve = {
-            id: Date.now().toString(),
-            time,
-            scramble: scrambles[currentScrambleIndex],
-            scrambleType: scrambleType,
-            timestamp: new Date(),
-          }
-          setSolves((prev) => [newSolve, ...prev])
+  const stopTimer = useCallback(() => {
+    if (!isRunning) return
 
-          // Generate new scramble and move to next
-          const newScramble = generateScramble(scrambleType)
-          setScrambles((prev) => {
-            const updated = [...prev]
-            updated.push(newScramble)
-            return updated
-          })
-          setCurrentScrambleIndex((prev) => prev + 1)
-        } else {
-          if (isReady) {
-            // Start timer
-            setTime(0)
-            setIsRunning(true)
-            setIsReady(false)
-          } else {
-            // Get ready
-            setIsReady(true)
-          }
-        }
+    setIsRunning(false)
+    const newSolve: Solve = {
+      id: Date.now().toString(),
+      time,
+      scramble: scrambles[currentScrambleIndex],
+      scrambleType,
+      timestamp: new Date(),
+    }
+    setSolves((prev) => [newSolve, ...prev])
+
+    const newScramble = generateScramble(scrambleType)
+    setScrambles((prev) => [...prev, newScramble])
+    setCurrentScrambleIndex((prev) => prev + 1)
+  }, [isRunning, time, scrambles, currentScrambleIndex, scrambleType])
+
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.code !== "Space" || event.repeat) return
+      event.preventDefault()
+      if (isRunning) {
+        stopTimer()
+      } else {
+        setIsReady(true)
       }
     },
-    [isRunning, isReady, time, scrambles, currentScrambleIndex, scrambleType],
+    [isRunning, stopTimer],
+  )
+
+  const handleKeyUp = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.code !== "Space") return
+      event.preventDefault()
+      if (!isRunning && isReady) {
+        setTime(0)
+        setIsRunning(true)
+        setIsReady(false)
+      }
+    },
+    [isRunning, isReady],
   )
 
   const handleTouch = () => {
@@ -264,9 +268,13 @@ export default function TimerPage() {
   }
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyPress)
-    return () => document.removeEventListener("keydown", handleKeyPress)
-  }, [handleKeyPress])
+    document.addEventListener("keydown", handleKeyDown)
+    document.addEventListener("keyup", handleKeyUp)
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown)
+      document.removeEventListener("keyup", handleKeyUp)
+    }
+  }, [handleKeyDown, handleKeyUp])
 
   const formatTime = (ms: number): string => {
     const minutes = Math.floor(ms / 60000)
