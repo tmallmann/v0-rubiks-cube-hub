@@ -55,14 +55,25 @@ export default function BLDPage() {
   // --- Load/Save Data from Local Storage ---
   useEffect(() => {
     const savedPairs = localStorage.getItem("bld-pairs")
-    setBldLetterPairs(savedPairs ? JSON.parse(savedPairs) : defaultBldLetterPairs)
+    const parsedPairs = savedPairs ? JSON.parse(savedPairs) : defaultBldLetterPairs
+    const normalizedPairs = Array.isArray(parsedPairs)
+      ? parsedPairs
+          .filter((pair) => Boolean(pair && typeof pair === "object"))
+          .map((pair) => ({
+            ...pair,
+            piece: typeof pair.piece === "string" ? pair.piece : typeof pair.name === "string" ? pair.name : "",
+          }))
+          .filter((pair): pair is BldLetterPair => pair.piece.length > 0)
+      : []
+    setBldLetterPairs(normalizedPairs.length > 0 ? normalizedPairs : defaultBldLetterPairs)
 
     const savedFlips = localStorage.getItem("bld-flips")
-    setFlips(savedFlips ? JSON.parse(savedFlips) : defaultBldFlips)
+    const parsedFlips = savedFlips ? JSON.parse(savedFlips) : defaultBldFlips
+    setFlips(Array.isArray(parsedFlips) ? parsedFlips : defaultBldFlips)
 
     const savedTwists = localStorage.getItem("bld-twists")
-    setTwists(savedTwists ? JSON.parse(savedTwists) : defaultBldTwists)
-
+    const parsedTwists = savedTwists ? JSON.parse(savedTwists) : defaultBldTwists
+    setTwists(Array.isArray(parsedTwists) ? parsedTwists : defaultBldTwists)
   }, [])
 
   useEffect(() => {
