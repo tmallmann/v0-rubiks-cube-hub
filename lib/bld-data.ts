@@ -37,7 +37,7 @@ export const defaultBldLetterPairs: BldLetterPair[] = [
   { id: "pair-AH", piece: "AH", name: "AH", edgesAlgorithm: "(U' : (R E' R' , U2))", cornersAlgorithm: "(U' : (R D' R' , U2))", learned: false },
   { id: "pair-AI", piece: "AI", name: "AI", edgesAlgorithm: "", cornersAlgorithm: "(Lw' D' U : (R D R' , U2))", learned: false },
   { id: "pair-AJ", piece: "AJ", name: "AJ", edgesAlgorithm: "(R' U' : (S , R2'))", cornersAlgorithm: "", learned: false },
-  { id: "pair-AK", piece: "AK", name: "AK", edgesAlgorithm: "(R' F' : (R U R' , E))", cornersAlgorithm: "(D U' : (R D R' , U2))", learned: false },
+  { id: "pair-AK", piece: "AK", name: "AK", edgesAlgorithm: "(R' F' : (R U R' , E))", cornersAlgorithm: "(D U' : (R D R', U2))", learned: false },
   { id: "pair-AL", piece: "AL", name: "AL", edgesAlgorithm: "(L U : (S' , L2'))", cornersAlgorithm: "(D : (R' D' R , U2))", learned: false },
   { id: "pair-AM", piece: "AM", name: "AM", edgesAlgorithm: "(U M U : (M' , U2'))", cornersAlgorithm: "", learned: false },
   { id: "pair-AN", piece: "AN", name: "AN", edgesAlgorithm: "(U : (L' E L , U2'))", cornersAlgorithm: "(R' U D R2 : (U' , R' D' R))", learned: false },
