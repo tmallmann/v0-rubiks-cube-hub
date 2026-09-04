@@ -76,7 +76,7 @@ export function AlgorithmCard({ id, title, algorithm, algorithms, orientations: 
         </div>}
         {isEditing ? <div className="grid gap-2">
           {orientations.map((degrees, index) => <label key={degrees} className="flex flex-col gap-1 text-xs font-medium">{degrees}° algorithm<Input value={editAlgorithms[index]} onChange={(event) => setEditAlgorithms((current) => current.map((value, i) => i === index ? event.target.value : value))} placeholder={`Enter ${degrees}° algorithm`} className="font-mono text-xs" /></label>)}
-        </div> : <div className="flex flex-col gap-1"><div className="flex items-center justify-between text-xs text-muted-foreground"><span>{isF2LCase ? `Image ${orientation / 90 + 1} of 4` : rotateImage ? `${orientation}° orientation` : "Case image"}</span><span>{isF2LCase ? "Rotate" : rotateImage ? "Rotate to switch" : ""}</span></div><div className="min-h-12 rounded border bg-muted/40 p-2"><p className="break-words font-mono text-xs">{currentAlgorithm}</p></div></div>}
+        </div> : <div className="flex flex-col gap-1"><div className="flex items-center justify-between text-xs text-muted-foreground"><span>{isF2LCase ? `Orientation ${orientation / 90 + 1} of 4` : rotateImage ? `${orientation}° orientation` : "Case image"}</span><span>{isF2LCase ? "Rotate" : rotateImage ? "Rotate" : ""}</span></div><div className="min-h-12 rounded border bg-muted/40 p-2"><p className="break-words font-mono text-xs">{currentAlgorithm}</p></div></div>}
       </CardContent>
     </Card>
   )
