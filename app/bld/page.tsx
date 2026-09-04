@@ -119,7 +119,7 @@ export default function BLDPage() {
     handleUpdatePair(id, { learned: checked })
   }
 
-  const filteredByLetter = letterPairs.filter((pair) => pair.pair.startsWith(selectedLetter))
+  const filteredByLetter = letterPairs.filter((pair) => pair.piece.startsWith(selectedLetter))
 
   // --- Flips Handlers ---
   const handleUpdateFlip = (id: string, updates: Partial<BldFlipCase>) => {
@@ -389,11 +389,11 @@ export default function BLDPage() {
                           <Checkbox
                             checked={pair.learned}
                             onCheckedChange={(checked) => handleToggleLearned(pair.id, checked as boolean)}
-                            aria-label={`Mark ${pair.pair} as learned`}
+                            aria-label={`Mark ${pair.piece} as learned`}
                           />
                         </td>
                         <td className="px-4 py-2 whitespace-nowrap text-sm font-mono font-medium text-gray-900 w-16">
-                          {pair.pair}
+                          {pair.piece}
                         </td>
                         {selectedTable === "edges" && (
                           <td className="px-4 py-2">
