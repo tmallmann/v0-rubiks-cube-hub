@@ -2,12 +2,11 @@
 
 import type React from "react"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Save, X, Edit2, ArrowLeft, RefreshCw, Upload, Download, Settings, Trash2 } from "lucide-react"
+import { Save, X, Edit2, ArrowLeft, Upload, Download, Settings, Trash2 } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Input } from "@/components/ui/input"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,39 +14,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+  defaultBldFlips,
+  defaultBldLetterPairs,
+  defaultBldTwists,
+  type BldFlipCase,
+  type BldLetterPair,
+  type BldTwistCase,
+} from "@/lib/bld-data"
 
-interface LetterPair {
-  id: string
-  pair: string
-  name: string
-  edgesAlgorithm: string
-  cornersAlgorithm: string
-  learned: boolean
-  image?: string
-}
-
-interface FlipCase {
-  id: string
-  piece: string
-  name: string
-  algorithm: string
-  learned: boolean
-  image?: string
-}
-
-interface TwistCase {
-  id: string
-  piece: string
-  name: string
-  algorithm1: string
-  algorithm2: string
-  learned: boolean
-  image?: string
-}
 
 export default function BLDPage() {
   // Letter Pairs State
-  const [letterPairs, setLetterPairs] = useState<LetterPair[]>([])
+  const [letterPairs, setBldLetterPairs] = useState<BldLetterPair[]>([])
   const [editingPairId, setEditingPairId] = useState<string | null>(null)
   const [editPairName, setEditPairName] = useState("")
   const [editPairEdgesAlgorithm, setEditPairEdgesAlgorithm] = useState("")
@@ -55,14 +34,14 @@ export default function BLDPage() {
   const [selectedLetter, setSelectedLetter] = useState<string>("A")
 
   // Flips State
-  const [flips, setFlips] = useState<FlipCase[]>([])
+  const [flips, setFlips] = useState<BldFlipCase[]>([])
   const [editingFlipId, setEditingFlipId] = useState<string | null>(null)
   const [editFlipName, setEditFlipName] = useState("")
   const [editFlipAlgorithm, setEditFlipAlgorithm] = useState("")
   const [editFlipPiece, setEditFlipPiece] = useState("")
 
   // Twists State
-  const [twists, setTwists] = useState<TwistCase[]>([])
+  const [twists, setTwists] = useState<BldTwistCase[]>([])
   const [editingTwistId, setEditingTwistId] = useState<string | null>(null)
   const [editTwistName1, setEditTwistName1] = useState("")
   const [editTwistName2, setEditTwistName2] = useState("")
@@ -73,73 +52,28 @@ export default function BLDPage() {
   // Table Selection State
   const [selectedTable, setSelectedTable] = useState<"edges" | "corners" | "flips" | "twists">("edges")
 
-  // Trainer state
-  const [currentTrainerPair, setCurrentTrainerPair] = useState<LetterPair | null>(null)
-  const [trainerInput, setTrainerInput] = useState("")
-  const [feedbackMessage, setFeedbackMessage] = useState("")
-  const [showAnswer, setShowAnswer] = useState(false)
-
   // --- Load/Save Data from Local Storage ---
   useEffect(() => {
     const savedPairs = localStorage.getItem("bld-pairs")
-    if (savedPairs) {
-      const parsed = JSON.parse(savedPairs)
-      setLetterPairs(parsed)
-    } else {
-      const pairs: LetterPair[] = []
-      for (let i = 65; i <= 90; i++) {
-        for (let j = 65; j <= 90; j++) {
-          const pair = String.fromCharCode(i) + String.fromCharCode(j)
-          pairs.push({
-            id: `pair-${pair}`,
-            pair,
-            name: "",
-            edgesAlgorithm: "",
-            cornersAlgorithm: "",
-            learned: false,
-          })
-        }
-      }
-      setLetterPairs(pairs)
-    }
+    const parsedPairs = savedPairs ? JSON.parse(savedPairs) : defaultBldLetterPairs
+    const normalizedPairs = Array.isArray(parsedPairs)
+      ? parsedPairs
+          .filter((pair) => Boolean(pair && typeof pair === "object"))
+          .map((pair) => ({
+            ...pair,
+            piece: typeof pair.piece === "string" ? pair.piece : typeof pair.name === "string" ? pair.name : "",
+          }))
+          .filter((pair): pair is BldLetterPair => pair.piece.length > 0)
+      : []
+    setBldLetterPairs(normalizedPairs.length > 0 ? normalizedPairs : defaultBldLetterPairs)
 
     const savedFlips = localStorage.getItem("bld-flips")
-    if (savedFlips) {
-      const parsed = JSON.parse(savedFlips)
-      setFlips(parsed)
-    } else {
-      const defaultFlips: FlipCase[] = [
-        { id: "flip-UB", piece: "UB", name: "", algorithm: "M' U2 M U R' F' R S R' F R S' U", learned: false },
-        { id: "flip-UR", piece: "UR", name: "", algorithm: "R' E2 R2 E' R' U' R E R2' E2 R U", learned: false },
-        { id: "flip-UL", piece: "UL", name: "", algorithm: "L F' L' U M' U2 M U S' L F L' S", learned: false },
-        { id: "flip-LF", piece: "LF", name: "", algorithm: "F' L' U M' U2 M U S' L F L' S L", learned: false },
-        { id: "flip-LD", piece: "LD", name: "", algorithm: "S L F' L' U M' U2 M U S' L F L'", learned: false },
-        { id: "flip-LB", piece: "LB", name: "", algorithm: "L' S L F' L' U M' U2 M U S' L F", learned: false },
-        { id: "flip-FR", piece: "FR", name: "", algorithm: "F R U' M' U2 M U' S R' F' R S' R'", learned: false },
-        { id: "flip-FD", piece: "FD", name: "", algorithm: "U2 M' U2 M U' S R' F' R S' R' F R U", learned: false },
-        { id: "flip-RB", piece: "RB", name: "", algorithm: "R S' R' F R U' M' U2 M U' S R' F'", learned: false },
-        { id: "flip-RD", piece: "RD", name: "", algorithm: "S' R' F R U' M' U2 M U' S R' F' R", learned: false },
-        { id: "flip-BD", piece: "BD", name: "", algorithm: "U2 M U' S R' F' R S' R' F R U' M'", learned: false },
-      ]
-      setFlips(defaultFlips)
-    }
+    const parsedFlips = savedFlips ? JSON.parse(savedFlips) : defaultBldFlips
+    setFlips(Array.isArray(parsedFlips) ? parsedFlips : defaultBldFlips)
 
     const savedTwists = localStorage.getItem("bld-twists")
-    if (savedTwists) {
-      const parsed = JSON.parse(savedTwists)
-      setTwists(parsed)
-    } else {
-      const defaultTwists: TwistCase[] = [
-        { id: "twist-UBL", piece: "UBL", name: "", algorithm1: "(R : (U, R D R' D' R D R'))", algorithm2: "(R : (R D R' D' R D R', U))", learned: false },
-        { id: "twist-UBR", piece: "UBR", name: "", algorithm1: "(R D R' D' R D R', U')", algorithm2: "(U', R D R' D' R D R')", learned: false },
-        { id: "twist-UFL", piece: "UFL", name: "", algorithm1: "(U', R' D R D' R' D R)", algorithm2: "(R' D R D' R' D R, U')", learned: false },
-        { id: "twist-DFL", piece: "DFL", name: "", algorithm1: "(R U R': (R U' R' U R U' R', D))", algorithm2: "(R U R': (D, R U' R' U R U' R'))", learned: false },
-        { id: "twist-DFR", piece: "DFR", name: "", algorithm1: "(D' : (U', R' D R)) (R' D' R, U')", algorithm2: "(R': (D', R U' R' U R U' R'))", learned: false },
-        { id: "twist-DBR", piece: "DBR", name: "", algorithm1: "(R U R': (R U' R' U R U' R', D'))", algorithm2: "(R U R': (D', R U' R' U R U' R'))", learned: false },
-        { id: "twist-DBL", piece: "DBL", name: "", algorithm1: "(U' R: (D', R' U R U' R' U R))", algorithm2: "(U' R:(R' U R U' R' U R, D'))", learned: false },
-      ]
-      setTwists(defaultTwists)
-    }
+    const parsedTwists = savedTwists ? JSON.parse(savedTwists) : defaultBldTwists
+    setTwists(Array.isArray(parsedTwists) ? parsedTwists : defaultBldTwists)
   }, [])
 
   useEffect(() => {
@@ -155,8 +89,8 @@ export default function BLDPage() {
   }, [twists])
 
   // --- Letter Pairs Handlers ---
-  const handleUpdatePair = (id: string, updates: Partial<LetterPair>) => {
-    setLetterPairs((prev) => prev.map((pair) => (pair.id === id ? { ...pair, ...updates } : pair)))
+  const handleUpdatePair = (id: string, updates: Partial<BldLetterPair>) => {
+    setBldLetterPairs((prev) => prev.map((pair) => (pair.id === id ? { ...pair, ...updates } : pair)))
   }
 
   const handleEditPair = (
@@ -196,10 +130,10 @@ export default function BLDPage() {
     handleUpdatePair(id, { learned: checked })
   }
 
-  const filteredByLetter = letterPairs.filter((pair) => pair.pair.startsWith(selectedLetter))
+  const filteredByLetter = letterPairs.filter((pair) => pair.piece.startsWith(selectedLetter))
 
   // --- Flips Handlers ---
-  const handleUpdateFlip = (id: string, updates: Partial<FlipCase>) => {
+  const handleUpdateFlip = (id: string, updates: Partial<BldFlipCase>) => {
     setFlips((prev) => prev.map((flip) => (flip.id === id ? { ...flip, ...updates } : flip)))
   }
 
@@ -236,7 +170,7 @@ export default function BLDPage() {
   }
 
   // --- Twists Handlers ---
-  const handleUpdateTwist = (id: string, updates: Partial<TwistCase>) => {
+  const handleUpdateTwist = (id: string, updates: Partial<BldTwistCase>) => {
     setTwists((prev) => prev.map((twist) => (twist.id === id ? { ...twist, ...updates } : twist)))
   }
 
@@ -286,60 +220,6 @@ export default function BLDPage() {
     handleUpdateTwist(id, { learned: checked })
   }
 
-  // --- Trainer functions ---
-  const generateRandomPair = useCallback(() => {
-    const learnablePairs = letterPairs.filter((p) => p.name || p.edgesAlgorithm || p.cornersAlgorithm)
-    if (learnablePairs.length === 0) {
-      setCurrentTrainerPair(null)
-      setFeedbackMessage("No learnable pairs defined yet. Add names or algorithms to your letter pairs!")
-      return
-    }
-    const randomIndex = Math.floor(Math.random() * learnablePairs.length)
-    setCurrentTrainerPair(learnablePairs[randomIndex])
-    setTrainerInput("")
-    setFeedbackMessage("")
-    setShowAnswer(false)
-  }, [letterPairs])
-
-  useEffect(() => {
-    if (letterPairs.length > 0 && !currentTrainerPair) {
-      generateRandomPair()
-    }
-  }, [letterPairs, currentTrainerPair, generateRandomPair])
-
-  const checkTrainerAnswer = () => {
-    if (!currentTrainerPair) return
-
-    const normalizedInput = trainerInput.trim().toLowerCase()
-    const normalizedName = currentTrainerPair.name.trim().toLowerCase()
-    const normalizedEdgesAlg = currentTrainerPair.edgesAlgorithm.trim().toLowerCase()
-    const normalizedCornersAlg = currentTrainerPair.cornersAlgorithm.trim().toLowerCase()
-
-    if (
-      normalizedInput === normalizedName ||
-      normalizedInput === normalizedEdgesAlg ||
-      normalizedInput === normalizedCornersAlg
-    ) {
-      setFeedbackMessage("Correct!")
-      setShowAnswer(false)
-      setTimeout(generateRandomPair, 1000) // Generate new pair after a short delay
-    } else {
-      setFeedbackMessage("Incorrect. Try again or click 'Show Answer'.")
-      setShowAnswer(false)
-    }
-  }
-
-  const handleTrainerKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      checkTrainerAnswer()
-    }
-  }
-
-  const handleShowAnswer = () => {
-    setShowAnswer(true)
-    setFeedbackMessage("")
-  }
-
   // --- Import/Export Functions ---
   const handleExportData = () => {
     const data = {
@@ -372,7 +252,7 @@ export default function BLDPage() {
             const cleanedFlips = importedData.flips
             const cleanedTwists = importedData.twists
 
-            setLetterPairs(cleanedPairs)
+            setBldLetterPairs(cleanedPairs)
             setFlips(cleanedFlips)
             setTwists(cleanedTwists)
             alert("BLD data imported successfully!")
@@ -393,53 +273,14 @@ export default function BLDPage() {
       localStorage.removeItem("bld-pairs")
       localStorage.removeItem("bld-flips")
       localStorage.removeItem("bld-twists")
-      setLetterPairs([])
+      setBldLetterPairs([])
       setFlips([])
       setTwists([])
-      setCurrentTrainerPair(null) // Reset trainer as well
       alert("All BLD data cleared.")
-      // Re-initialize default data after clearing
-      const pairs: LetterPair[] = []
-      for (let i = 65; i <= 90; i++) {
-        for (let j = 65; j <= 90; j++) {
-          const pair = String.fromCharCode(i) + String.fromCharCode(j)
-          pairs.push({
-            id: `pair-${pair}`,
-            pair,
-            name: "",
-            edgesAlgorithm: "",
-            cornersAlgorithm: "",
-            learned: false,
-          })
-        }
-      }
-      setLetterPairs(pairs)
-
-      const defaultFlips: FlipCase[] = [
-        { id: "flip-UB", piece: "UB", name: "", algorithm: "M' U2 M U R' F' R S R' F R S' U", learned: false },
-        { id: "flip-UR", piece: "UR", name: "", algorithm: "R' E2 R2 E' R' U' R E R2' E2 R U", learned: false },
-        { id: "flip-UL", piece: "UL", name: "", algorithm: "L F' L' U M' U2 M U S' L F L' S", learned: false },
-        { id: "flip-LF", piece: "LF", name: "", algorithm: "F' L' U M' U2 M U S' L F L' S L", learned: false },
-        { id: "flip-LD", piece: "LD", name: "", algorithm: "S L F' L' U M' U2 M U S' L F L'", learned: false },
-        { id: "flip-LB", piece: "LB", name: "", algorithm: "L' S L F' L' U M' U2 M U S' L F", learned: false },
-        { id: "flip-FR", piece: "FR", name: "", algorithm: "F R U' M' U2 M U' S R' F' R S' R'", learned: false },
-        { id: "flip-FD", piece: "FD", name: "", algorithm: "U2 M' U2 M U' S R' F' R S' R' F R U", learned: false },
-        { id: "flip-RB", piece: "RB", name: "", algorithm: "R S' R' F R U' M' U2 M U' S R' F'", learned: false },
-        { id: "flip-RD", piece: "RD", name: "", algorithm: "S' R' F R U' M' U2 M U' S R' F' R", learned: false },
-        { id: "flip-BD", piece: "BD", name: "", algorithm: "U2 M U' S R' F' R S' R' F R U' M'", learned: false },
-      ]
-      setFlips(defaultFlips)
-
-      const defaultTwists: TwistCase[] = [
-        { id: "twist-UBL", piece: "UBL", name: "", algorithm1: "(R : (U, R D R' D' R D R'))", algorithm2: "(R : (R D R' D' R D R', U))", learned: false },
-        { id: "twist-UBR", piece: "UBR", name: "", algorithm1: "(R D R' D' R D R', U')", algorithm2: "(U', R D R' D' R D R')", learned: false },
-        { id: "twist-UFL", piece: "UFL", name: "", algorithm1: "(U', R' D R D' R' D R)", algorithm2: "(R' D R D' R' D R, U')", learned: false },
-        { id: "twist-DFL", piece: "DFL", name: "", algorithm1: "(R U R': (R U' R' U R U' R', D))", algorithm2: "(R U R': (D, R U' R' U R U' R'))", learned: false },
-        { id: "twist-DFR", piece: "DFR", name: "", algorithm1: "(D' : (U', R' D R)) (R' D' R, U')", algorithm2: "(R': (D', R U' R' U R U' R'))", learned: false },
-        { id: "twist-DBR", piece: "DBR", name: "", algorithm1: "(R U R': (R U' R' U R U' R', D'))", algorithm2: "(R U R': (D', R U' R' U R U' R'))", learned: false },
-        { id: "twist-DBL", piece: "DBL", name: "", algorithm1: "(U' R: (D', R' U R U' R' U R))", algorithm2: "(U' R:(R' U R U' R' U R, D'))", learned: false },
-      ]
-      setTwists(defaultTwists)
+      // Restore the single source of truth from lib/bld-data.ts.
+      setBldLetterPairs(defaultBldLetterPairs)
+      setFlips(defaultBldFlips)
+      setTwists(defaultBldTwists)
     }
   }
 
@@ -559,11 +400,11 @@ export default function BLDPage() {
                           <Checkbox
                             checked={pair.learned}
                             onCheckedChange={(checked) => handleToggleLearned(pair.id, checked as boolean)}
-                            aria-label={`Mark ${pair.pair} as learned`}
+                            aria-label={`Mark ${pair.piece} as learned`}
                           />
                         </td>
                         <td className="px-4 py-2 whitespace-nowrap text-sm font-mono font-medium text-gray-900 w-16">
-                          {pair.pair}
+                          {pair.piece}
                         </td>
                         {selectedTable === "edges" && (
                           <td className="px-4 py-2">
@@ -838,50 +679,6 @@ export default function BLDPage() {
           </div>
         )}
 
-        {/* BLD Trainer Section */}
-        <div className="mt-8 bg-white rounded-lg shadow-sm p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">BLD Trainer</h2>
-          {currentTrainerPair ? (
-            <div className="flex flex-col items-center space-y-4">
-              <div className="text-6xl font-bold text-purple-600">{currentTrainerPair.pair}</div>
-              <p className="text-lg text-gray-700">What is the image for this pair?</p>
-              <div className="flex w-full max-w-md space-x-2">
-                <Input
-                  type="text"
-                  value={trainerInput}
-                  onChange={(e) => setTrainerInput(e.target.value)}
-                  onKeyPress={handleTrainerKeyPress}
-                  placeholder="Type your answer..."
-                  className="flex-1"
-                />
-                <Button onClick={checkTrainerAnswer}>Check</Button>
-                <Button variant="outline" onClick={handleShowAnswer}>
-                  Show Answer
-                </Button>
-              </div>
-              {feedbackMessage && (
-                <p
-                  className={`text-lg font-semibold ${feedbackMessage.startsWith("Correct") ? "text-green-600" : "text-red-600"}`}
-                >
-                  {feedbackMessage}
-                </p>
-              )}
-              {showAnswer && currentTrainerPair && (
-                <div className="text-md text-gray-800">
-                  <p>
-                    Image: <span className="font-semibold">{currentTrainerPair.name || "N/A"}</span>
-                  </p>
-                </div>
-              )}
-              <Button variant="secondary" onClick={generateRandomPair}>
-                <RefreshCw className="h-4 w-4 mr-2" />
-                New Pair
-              </Button>
-            </div>
-          ) : (
-            <p className="text-center text-gray-600">Loading trainer or no learnable pairs available.</p>
-          )}
-        </div>
       </div>
     </div>
   )
