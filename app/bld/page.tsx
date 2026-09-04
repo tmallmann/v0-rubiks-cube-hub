@@ -416,28 +416,28 @@ export default function BLDPage() {
       setLetterPairs(pairs)
 
       const defaultFlips: FlipCase[] = [
-        { id: "flip-UB", piece: "UB", name: "", algorithm: "", learned: false },
-        { id: "flip-UR", piece: "UR", name: "", algorithm: "", learned: false },
-        { id: "flip-UL", piece: "UL", name: "", algorithm: "", learned: false },
-        { id: "flip-LF", piece: "LF", name: "", algorithm: "", learned: false },
-        { id: "flip-LD", piece: "LD", name: "", algorithm: "", learned: false },
-        { id: "flip-LB", piece: "LB", name: "", algorithm: "", learned: false },
-        { id: "flip-FR", piece: "FR", name: "", algorithm: "", learned: false },
-        { id: "flip-FD", piece: "FD", name: "", algorithm: "", learned: false },
-        { id: "flip-RB", piece: "RB", name: "", algorithm: "", learned: false },
-        { id: "flip-RD", piece: "RD", name: "", algorithm: "", learned: false },
-        { id: "flip-BD", piece: "BD", name: "", algorithm: "", learned: false },
+        { id: "flip-UB", piece: "UB", name: "", algorithm: "M' U2 M U R' F' R S R' F R S' U", learned: false },
+        { id: "flip-UR", piece: "UR", name: "", algorithm: "R' E2 R2 E' R' U' R E R2' E2 R U", learned: false },
+        { id: "flip-UL", piece: "UL", name: "", algorithm: "L F' L' U M' U2 M U S' L F L' S", learned: false },
+        { id: "flip-LF", piece: "LF", name: "", algorithm: "F' L' U M' U2 M U S' L F L' S L", learned: false },
+        { id: "flip-LD", piece: "LD", name: "", algorithm: "S L F' L' U M' U2 M U S' L F L'", learned: false },
+        { id: "flip-LB", piece: "LB", name: "", algorithm: "L' S L F' L' U M' U2 M U S' L F", learned: false },
+        { id: "flip-FR", piece: "FR", name: "", algorithm: "F R U' M' U2 M U' S R' F' R S' R'", learned: false },
+        { id: "flip-FD", piece: "FD", name: "", algorithm: "U2 M' U2 M U' S R' F' R S' R' F R U", learned: false },
+        { id: "flip-RB", piece: "RB", name: "", algorithm: "R S' R' F R U' M' U2 M U' S R' F'", learned: false },
+        { id: "flip-RD", piece: "RD", name: "", algorithm: "S' R' F R U' M' U2 M U' S R' F' R", learned: false },
+        { id: "flip-BD", piece: "BD", name: "", algorithm: "U2 M U' S R' F' R S' R' F R U' M'", learned: false },
       ]
       setFlips(defaultFlips)
 
       const defaultTwists: TwistCase[] = [
-        { id: "twist-UBL", piece: "UBL", name: "", algorithm1: "", algorithm2: "", learned: false },
-        { id: "twist-UBR", piece: "UBR", name: "", algorithm1: "", algorithm2: "", learned: false },
-        { id: "twist-UFL", piece: "UFL", name: "", algorithm1: "", algorithm2: "", learned: false },
-        { id: "twist-DFL", piece: "DFL", name: "", algorithm1: "", algorithm2: "", learned: false },
-        { id: "twist-DFR", piece: "DFR", name: "", algorithm1: "", algorithm2: "", learned: false },
-        { id: "twist-DBR", piece: "DBR", name: "", algorithm1: "", algorithm2: "", learned: false },
-        { id: "twist-DBL", piece: "DBL", name: "", algorithm1: "", algorithm2: "", learned: false },
+        { id: "twist-UBL", piece: "UBL", name: "", algorithm1: "(R : (U, R D R' D' R D R'))", algorithm2: "(R : (R D R' D' R D R', U))", learned: false },
+        { id: "twist-UBR", piece: "UBR", name: "", algorithm1: "(R D R' D' R D R', U')", algorithm2: "(U', R D R' D' R D R')", learned: false },
+        { id: "twist-UFL", piece: "UFL", name: "", algorithm1: "(U', R' D R D' R' D R)", algorithm2: "(R' D R D' R' D R, U')", learned: false },
+        { id: "twist-DFL", piece: "DFL", name: "", algorithm1: "(R U R': (R U' R' U R U' R', D))", algorithm2: "(R U R': (D, R U' R' U R U' R'))", learned: false },
+        { id: "twist-DFR", piece: "DFR", name: "", algorithm1: "(D' : (U', R' D R)) (R' D' R, U')", algorithm2: "(R': (D', R U' R' U R U' R'))", learned: false },
+        { id: "twist-DBR", piece: "DBR", name: "", algorithm1: "(R U R': (R U' R' U R U' R', D'))", algorithm2: "(R U R': (D', R U' R' U R U' R'))", learned: false },
+        { id: "twist-DBL", piece: "DBL", name: "", algorithm1: "(U' R: (D', R' U R U' R' U R))", algorithm2: "(U' R:(R' U R U' R' U R, D'))", learned: false },
       ]
       setTwists(defaultTwists)
     }
