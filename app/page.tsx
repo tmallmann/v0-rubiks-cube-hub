@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Scroll as Scroll, Brain, Cuboid } from "lucide-react"
+import { Scroll as Scroll, Brain } from "lucide-react"
 
 export default function HomePage() {
   return (
@@ -91,7 +91,11 @@ export default function HomePage() {
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <Link href="/5x5">
               <CardHeader className="text-center">
-                <div className="flex justify-center mb-4"><div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center"><Cuboid className="h-12 w-12 text-white" /></div></div>
+                <div className="flex justify-center mb-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-xl">5×5</span>
+                  </div>
+                </div>
                 <CardTitle className="text-2xl">5×5 Cube</CardTitle>
                 <CardDescription>Last two centers and last two edges algorithms</CardDescription>
               </CardHeader>
