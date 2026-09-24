@@ -27,13 +27,12 @@ export default function HomePage() {
                   </div>
                 </div>
                 <CardTitle className="text-2xl">3×3 Cube</CardTitle>
-                <CardDescription>The classic Rubik's Cube with CFOP method</CardDescription>
+                <CardDescription>F2L · OLL · PLL</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex justify-center space-x-4">
                   <div className="flex items-center text-sm text-gray-600">
-                    <span className="mr-1">🎯</span>
-                    CFOP
+                    F2L · OLL · PLL
                   </div>
                 </div>
               </CardContent>
@@ -49,13 +48,12 @@ export default function HomePage() {
                   </div>
                 </div>
                 <CardTitle className="text-2xl">4×4 Cube</CardTitle>
-                <CardDescription>Advanced cube solving with reduction methods</CardDescription>
+                <CardDescription>OLLP · PLLP</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex justify-center space-x-4">
                   <div className="flex items-center text-sm text-gray-600">
-                    <span className="mr-1">🎯</span>
-                    CFOP
+                    OLLP · PLLP
                   </div>
                 </div>
               </CardContent>

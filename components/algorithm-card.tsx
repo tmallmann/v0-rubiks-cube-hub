@@ -20,11 +20,12 @@ type AlgorithmCardProps = {
   onUpdate?: (id: string, updates: Record<string, unknown>) => void
   onDelete?: (id: string) => void
   rotateImage?: boolean
+  imageScale?: number
 }
 
 const orientations = [0, 90, 180, 270]
 
-export function AlgorithmCard({ id, title, algorithm, algorithms, orientations: orientationRecords, image, learningState = "not-learned", onUpdate, rotateImage = true }: AlgorithmCardProps) {
+export function AlgorithmCard({ id, title, algorithm, algorithms, orientations: orientationRecords, image, learningState = "not-learned", onUpdate, rotateImage = true, imageScale = 1 }: AlgorithmCardProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [orientation, setOrientation] = useState(0)
   const orientationAlgorithms = orientationRecords?.map((record) => record.algorithm) ?? []
@@ -71,7 +72,7 @@ export function AlgorithmCard({ id, title, algorithm, algorithms, orientations: 
       </CardHeader>
       <CardContent className="flex flex-col gap-2 px-3 pb-3">
         {displayedImage && <div className="relative flex h-20 items-center justify-center overflow-hidden rounded-lg bg-transparent">
-          <Image src={displayedImage} alt={`${title} case`} width={isF2LCase ? 92 : 72} height={isF2LCase ? 72 : 56} className="rounded-lg object-contain" style={isF2LCase || !rotateImage ? undefined : { transform: `rotate(${orientation}deg)` }} />
+          <Image src={displayedImage} alt={`${title} case`} width={Math.round((isF2LCase ? 92 : 72) * imageScale)} height={Math.round((isF2LCase ? 72 : 56) * imageScale)} className="rounded-lg object-contain" style={isF2LCase || !rotateImage ? undefined : { transform: `rotate(${orientation}deg)` }} />
           {(isF2LCase || rotateImage) && <Button type="button" size="icon" variant="secondary" className="absolute bottom-1 right-1 size-8" onClick={() => setOrientation((value) => (value + 90) % 360)} aria-label={isF2LCase ? `Switch to case image ${orientation / 90 + 2 > 4 ? 1 : orientation / 90 + 2}` : `Rotate case image to ${(orientation + 90) % 360} degrees`} title={isF2LCase ? `Image ${orientation / 90 + 1} of 4` : `Orientation: ${orientation}°`}><RotateCw /></Button>}
         </div>}
         {isEditing ? <div className="grid gap-2">
