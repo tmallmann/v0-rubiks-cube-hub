@@ -8,8 +8,8 @@ import { Plus } from "lucide-react"
 import type { MethodCase } from "@/lib/method-data"
 
 type Props = {
-  cube: "3x3" | "4x4"
-  method: "F2L" | "OLL" | "PLL" | "OLL Parity" | "PLL Parity"
+  cube: "3x3" | "4x4" | "5x5"
+  method: "F2L" | "OLL" | "PLL" | "OLL Parity" | "PLL Parity" | "L2C" | "L2E"
   description: string
   cases: MethodCase[]
   accent: string
