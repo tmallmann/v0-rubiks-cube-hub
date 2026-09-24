@@ -49,6 +49,41 @@ export const FiveXFiveL2CCases: MethodCase[] = l2cAlgorithms.map((algorithm, ind
   image: l2cImageUrls[index],
 }))
 
-export const FiveXFiveL2ECases: MethodCase[] = [
-  { id: "5x5-l2e-1", title: "L2E Case 1", algorithm: "", image: "/images/5x5/l2e/l2e-1.png" },
+const l2eImageUrls = [
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e1-EWakZmkPy1SsSWBe0Ga7C9vPCLVdZq.png",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e2-5TGbulXqOyYeX0kUG3MgmxWpBvI3cd.png",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e3-aNMnAQj1EOd2N88qcoI6YYCRhtELUZ.png",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e4-mv2xkPOU3cOzfYAoyzAl3FN30vBUj8.png",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e5-OeJdA2EbW2wRPUyCIo5Eyd8PYtRLyd.png",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e6-ZSZHDMA6go0bMvaogz8d3OyC0eNv3k.png",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e7-ybNgYXEgFarxQA33YAeP1R2erNey3d.png",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e10-4wUeXb4lPczZHkZt8NER1MczzJEH7A.png",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e8-0QUVaXM7mCVQUDy91hHpcRexPyIVKM.png",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e9-MHexccoPlQC4clyLsDwRtrdOlJCTzT.png",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e12-PJ5VM0TQqv4ZjFOsDPujHnOCI14M8D.png",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e11-teWaCEqGf2BHq5cLfThJp7TlNo7IQ2.png",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/l2e13-lHNLuAhF40hN12jIEEE7racik1baAP.png",
 ]
+
+const l2eAlgorithms = [
+  "Rw' U' R' U R' F R F' Rw",
+  "Lw U' R' U R' F R F' Lw'",
+  "x' M' U' R' U R' F R F' M x",
+  "Rw2 F2 U2 Rw2 U2 F2 Rw2",
+  "Rw2 B2 Rw' U2 Rw' U2' x' U2 Rw' U2' Rw U2 Rw' U2' Rw2 U2 x",
+  "Rw U2 x Rw U2 Rw U2 Rw' U2 Lw U2 3Rw' U2 Rw U2 Rw' U2 Rw'",
+  "Lw' U2 Lw' U2 F2 Lw' F2 Rw U2 Rw' U2 Lw2",
+  "F2 Rw U2 Rw U2' Rw' F2 Rw' U2 Rw' U2' Rw U2 Rw' U2' Rw2",
+  "B2 Rw' U2 Rw' U2' Rw B2 Rw U2 Rw U2' Rw' U2 Rw U2' Rw2",
+  "Rw' U2 Rw2 U2 Rw U2 Rw' U2 Rw U2 Rw2 U2 Rw'",
+  "Rw U2 Rw2 U2 Rw' U2 Rw U2 Rw' U2 Rw2 U2 Rw",
+  "Rw' U2 Rw' U2 B2 Rw' B2 Rw' F2 Lw2 F2 Rw U2 Rw2",
+  "Rw U R U' Rw2 U' R U Rw2 U R U' Rw'",
+]
+
+export const FiveXFiveL2ECases: MethodCase[] = l2eAlgorithms.map((algorithm, index) => ({
+  id: `5x5-l2e-${index + 1}`,
+  title: `L2E Case ${index + 1}`,
+  algorithm,
+  image: l2eImageUrls[index],
+}))
