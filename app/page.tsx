@@ -12,8 +12,7 @@ export default function HomePage() {
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Algs Database</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Master the Rubik's Cube with comprehensive algorithm collections and practice tools for speedcubing and blindfolded
-            solving.
+            Master the Rubik's Cube with comprehensive algorithm collections.
           </p>
         </div>
 
@@ -27,7 +26,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <CardTitle className="text-2xl">3×3 Cube</CardTitle>
-                <CardDescription>F2L · OLL · PLL</CardDescription>
+                <CardDescription>First Two Layers, Orientation of Last Layer and Permutation of Last Layer</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex justify-center space-x-4">
@@ -48,7 +47,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <CardTitle className="text-2xl">4×4 Cube</CardTitle>
-                <CardDescription>OLLP · PLLP</CardDescription>
+                <CardDescription>OLL Parity and PLL Parity</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex justify-center space-x-4">
@@ -95,7 +94,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <CardTitle className="text-2xl">5×5 Cube</CardTitle>
-                <CardDescription>Last two centers and last two edges algorithms</CardDescription>
+                <CardDescription>Last two Centers and Last two Edges</CardDescription>
               </CardHeader>
               <CardContent><div className="flex justify-center text-sm text-gray-600">L2C · L2E</div></CardContent>
             </Link>
