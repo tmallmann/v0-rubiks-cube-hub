@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Scroll as Scroll, Brain, Timer } from "lucide-react"
+import { Scroll as Scroll, Brain } from "lucide-react"
 
 export default function HomePage() {
   return (
@@ -12,8 +12,7 @@ export default function HomePage() {
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Algs Database</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Master the Rubik's Cube with comprehensive algorithm collections and practice tools for speedcubing and blindfolded
-            solving.
+            Master the Rubik's Cube with comprehensive algorithm collections.
           </p>
         </div>
 
@@ -27,13 +26,12 @@ export default function HomePage() {
                   </div>
                 </div>
                 <CardTitle className="text-2xl">3×3 Cube</CardTitle>
-                <CardDescription>The classic Rubik's Cube with CFOP method</CardDescription>
+                <CardDescription>First Two Layers, Orientation of Last Layer and Permutation of Last Layer</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex justify-center space-x-4">
                   <div className="flex items-center text-sm text-gray-600">
-                    <span className="mr-1">🎯</span>
-                    CFOP
+                    F2L · OLL · PLL
                   </div>
                 </div>
               </CardContent>
@@ -49,13 +47,12 @@ export default function HomePage() {
                   </div>
                 </div>
                 <CardTitle className="text-2xl">4×4 Cube</CardTitle>
-                <CardDescription>Advanced cube solving with reduction methods</CardDescription>
+                <CardDescription>OLL Parity and PLL Parity</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex justify-center space-x-4">
                   <div className="flex items-center text-sm text-gray-600">
-                    <span className="mr-1">🎯</span>
-                    CFOP
+                    OLLP · PLLP
                   </div>
                 </div>
               </CardContent>
@@ -89,28 +86,17 @@ export default function HomePage() {
           </Card>
 
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-            <Link href="/timer">
+            <Link href="/5x5">
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                    <Timer className="h-12 w-12 text-white" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-xl">5×5</span>
                   </div>
                 </div>
-                <CardTitle className="text-2xl">Speedcubing Timer</CardTitle>
-                <CardDescription>Practice with scrambles and track your solving times</CardDescription>
+                <CardTitle className="text-2xl">5×5 Cube</CardTitle>
+                <CardDescription>Last two Centers and Last two Edges</CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex justify-center space-x-4">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <span className="mr-1">🎲</span>
-                    Scrambles
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <span className="mr-1">📊</span>
-                    Statistics
-                  </div>
-                </div>
-              </CardContent>
+              <CardContent><div className="flex justify-center text-sm text-gray-600">L2C · L2E</div></CardContent>
             </Link>
           </Card>
         </div>

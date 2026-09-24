@@ -1,15 +1,13 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { AlgorithmCard } from "@/components/algorithm-card"
-import { Plus } from "lucide-react"
 import type { MethodCase } from "@/lib/method-data"
 
 type Props = {
-  cube: "3x3" | "4x4"
-  method: "F2L" | "OLL" | "PLL" | "OLL Parity" | "PLL Parity"
+  cube: "3x3" | "4x4" | "5x5"
+  method: "F2L" | "OLL" | "PLL" | "OLL Parity" | "PLL Parity" | "L2C" | "L2E"
   description: string
   cases: MethodCase[]
   accent: string
@@ -56,11 +54,10 @@ export function MethodSection({ cube, method, description, cases, accent, rotate
   }, [items, storageKey])
 
   const countLabel = useMemo(() => `${items.length} ${items.length === 1 ? "Case" : "Cases"}`, [items.length])
+  const imageScale = cube === "4x4" ? 1.1 : cube === "5x5" ? 1.2 : 1
   const updateCase = (id: string, updates: Partial<MethodCase> & { algorithms?: string[]; learningState?: MethodCase["learningState"] }) => {
     setItems((current) => current.map((item) => item.id === id ? { ...item, ...updates, title: item.title } : item))
   }
-  const addCase = () => setItems((current) => [...current, normalizeCase({ id: `${method.toLowerCase()}-${Date.now()}`, title: `New ${method} Case`, algorithm: "" })])
-
   return (
     <section className="flex flex-col gap-4">
       <Card className={`border-0 bg-gradient-to-r ${accent}`}>
@@ -69,14 +66,11 @@ export function MethodSection({ cube, method, description, cases, accent, rotate
             <CardTitle className="text-2xl">{method}</CardTitle>
             <CardDescription>{description} · {countLabel}</CardDescription>
           </div>
-          <Button variant="outline" onClick={addCase} className="shrink-0 bg-background/80">
-            <Plus data-icon="inline-start" /> Add Case
-          </Button>
         </CardHeader>
       </Card>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {items.map((item) => (
-          <AlgorithmCard key={item.id} {...item} rotateImage={rotateImage} onUpdate={updateCase} />
+          <AlgorithmCard key={item.id} {...item} rotateImage={rotateImage} imageScale={imageScale} onUpdate={updateCase} />
         ))}
       </div>
     </section>
