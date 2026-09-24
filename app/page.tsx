@@ -60,6 +60,21 @@ export default function HomePage() {
           </Card>
 
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <Link href="/5x5">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-xl">5×5</span>
+                  </div>
+                </div>
+                <CardTitle className="text-2xl">5×5 Cube</CardTitle>
+                <CardDescription>Last two Centers and Last two Edges</CardDescription>
+              </CardHeader>
+              <CardContent><div className="flex justify-center text-sm text-gray-600">L2C · L2E</div></CardContent>
+            </Link>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <Link href="/bld">
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
@@ -82,21 +97,6 @@ export default function HomePage() {
                   </div>
                 </div>
               </CardContent>
-            </Link>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-            <Link href="/5x5">
-              <CardHeader className="text-center">
-                <div className="flex justify-center mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">5×5</span>
-                  </div>
-                </div>
-                <CardTitle className="text-2xl">5×5 Cube</CardTitle>
-                <CardDescription>Last two Centers and Last two Edges</CardDescription>
-              </CardHeader>
-              <CardContent><div className="flex justify-center text-sm text-gray-600">L2C · L2E</div></CardContent>
             </Link>
           </Card>
         </div>
