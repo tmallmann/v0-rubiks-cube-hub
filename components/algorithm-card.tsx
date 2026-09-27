@@ -57,7 +57,7 @@ export function AlgorithmCard({ id, title, algorithm, algorithms, orientations: 
   const statusIcon = learningState === "learned" ? <CheckCircle2 /> : learningState === "learning" ? <CircleDot /> : <Circle />
 
   return (
-    <Card className="w-full overflow-hidden border-l-4 border-l-primary">
+    <Card className={`w-full overflow-hidden border-l-4 border-l-primary ${learningState === "learning" ? "bg-blue-100 dark:bg-blue-950/40" : learningState === "learned" ? "bg-green-100 dark:bg-green-950/40" : ""}`}>
       <CardHeader className="flex flex-row items-center justify-between gap-2 px-3 py-2">
         <CardTitle className="truncate text-sm" title={title}>{title}</CardTitle>
         <div className="flex shrink-0 items-center gap-1">
