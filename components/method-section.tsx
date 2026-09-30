@@ -9,6 +9,7 @@ type Props = {
   cube: "3x3" | "4x4" | "5x5"
   method: "F2L" | "OLL" | "PLL" | "OLL Parity" | "PLL Parity" | "L2C" | "L2E"
   description: string
+  algorithmDescription?: string
   cases: MethodCase[]
   accent: string
   rotateImage?: boolean
@@ -22,7 +23,7 @@ function normalizeCase(item: MethodCase): MethodCase {
   }
 }
 
-export function MethodSection({ cube, method, description, cases, accent, rotateImage }: Props) {
+export function MethodSection({ cube, method, description, algorithmDescription, cases, accent, rotateImage }: Props) {
   const storageKey = `${cube}-${method.toLowerCase()}-algorithms-v2`
   const [items, setItems] = useState<MethodCase[]>(() => cases.map(normalizeCase))
 
@@ -64,7 +65,10 @@ export function MethodSection({ cube, method, description, cases, accent, rotate
         <CardHeader className="flex flex-row items-center justify-between gap-4">
           <div className="flex flex-col gap-1">
             <CardTitle className="text-2xl">{method}</CardTitle>
-            <CardDescription>{description} · {countLabel}</CardDescription>
+            <CardDescription>
+              <span className="block">{description} · {countLabel}</span>
+              {algorithmDescription ? <span className="mt-1 block text-xs">{algorithmDescription}</span> : null}
+            </CardDescription>
           </div>
         </CardHeader>
       </Card>

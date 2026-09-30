@@ -5,7 +5,7 @@ import { MethodSection } from "@/components/method-section"
 import type { MethodCase } from "@/lib/method-data"
 import { cn } from "@/lib/utils"
 
-type MethodOption = { key: string; label: string; description: string; cases: MethodCase[]; accent: string; rotateImage?: boolean }
+type MethodOption = { key: string; label: string; description: string; algorithmDescription?: string; cases: MethodCase[]; accent: string; rotateImage?: boolean }
 
 type Props = { options: MethodOption[] }
 
@@ -36,7 +36,7 @@ export function CubeMethodBrowser({ options }: Props) {
           ))}
         </div>
       </div>
-      <MethodSection cube={active.key.startsWith("5x5") ? "5x5" : active.key.startsWith("4x4") ? "4x4" : "3x3"} method={active.label as never} description={active.description} cases={active.cases} accent={active.accent} rotateImage={active.rotateImage} />
+      <MethodSection cube={active.key.startsWith("5x5") ? "5x5" : active.key.startsWith("4x4") ? "4x4" : "3x3"} method={active.label as never} description={active.description} algorithmDescription={active.algorithmDescription} cases={active.cases} accent={active.accent} rotateImage={active.rotateImage} />
     </section>
   )
 }
