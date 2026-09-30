@@ -630,9 +630,26 @@ export const ThreeXThreePLLCases: MethodCase[] = PLL1.map((item, index) => ({
 }))
 
 export const FourXFourOLLCases = [
-  { id: "4x4-oll-1", title: "OLL Parity 1", algorithm: "Rw' U2' Rw U2 Rw U2' Rw2' F2 Rw' U2 Rw' U2' F2 Rw2' F2'", image: "/images/4x4/oll-parity/ollp1.png" },
-  { id: "4x4-oll-2", title: "OLL Parity 2", algorithm: "2R' U2 2L F2 2L' F2 2R2 U2 2R U2 2R' U2 F2 2R2 F2", image: "/images/4x4/oll-parity/ollp2.png" },
-  { id: "4x4-oll-3", title: "OLL Parity 3", algorithm: "M Rw U2 x Rw U2 Rw U2 Rw' U2 Lw U2 Rw' U2 Rw U2 Rw' U2 Rw' M'", image: "/images/4x4/oll-parity/ollp3.png" },
+  { id: "4x4-oll-antisune-bl", title: "Antisune BL", algorithm: "R' F R F' [*] R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_antisune_bl-BP1UK02e9E0akgA73meWc63NNE6d2O.png" },
+  { id: "4x4-oll-antisune-br", title: "Antisune BR", algorithm: "F R U R' U' F' [*]", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_antisune_br-cAYJMQ6c6M83YzIClGWgso467wSaeL.png" },
+  { id: "4x4-oll-antisune-fl", title: "Antisune FL", algorithm: "[*] R U2 R2 U' R2 U' R2 U2 R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_antisune_fl-7q9Iykz16pjkYdHA28aQGJQEdQeoyp.png" },
+  { id: "4x4-oll-antisune-fr", title: "Antisune FR", algorithm: "[*] U' R U2 R' U' R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_antisune_fr-rSp0CHtk4THP12kFVX05DXaBzWe99u.png" },
+  { id: "4x4-oll-h-fb", title: "H FB", algorithm: "[*] R2 D' R U2 R' D R U2 R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_h_fb-jKv6uzb4SpKj9k3T8KYseOva5TvoR3.png" },
+  { id: "4x4-oll-h-lr", title: "H LR", algorithm: "R U R' U R U' R' U R U2 R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_h_lr-q4hAdr75I2xpWyxQO9KLbSkZIUyvui.png" },
+  { id: "4x4-oll-l-bl", title: "L BL", algorithm: "R' U' R U' R' U2 R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_l_bl-28lDg3zoWhRem2CVUKlwPSVhn7NMFx.png" },
+  { id: "4x4-oll-l-br", title: "L BR", algorithm: "U R' U2 R U R' U R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_l_br-abT4YPkFhjzAc4KOSGgq0WXV0jM04U.png" },
+  { id: "4x4-oll-l-fl", title: "L FL", algorithm: "L U L' [*] L U' L'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_l_fl-SRqEQcFDGCOpCwrv2sDdq7nlrKFLmG.png" },
+  { id: "4x4-oll-l-fr", title: "L FR", algorithm: "R' U' R [*] R' U R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_l_fr-rUniu4Eu663vpW6Ym7QSyXxq6tzPwi.png" },
+  { id: "4x4-oll-pi-b", title: "Pi B", algorithm: "[*] U' 3Rw U R' U' 3Rw' F R F'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_pi_b-4Woq9sHJkpFBErBVu0iQhlqcrCQxGK.png" },
+  { id: "4x4-oll-pi-f", title: "Pi F", algorithm: "[*] U' R U2 R2 U' R2 U' R2 U2 R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_pi_f-eStfGos3PKGMycESQaCQ9RvyQy1Kew.png" },
+  { id: "4x4-oll-pi-l", title: "Pi L", algorithm: "[*] R' U2 R U R' U R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_pi_l-pgwCu21UqxTJJ0CNgrhWfnXvtJDdD3.png" },
+  { id: "4x4-oll-pi-r", title: "Pi R", algorithm: "[*] U R' U' R U' R' U2 R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_pi_r-Q2gQvHG5Kt8n6BqNUUTvNMwLa1oprI.png" },
+  { id: "4x4-oll-solved", title: "Solved", algorithm: "R U2 R' U' [*] F R' F' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_solved-X2BjfvCZfc3GEOBSjSZL4FRhymLtON.png" },
+  { id: "4x4-oll-sune-bl", title: "Sune BL", algorithm: "F' L' U' L U F [*]", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_sune_bl-7wsKhRgJEI9XQ9WvGwHQNbiZap9Iyz.png" },
+  { id: "4x4-oll-sune-br", title: "Sune BR", algorithm: "L F' L' F [*] L' U L", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_sune_br-2G2fyHTBsGoWrpZR7CVjnemC8Biwi6.png" },
+  { id: "4x4-oll-sune-fl", title: "Sune FL", algorithm: "[*] R U R' U R U2 R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_sune_fl-sLhQEV8aqxJBl4hw7CsX0e0tX5R0uq.png" },
+  { id: "4x4-oll-sune-fr", title: "Sune FR", algorithm: "M' U R U' 3Rw' [*] U R U2 R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_sune_fr-UBaOU8uYgFrzgVt8WC8ztjUcoOqRXI.png" },
+  { id: "4x4-oll-t-b", title: "T B", algorithm: "[*] U R U2 R2 U' R2 U' R2 U2 R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_t_b-wYwdhloJkr1qyFlKNlLKVUBI2JC4KS.png" },
 ]
 
 
