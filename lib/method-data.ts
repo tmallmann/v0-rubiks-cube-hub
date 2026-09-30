@@ -650,7 +650,14 @@ export const FourXFourOLLCases = [
   { id: "4x4-oll-sune-fl", title: "Sune FL", algorithm: "[*] R U R' U R U2 R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_sune_fl-sLhQEV8aqxJBl4hw7CsX0e0tX5R0uq.png" },
   { id: "4x4-oll-sune-fr", title: "Sune FR", algorithm: "M' U R U' 3Rw' [*] U R U2 R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_sune_fr-UBaOU8uYgFrzgVt8WC8ztjUcoOqRXI.png" },
   { id: "4x4-oll-t-b", title: "T B", algorithm: "[*] U R U2 R2 U' R2 U' R2 U2 R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_t_b-wYwdhloJkr1qyFlKNlLKVUBI2JC4KS.png" },
-]
+  { id: "4x4-oll-t-f", title: "T F", algorithm: "R U R' U' R [*] R' U R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_t_f-0z3qnK6pHKHlcQVg6NbZqfjURZCTKK.png" },
+  { id: "4x4-oll-t-l", title: "T L", algorithm: "F R U' R' U' R U R' F' [*]", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_t_l-1nU4Z4fufeMWywTOetKAJpYknEbyC9.png" },
+  { id: "4x4-oll-t-r", title: "T R", algorithm: "[*] R U R' U' R' F R F'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_t_r-uKM4OgijfXLqFGkQfaN4mmbD88f47C.png" },
+  { id: "4x4-oll-u-b", title: "U B", algorithm: "M [*] M'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_u_b-DtwX0w4ZnAqDAxvqi9EWXuDM6Qi7dj.png" },
+  { id: "4x4-oll-u-f", title: "U F", algorithm: "[*]", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_u_f-wV2eU19zveAxYM5fCipBrowvr1Azfa.png" },
+  { id: "4x4-oll-u-l", title: "U L", algorithm: "[*] R U2 R' U' R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_u_l-pRJblrqbzRorg6XgCy1SO9pyD9fNXW.png" },
+  { id: "4x4-oll-u-r", title: "U R", algorithm: "[*] U' R U R' U R U2 R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_u_r-z6TnK0jS2f2XuQLjhBaV4iCQU0zQOu.png" },
+  ]
 
 
 export const FourXFourPLLCases = [
