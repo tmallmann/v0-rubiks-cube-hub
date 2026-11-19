@@ -7,7 +7,7 @@ import type { MethodCase } from "@/lib/method-data"
 
 type Props = {
   cube: "3x3" | "4x4" | "5x5"
-  method: "F2L" | "OLL" | "PLL" | "SV" | "OLL Parity" | "PLL Parity" | "L2C" | "L2E"
+  method: "F2L" | "OLL" | "PLL" | "SV" | "WV" | "OLL Parity" | "PLL Parity" | "L2C" | "L2E"
   description: string
   algorithmDescription?: string
   cases: MethodCase[]

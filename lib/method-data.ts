@@ -659,6 +659,29 @@ export const ThreeXThreeSVCases: MethodCase[] = [
   { id: "sv-27", title: "SV 27", algorithm: "R' U L U' R2 U R' L'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv27-wgbE7NrYXlgaymInP6nRM7KSC7RRZO.png" },
 ]
 
+export const ThreeXThreeWVCases: MethodCase[] = [
+  { id: "wv-1", title: "WV 1", algorithm: "U L' U2' R U R' U2 L", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv1-5d0gTnM1P9MRYnehiOE9li7yMe30cm.png" },
+  { id: "wv-2", title: "WV 2", algorithm: "U R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv2-A7Uc5UgQZoFspRDKf6sSfezWfCvj02.png" },
+  { id: "wv-3", title: "WV 3", algorithm: "R' F R U R U' R' F'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv3-PKybhB69VdnCYw9FL4gAUzSDmGjh6X.png" },
+  { id: "wv-4", title: "WV 4", algorithm: "U R2 D R' U' R D' R2'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv4-ml7eMo1JtD9PNIF5gfSXMG5Oesv0kb.png" },
+  { id: "wv-5", title: "WV 5", algorithm: "U R U' R' U R' U' R U' R' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv5-l5Zy8ao4mOBWOmHTaStJpGriVzSFFT.png" },
+  { id: "wv-6", title: "WV 6", algorithm: "R U' R' U2 R U' R' U2 R U R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv6-r0U1cwvfX7RPUMoHxcv354rHzjbLmz.png" },
+  { id: "wv-7", title: "WV 7", algorithm: "U R U R' U' R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv7-xefzPeANnaVUOBMe41m9fDZw36Frpl.png" },
+  { id: "wv-8", title: "WV 8", algorithm: "U2 R U' R' U R U2' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv8-jGNf4Z8d5Otf1XZibAOqoGOZDK5EiK.png" },
+  { id: "wv-9", title: "WV 9", algorithm: "U2' F' R U2' R' U2 R' F R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv9-uI4qsE84NXmRKSRbUgYKTaeXgWt7Ot.png" },
+  { id: "wv-10", title: "WV 10", algorithm: "U R U R2' U' R2 U' R2' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv10-CsoqLPc5HTnIJ5UwREzFK2Mixq8hCu.png" },
+  { id: "wv-11", title: "WV 11", algorithm: "U2 R' U' R2 U' R2' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv11-8QdtPVus9EwOYELZV6rUwqkWRS4BOI.png" },
+  { id: "wv-12", title: "WV 12", algorithm: "l' U2' l F2' U L' U L", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv12-vfaLXCHZQp99EUaAMqnNqCPLbkMiQU.png" },
+  { id: "wv-13", title: "WV 13", algorithm: "U2 R U2' R2' U' R U' R' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv13-0vlsVp93KIdxqGrq9VbE3ZW1Ej5BUX.png" },
+  { id: "wv-14", title: "WV 14", algorithm: "U2' R2 D R' U2 R D' R2'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv14-YZE0ZBetonO77st0vhZjv0ycziMxQd.png" },
+  { id: "wv-15", title: "WV 15", algorithm: "L' U R U' M' x'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv15-XDD7vOyUgmHVGiInB8YtLEy94L8FXs.png" },
+  { id: "wv-16", title: "WV 16", algorithm: "U2' R U' R' U' R' F R U R U' R' F'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv16-mmuE9O5yRRUDba0PqilEDc5EFEDYHO.png" },
+  { id: "wv-17", title: "WV 17", algorithm: "R' F' R U2' R U2' R' F", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv17-4Zc0cVDOB6SIvwZioSA4pAvm1TYNnf.png" },
+  { id: "wv-18", title: "WV 18", algorithm: "U2 R U2' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv18-ejl8AenYmQtUZ4xiAnSnVwFh0Trl25.png" },
+  { id: "wv-19", title: "WV 19", algorithm: "R' F2 R2 U' R' U' R U R' F2'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv19-sv9D5Hz8lkFFfRDHy9mKItzPr11780.png" },
+  { id: "wv-20", title: "WV 20", algorithm: "U R U' R' U' R U R' U R U2' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv20-6laDt5qvANBeOGj9HYMhSJu5zVQXCY.png" },
+]
+
 export const FourXFourOLLCases = [
   { id: "4x4-oll-antisune-bl", title: "Antisune BL", algorithm: "R' F R F' [*] R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_antisune_bl-BP1UK02e9E0akgA73meWc63NNE6d2O.png" },
   { id: "4x4-oll-antisune-br", title: "Antisune BR", algorithm: "F R U R' U' F' [*]", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_antisune_br-cAYJMQ6c6M83YzIClGWgso467wSaeL.png" },
