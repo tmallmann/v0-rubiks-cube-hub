@@ -1,9 +1,22 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { ArrowLeft, Zap } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
+import { SiteHeader } from "@/components/site-header"
 import { CubeMethodBrowser } from "@/components/cube-method-browser"
 import { FourXFourOLLCases, FourXFourPLLCases } from "@/lib/method-data"
 
 export default function FourByFourPage() {
-  return <main className="min-h-screen bg-gradient-to-br from-green-50 to-teal-100"><div className="container mx-auto flex flex-col gap-8 px-4 py-8"><header className="flex flex-col gap-4"><Link href="/"><Button variant="ghost" className="w-fit"><ArrowLeft data-icon="inline-start" />Back to Home</Button></Link><div className="flex items-start gap-4"><Zap className="mt-1 text-teal-600" /><div><h1 className="text-balance text-4xl font-bold text-foreground">4×4 Cube Methods</h1><p className="mt-2 text-pretty text-lg text-muted-foreground">Master the 4x4 parity cases.</p></div></div></header><CubeMethodBrowser options={[{ key: "4x4-oll-parity", label: "OLL Parity", description: "27 cases", algorithmDescription: "OLL Parity Algorithm: [*] = Rw U2 x Rw U2 Rw U2 Rw' U2 Lw U2 Rw' U2 Rw U2 Rw' U2 Rw'", cases: FourXFourOLLCases, accent: "from-teal-100 to-cyan-100", rotateImage: false }, { key: "4x4-pll-parity", label: "PLL Parity", description: "22 cases", algorithmDescription: "PLL Parity Algorithm: [*] = 2R2 U2 2R2 Uw2 2R2 Uw2", cases: FourXFourPLLCases, accent: "from-blue-100 to-teal-100", rotateImage: false }]} /></div></main>
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <SiteHeader />
+      <main className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+        <header className="flex flex-col gap-3 border-b border-border/70 pb-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Algorithm library / 4×4</p>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div><h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">4×4 parity</h1><p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">Visual case recognition and parity algorithms, organized for fast reference and steady practice.</p></div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground"><ArrowUpRight aria-hidden="true" /> Progress saves as you practice</span>
+          </div>
+        </header>
+        <CubeMethodBrowser options={[{ key: "4x4-oll-parity", label: "OLL Parity", description: "27 cases", algorithmDescription: "OLL Parity Algorithm: [*] = Rw U2 x Rw U2 Rw U2 Rw' U2 Lw U2 Rw' U2 Rw U2 Rw' U2 Rw'", cases: FourXFourOLLCases, rotateImage: false }, { key: "4x4-pll-parity", label: "PLL Parity", description: "22 cases", algorithmDescription: "PLL Parity Algorithm: [*] = 2R2 U2 2R2 Uw2 2R2 Uw2", cases: FourXFourPLLCases, rotateImage: false }]} />
+      </main>
+    </div>
+  )
 }
