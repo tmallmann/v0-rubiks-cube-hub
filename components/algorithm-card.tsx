@@ -44,7 +44,7 @@ export function AlgorithmCard({ id, title, algorithm, algorithms, orientations: 
   const isF2LCase = Boolean(orientationRecords?.length === 4 && orientationRecords.some((record) => record.image && record.image !== image))
   const orientationCase = orientationRecords?.[orientation / 90]
   const displayedImage = orientationCase?.image ?? image
-  const currentAlgorithm = currentAlgorithms[rotateImage ? orientation / 90 : 0] || "No algorithm set"
+  const currentAlgorithm = currentAlgorithms[rotateImage ? orientation / 90 : 0] || currentAlgorithms[0] || "No algorithm set"
   const nextState: Record<LearningState, LearningState> = { "not-learned": "learning", learning: "learned", learned: "not-learned" }
   const stateIcon = learningState === "learned" ? <CheckCircle2 aria-hidden="true" /> : learningState === "learning" ? <CircleDot aria-hidden="true" /> : <Circle aria-hidden="true" />
   const stateTone = learningState === "learned"

@@ -680,6 +680,13 @@ export const ThreeXThreeWVCases: MethodCase[] = [
   { id: "wv-18", title: "WV 18", algorithm: "U2 R U2' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv18-ejl8AenYmQtUZ4xiAnSnVwFh0Trl25.png" },
   { id: "wv-19", title: "WV 19", algorithm: "R' F2 R2 U' R' U' R U R' F2'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv19-sv9D5Hz8lkFFfRDHy9mKItzPr11780.png" },
   { id: "wv-20", title: "WV 20", algorithm: "U R U' R' U' R U R' U R U2' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv20-6laDt5qvANBeOGj9HYMhSJu5zVQXCY.png" },
+  { id: "wv-21", title: "WV 21", algorithm: "U R U' R2' U2' R U R' U R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv21-RvkcwjeBpGIKg7xqRsuBsScPrgJuuy.png" },
+  { id: "wv-22", title: "WV 22", algorithm: "U R U R D R' U2 R D' R2'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv22-CDZOSRAAAfrAzUYskMUaFuYg87Jz2U.png" },
+  { id: "wv-23", title: "WV 23", algorithm: "R2 U R' U R' U' R U R U2' R2'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv23-XAgkowRDCfC5T17PU0NfoZVmv6IVTS.png" },
+  { id: "wv-24", title: "WV 24", algorithm: "U2 R U' R' U R U' R' U R U2' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv24-Kc6qYV0VgPdpgatAD5ypYbHwWBFYHl.png" },
+  { id: "wv-25", title: "WV 25", algorithm: "U2 R U2' R2' U2' R U R' U R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv25-L5xpqPcTuepjlFrQOfp5GFpxoFICm9.png" },
+  { id: "wv-26", title: "WV 26", algorithm: "U R U' R2' U' R U' R' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv26-KAge1tBATL0ojRlPpQ8bAqRuUroUTa.png" },
+  { id: "wv-27", title: "WV 27", algorithm: "U R U R' U' R U R' U' R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wv27-Uy8oRkZ9AABfmpNuK2Prt230m6I2Nv.png" },
 ]
 
 export const FourXFourOLLCases = [
