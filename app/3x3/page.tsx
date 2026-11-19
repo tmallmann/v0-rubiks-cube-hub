@@ -1,7 +1,7 @@
 import { ArrowUpRight } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { CubeMethodBrowser } from "@/components/cube-method-browser"
-import { ThreeXThreeF2LCases, ThreeXThreeOLLCases, ThreeXThreePLLCases } from "@/lib/method-data"
+import { ThreeXThreeF2LCases, ThreeXThreeOLLCases, ThreeXThreePLLCases, ThreeXThreeSVCases } from "@/lib/method-data"
 
 export default function ThreeByThreePage() {
   return (
@@ -15,7 +15,7 @@ export default function ThreeByThreePage() {
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground"><ArrowUpRight aria-hidden="true" /> Progress saves as you practice</span>
           </div>
         </header>
-        <CubeMethodBrowser options={[{ key: "3x3-f2l", label: "F2L", description: "First Two Layers", cases: ThreeXThreeF2LCases }, { key: "3x3-oll", label: "OLL", description: "Orientation of Last Layer", cases: ThreeXThreeOLLCases }, { key: "3x3-pll", label: "PLL", description: "Permutation of Last Layer", cases: ThreeXThreePLLCases }]} />
+        <CubeMethodBrowser options={[{ key: "3x3-f2l", label: "F2L", description: "First Two Layers", cases: ThreeXThreeF2LCases }, { key: "3x3-oll", label: "OLL", description: "Orientation of Last Layer", cases: ThreeXThreeOLLCases }, { key: "3x3-pll", label: "PLL", description: "Permutation of Last Layer", cases: ThreeXThreePLLCases }, { key: "3x3-sv", label: "SV", description: "Summer Variation", cases: ThreeXThreeSVCases, rotateImage: false }]} />
       </main>
     </div>
   )
