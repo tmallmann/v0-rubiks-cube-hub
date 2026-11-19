@@ -629,6 +629,36 @@ export const ThreeXThreePLLCases: MethodCase[] = PLL1.map((item, index) => ({
   orientations: [PLL1[index], PLL2[index], PLL3[index], PLL4[index]],
 }))
 
+export const ThreeXThreeSVCases: MethodCase[] = [
+  { id: "sv-1", title: "SV 1", algorithm: "U2 R' D' r U2 r' D R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv1-r1JtWcUzQecWi2AtSnORMjB6zBSTRf.png" },
+  { id: "sv-2", title: "SV 2", algorithm: "R U R' U R' U2' R U R' U R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv2-704xVWexnOOJIyOsNHEaXXHNjSmCG4.png" },
+  { id: "sv-3", title: "SV 3", algorithm: "R r' x D L U L' D' M' x'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv3-W71LbD8D2ouZJH9iDyJH4gdCUl6n3l.png" },
+  { id: "sv-4", title: "SV 4", algorithm: "U2 L R U' R' U L'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv4-Su36ABGST4yEF4EPXKgJPHlxt8Pbx5.png" },
+  { id: "sv-5", title: "SV 5", algorithm: "R U2' R' U' R' F R U R U' R' F'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv5-o823Ji9mf5Vo1durGWNK4Ks2UKWONV.png" },
+  { id: "sv-6", title: "SV 6", algorithm: "R U' R' U' R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv6-0y6eSbyvvfcoksRagAFo27r2Si4FP2.png" },
+  { id: "sv-7", title: "SV 7", algorithm: "R U R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv7-qZtDR32Cr2lOHFydv2efHl1JZuKwTT.png" },
+  { id: "sv-8", title: "SV 8", algorithm: "R U2' R' U' r' F R F' M'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv8-PYh7lWrEW4DhhaqTiHbadsWaNs8GNo.png" },
+  { id: "sv-9", title: "SV 9", algorithm: "R U' R' L' U R U' R' L U' R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv9-kgtjFoVmqhYbPHDMppU2rw41wRHhe5.png" },
+  { id: "sv-10", title: "SV 10", algorithm: "R U R' U' R U R' U R U2' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv10-FCKrSzoTnTHasQnXCwYsnu3prY35He.png" },
+  { id: "sv-11", title: "SV 11", algorithm: "R U2' R' U R U2' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv11-nSLssJ1kNby2t3YDCFxn2nbOvoMZIF.png" },
+  { id: "sv-12", title: "SV 12", algorithm: "R2 U R' U R' U' R2 U R' U' R U' R2'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv12-syBk6ehaEmOpxX4csZcTuyQrodsqsc.png" },
+  { id: "sv-13", title: "SV 13", algorithm: "U L' R U R' U R U' R' U2 L", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv13-GZQPqNODGMc5wAKboWgAM1kAJYnYXx.png" },
+  { id: "sv-14", title: "SV 14", algorithm: "U2 L R U' R2' U L' U' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv14-AnYlFIZ5ZfIURqDHujdNEpzvk9SnN5.png" },
+  { id: "sv-15", title: "SV 15", algorithm: "R U2' R' U R U' R' U R U2' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv15-JL0wCRl8UvQfd80accbqYtGOkfas1D.png" },
+  { id: "sv-16", title: "SV 16", algorithm: "R U' R D R' U2 R D' R2'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv16-2ZjOCUxeFrQvTsoIHYRkBIcgd6G4Fd.png" },
+  { id: "sv-17", title: "SV 17", algorithm: "R U R2' U2' R U R' U R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv17-teNNWd3YlTk4OvZRm1pXy6W8Soxtf9.png" },
+  { id: "sv-18", title: "SV 18", algorithm: "R U2' R D R' U' R D' R2'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv18-7jMFuAGHvCtJNBiqhcYPAf6TX8nyAy.png" },
+  { id: "sv-19", title: "SV 19", algorithm: "R U L' U' L' U R' U' L U L", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv19-S4g0ruAuTUe7vOVr897q5KRAApiscC.png" },
+  { id: "sv-20", title: "SV 20", algorithm: "R U' R' U' R U R' U' R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv20-Wu5cyzBMaI0PfJhm1bJU0jgZn7XnuS.png" },
+  { id: "sv-21", title: "SV 21", algorithm: "R U' R2' U' R2 U' R2' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv21-oKKQMTfLynbesXmQlbpQc3ZvnWoakm.png" },
+  { id: "sv-22", title: "SV 22", algorithm: "R U R2' U' R U' R' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv22-ZAdPBbTAlVMlEYGiMxF2lcKQVBylFy.png" },
+  { id: "sv-23", title: "SV 23", algorithm: "R U' R' U' R U' R2' U' R U' R' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv23-h7IYpBNw9n4KRiQaNnEwRbInbgwbEb.png" },
+  { id: "sv-24", title: "SV 24", algorithm: "R U R' U R' U' R U' R' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv24-VJHePV5P3RbqHB3lYArydSsysZfL5y.png" },
+  { id: "sv-25", title: "SV 25", algorithm: "R U R D' R U' R' D R U R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv25-KbEFvCZEnUDOWXUDQOW3w7apf4FwHy.png" },
+  { id: "sv-26", title: "SV 26", algorithm: "U' R U R D R' U R D' R2'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv26-9FSZlRZSl94XDhKLdjIIKdcmhFzmIR.png" },
+  { id: "sv-27", title: "SV 27", algorithm: "R' U L U' R2 U R' L'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv27-wgbE7NrYXlgaymInP6nRM7KSC7RRZO.png" },
+]
+
 export const FourXFourOLLCases = [
   { id: "4x4-oll-antisune-bl", title: "Antisune BL", algorithm: "R' F R F' [*] R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_antisune_bl-BP1UK02e9E0akgA73meWc63NNE6d2O.png" },
   { id: "4x4-oll-antisune-br", title: "Antisune BR", algorithm: "F R U R' U' F' [*]", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oll_antisune_br-cAYJMQ6c6M83YzIClGWgso467wSaeL.png" },
