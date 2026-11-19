@@ -650,6 +650,13 @@ export const ThreeXThreeSVCases: MethodCase[] = [
   { id: "sv-18", title: "SV 18", algorithm: "R U2' R D R' U' R D' R2'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv18-7jMFuAGHvCtJNBiqhcYPAf6TX8nyAy.png" },
   { id: "sv-19", title: "SV 19", algorithm: "R U L' U' L' U R' U' L U L", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv19-S4g0ruAuTUe7vOVr897q5KRAApiscC.png" },
   { id: "sv-20", title: "SV 20", algorithm: "R U' R' U' R U R' U' R U' R'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv20-Wu5cyzBMaI0PfJhm1bJU0jgZn7XnuS.png" },
+  { id: "sv-21", title: "SV 21", algorithm: "R U' R2' U' R2 U' R2' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv21-oKKQMTfLynbesXmQlbpQc3ZvnWoakm.png" },
+  { id: "sv-22", title: "SV 22", algorithm: "R U R2' U' R U' R' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv22-ZAdPBbTAlVMlEYGiMxF2lcKQVBylFy.png" },
+  { id: "sv-23", title: "SV 23", algorithm: "R U' R' U' R U' R2' U' R U' R' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv23-h7IYpBNw9n4KRiQaNnEwRbInbgwbEb.png" },
+  { id: "sv-24", title: "SV 24", algorithm: "R U R' U R' U' R U' R' U2' R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv24-VJHePV5P3RbqHB3lYArydSsysZfL5y.png" },
+  { id: "sv-25", title: "SV 25", algorithm: "R U R D' R U' R' D R U R", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv25-KbEFvCZEnUDOWXUDQOW3w7apf4FwHy.png" },
+  { id: "sv-26", title: "SV 26", algorithm: "U' R U R D R' U R D' R2'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv26-9FSZlRZSl94XDhKLdjIIKdcmhFzmIR.png" },
+  { id: "sv-27", title: "SV 27", algorithm: "R' U L U' R2 U R' L'", image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sv27-wgbE7NrYXlgaymInP6nRM7KSC7RRZO.png" },
 ]
 
 export const FourXFourOLLCases = [

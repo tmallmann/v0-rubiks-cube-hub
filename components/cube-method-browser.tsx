@@ -31,7 +31,7 @@ export function CubeMethodBrowser({ options }: Props) {
                 onClick={() => setActiveKey(option.key)}
                 className={cn(
                   "rounded-xl border px-4 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                  selected ? "border-primary/30 bg-primary/10 text-foreground" : "border-transparent text-muted-foreground hover:bg-accent hover:text-foreground",
+                  selected ? "border-primary/50 bg-primary/10 text-foreground" : "border-border/60 text-muted-foreground hover:border-border hover:bg-accent hover:text-foreground",
                 )}
               >
                 <span className="flex items-center justify-between gap-3">
