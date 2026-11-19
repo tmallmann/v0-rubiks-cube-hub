@@ -3,9 +3,9 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import Link from "next/link"
+import { SiteHeader } from "@/components/site-header"
 import { Button } from "@/components/ui/button"
-import { Save, X, Edit2, ArrowLeft, Upload, Download, Settings, Trash2 } from "lucide-react"
+import { Save, X, Edit2, Upload, Download, Settings, Trash2 } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
   DropdownMenu,
@@ -285,21 +285,17 @@ export default function BLDPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <Link href="/">
-            <Button variant="ghost" className="mb-4">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Button>
-          </Link>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">BLD Methods</h1>
-          <p className="text-xl text-gray-600">Manage algorithms for blindfolded solving</p>
+    <div className="min-h-screen bg-background text-foreground">
+      <SiteHeader />
+      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mb-8 border-b border-border/70 pb-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Algorithm library / blindfolded</p>
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Blindfolded methods</h1>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">Manage letter pairs, flips, and twists for your personal blindfolded system.</p>
         </div>
 
         {/* Table Selection Buttons and Settings */}
-        <div className="mb-6 flex gap-4 items-center">
+        <div className="mb-6 flex flex-wrap items-center gap-2 rounded-2xl border border-border/70 bg-card p-3">
           <Button variant={selectedTable === "edges" ? "default" : "outline"} onClick={() => setSelectedTable("edges")}>
             Edges
           </Button>
@@ -339,7 +335,7 @@ export default function BLDPage() {
                 </label>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={handleClearData} className="text-red-600">
+              <DropdownMenuItem onClick={handleClearData} className="text-destructive">
                 <Trash2 className="h-4 w-4 mr-2" />
                 Clear All Data
               </DropdownMenuItem>
@@ -367,43 +363,43 @@ export default function BLDPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-sm">
+            <div className="bg-card rounded-lg shadow-sm">
               <div className="overflow-x-auto">
                 <table className="w-full table-fixed">
-                  <thead className="bg-gray-50">
+                  <thead className="bg-muted">
                     <tr>
-                      <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-12">
+                      <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-12">
                         {/* Checkbox header */}
                       </th>
-                      <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
+                      <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-16">
                         Pair
                       </th>
                       {selectedTable === "edges" && (
-                        <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Commutator (UF)
                         </th>
                       )}
                       {selectedTable === "corners" && (
-                        <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Commutator (UFR)
                         </th>
                       )}
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-100">
+                  <tbody className="bg-card divide-y divide-gray-100">
                     {filteredByLetter.map((pair, index) => (
                       <tr
                         key={pair.id}
-                        className={pair.learned ? "bg-green-200" : index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                        className={pair.learned ? "bg-emerald-500/10" : index % 2 === 0 ? "bg-card" : "bg-muted"}
                       >
-                        <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 w-12">
+                        <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-foreground w-12">
                           <Checkbox
                             checked={pair.learned}
                             onCheckedChange={(checked) => handleToggleLearned(pair.id, checked as boolean)}
                             aria-label={`Mark ${pair.piece} as learned`}
                           />
                         </td>
-                        <td className="px-4 py-2 whitespace-nowrap text-sm font-mono font-medium text-gray-900 w-16">
+                        <td className="px-4 py-2 whitespace-nowrap text-sm font-mono font-medium text-foreground w-16">
                           {pair.piece}
                         </td>
                         {selectedTable === "edges" && (
@@ -414,7 +410,7 @@ export default function BLDPage() {
                                   type="text"
                                   value={editPairEdgesAlgorithm}
                                   onChange={(e) => setEditPairEdgesAlgorithm(e.target.value)}
-                                  className="flex-1 px-2 py-1 text-sm font-mono border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                  className="flex-1 px-2 py-1 text-sm font-mono border border-border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
                                   placeholder="Enter algorithm..."
                                 />
                                 <Button size="sm" onClick={handleSavePair}>
@@ -426,7 +422,7 @@ export default function BLDPage() {
                               </div>
                             ) : (
                               <div className="flex items-center justify-between">
-                                <code className="text-sm text-gray-700">{pair.edgesAlgorithm || "No algorithm"}</code>
+                                <code className="text-sm text-foreground/80">{pair.edgesAlgorithm || "No algorithm"}</code>
                                 <Button
                                   size="sm"
                                   variant="ghost"
@@ -453,7 +449,7 @@ export default function BLDPage() {
                                   type="text"
                                   value={editPairCornersAlgorithm}
                                   onChange={(e) => setEditPairCornersAlgorithm(e.target.value)}
-                                  className="flex-1 px-2 py-1 text-sm font-mono border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                  className="flex-1 px-2 py-1 text-sm font-mono border border-border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
                                   placeholder="Enter algorithm..."
                                 />
                                 <Button size="sm" onClick={handleSavePair}>
@@ -465,7 +461,7 @@ export default function BLDPage() {
                               </div>
                             ) : (
                               <div className="flex items-center justify-between">
-                                <code className="text-sm text-gray-700">{pair.cornersAlgorithm || "No algorithm"}</code>
+                                <code className="text-sm text-foreground/80">{pair.cornersAlgorithm || "No algorithm"}</code>
                                 <Button
                                   size="sm"
                                   variant="ghost"
@@ -494,43 +490,43 @@ export default function BLDPage() {
         )}
 
         {selectedTable === "flips" && (
-          <div className="bg-white rounded-lg shadow-sm">
+          <div className="bg-card rounded-lg shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full table-fixed">
-                <thead className="bg-gray-50">
+                <thead className="bg-muted">
                   <tr>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-12">
+                    <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-12">
                       {/* Checkbox header */}
                     </th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
+                    <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-16">
                       PIECE
                     </th>
 
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                       FLIP (UF)
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-100">
+                <tbody className="bg-card divide-y divide-gray-100">
                   {flips.map((flip, index) => (
                     <tr
                       key={flip.id}
-                      className={flip.learned ? "bg-green-200" : index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                      className={flip.learned ? "bg-emerald-500/10" : index % 2 === 0 ? "bg-card" : "bg-muted"}
                     >
-                      <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 w-12">
+                      <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-foreground w-12">
                         <Checkbox
                           checked={flip.learned}
                           onCheckedChange={(checked) => handleToggleLearnedFlip(flip.id, checked as boolean)}
                           aria-label={`Mark flip as learned`}
                         />
                       </td>
-                      <td className="px-4 py-2 whitespace-nowrap text-sm font-mono font-medium text-gray-900 w-40">
+                      <td className="px-4 py-2 whitespace-nowrap text-sm font-mono font-medium text-foreground w-40">
                         {editingFlipId === flip.id ? (
                           <input
                             type="text"
                             value={editFlipPiece}
                             onChange={(e) => setEditFlipPiece(e.target.value)}
-                            className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            className="w-full px-2 py-1 text-sm border border-border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
                           />
                         ) : (
                           flip.piece
@@ -543,7 +539,7 @@ export default function BLDPage() {
                               type="text"
                               value={editFlipAlgorithm}
                               onChange={(e) => setEditFlipAlgorithm(e.target.value)}
-                              className="flex-1 px-2 py-1 text-sm font-mono border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                              className="flex-1 px-2 py-1 text-sm font-mono border border-border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
                               placeholder="Enter algorithm..."
                             />
                             <Button size="sm" onClick={handleSaveFlip}>
@@ -555,7 +551,7 @@ export default function BLDPage() {
                           </div>
                         ) : (
                           <div className="flex items-center justify-between">
-                            <code className="text-sm text-gray-700">{flip.algorithm || "No algorithm"}</code>
+                            <code className="text-sm text-foreground/80">{flip.algorithm || "No algorithm"}</code>
                             <Button
                               size="sm"
                               variant="ghost"
@@ -575,45 +571,45 @@ export default function BLDPage() {
         )}
 
         {selectedTable === "twists" && (
-          <div className="bg-white rounded-lg shadow-sm">
+          <div className="bg-card rounded-lg shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full table-fixed">
-                <thead className="bg-gray-50">
+                <thead className="bg-muted">
                   <tr>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-12">
+                    <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-12">
                       {/* Checkbox header */}
                     </th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
+                    <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-16">
                       PIECE
                     </th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                       TWIST CW
                     </th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                       TWIST CCW
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-100">
+                <tbody className="bg-card divide-y divide-gray-100">
                   {twists.map((twist, index) => (
                     <tr
                       key={twist.id}
-                      className={twist.learned ? "bg-green-200" : index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                      className={twist.learned ? "bg-emerald-500/10" : index % 2 === 0 ? "bg-card" : "bg-muted"}
                     >
-                      <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 w-12">
+                      <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-foreground w-12">
                         <Checkbox
                           checked={twist.learned}
                           onCheckedChange={(checked) => handleToggleLearnedTwist(twist.id, checked as boolean)}
                           aria-label={`Mark twist ${twist.piece} as learned`}
                         />
                       </td>
-                      <td className="px-4 py-2 whitespace-nowrap text-sm font-mono font-medium text-gray-900 w-16">
+                      <td className="px-4 py-2 whitespace-nowrap text-sm font-mono font-medium text-foreground w-16">
                         {editingTwistId === twist.id ? (
                           <input
                             type="text"
                             value={editTwistPiece}
                             onChange={(e) => setEditTwistPiece(e.target.value)}
-                            className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            className="w-full px-2 py-1 text-sm border border-border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
                           />
                         ) : (
                           twist.piece
@@ -625,11 +621,11 @@ export default function BLDPage() {
                             type="text"
                             value={editTwistAlgorithm1}
                             onChange={(e) => setEditTwistAlgorithm1(e.target.value)}
-                            className="w-full px-2 py-1 text-sm font-mono border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            className="w-full px-2 py-1 text-sm font-mono border border-border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
                             placeholder="Enter algorithm..."
                           />
                         ) : (
-                          <code className="text-sm text-gray-700">{twist.algorithm1 || "No algorithm"}</code>
+                          <code className="text-sm text-foreground/80">{twist.algorithm1 || "No algorithm"}</code>
                         )}
                       </td>
                       <td className="px-4 py-2">
@@ -639,7 +635,7 @@ export default function BLDPage() {
                               type="text"
                               value={editTwistAlgorithm2}
                               onChange={(e) => setEditTwistAlgorithm2(e.target.value)}
-                              className="flex-1 px-2 py-1 text-sm font-mono border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                              className="flex-1 px-2 py-1 text-sm font-mono border border-border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
                               placeholder="Enter algorithm..."
                             />
                             <Button size="sm" onClick={handleSaveTwist}>
@@ -651,7 +647,7 @@ export default function BLDPage() {
                           </div>
                         ) : (
                           <div className="flex items-center justify-between">
-                            <code className="text-sm text-gray-700">{twist.algorithm2 || "No algorithm"}</code>
+                            <code className="text-sm text-foreground/80">{twist.algorithm2 || "No algorithm"}</code>
                             <Button
                               size="sm"
                               variant="ghost"
@@ -679,7 +675,7 @@ export default function BLDPage() {
           </div>
         )}
 
-      </div>
+      </main>
     </div>
   )
 }

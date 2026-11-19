@@ -1,10 +1,10 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import Link from "next/link"
+import { SiteHeader } from "@/components/site-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowLeft, RotateCcw, ChevronLeft, ChevronRight, Copy, Check, X } from "lucide-react"
+import { RotateCcw, ChevronLeft, ChevronRight, Copy, Check, X } from "lucide-react"
 
 interface Solve {
   id: string
@@ -332,7 +332,7 @@ export default function TimerPage() {
   const getTimerColor = () => {
     if (isRunning) return "text-green-600"
     if (isReady) return "text-yellow-600"
-    return "text-gray-900"
+    return "text-foreground"
   }
 
   const getTimerText = () => {
@@ -366,17 +366,13 @@ export default function TimerPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <Link href="/">
-            <Button variant="ghost" className="mb-4">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Button>
-          </Link>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Speedcubing Timer</h1>
-          <p className="text-xl text-gray-600">Practice your solves with scrambles and track your progress</p>
+    <div className="min-h-screen bg-background text-foreground">
+      <SiteHeader />
+      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+        <div className="mb-8 border-b border-border/70 pb-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Practice / timer</p>
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Speedcubing timer</h1>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">Practice solves, generate scrambles, and follow your session statistics.</p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -390,7 +386,7 @@ export default function TimerPage() {
                     <select
                       value={scrambleType}
                       onChange={(e) => setScrambleType(e.target.value)}
-                      className="text-sm border rounded px-2 py-1"
+                      className="rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground"
                     >
                       {Object.entries(scrambleTypes).map(([key, config]) => (
                         <option key={key} value={key}>
@@ -421,12 +417,12 @@ export default function TimerPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="bg-gray-100 p-4 rounded-lg">
+                <div className="bg-muted p-4 rounded-lg">
                   <code className="text-lg font-mono break-all">
                     {scrambles[currentScrambleIndex] || "Generating scramble..."}
                   </code>
                 </div>
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-sm text-muted-foreground mt-2">
                   Scramble {currentScrambleIndex + 1} of {scrambles.length} (
                   {scrambleTypes[scrambleType as keyof typeof scrambleTypes].name})
                 </p>
@@ -442,7 +438,7 @@ export default function TimerPage() {
                   onMouseDown={handleTouch}
                 >
                   <div className={`text-8xl font-mono font-bold mb-4 ${getTimerColor()}`}>{getTimerText()}</div>
-                  <div className="text-gray-600 mb-4">
+                  <div className="text-muted-foreground mb-4">
                     {isRunning
                       ? "Touch screen or press SPACE to stop"
                       : isReady
@@ -465,21 +461,21 @@ export default function TimerPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <div className="text-sm text-gray-600">Best Time</div>
+                  <div className="text-sm text-muted-foreground">Best Time</div>
                   <div className="text-xl font-mono">
                     {solves.length > 0 ? formatTime(Math.min(...solves.map((s) => s.time))) : "--"}
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-600">Average of 5</div>
+                  <div className="text-sm text-muted-foreground">Average of 5</div>
                   <div className="text-xl font-mono">{averageOfLast5() || "--"}</div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-600">Average of 12</div>
+                  <div className="text-sm text-muted-foreground">Average of 12</div>
                   <div className="text-xl font-mono">{averageOfLast12() || "--"}</div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-600">Total Solves</div>
+                  <div className="text-sm text-muted-foreground">Total Solves</div>
                   <div className="text-xl font-mono">{solves.length}</div>
                 </div>
               </CardContent>
@@ -498,23 +494,23 @@ export default function TimerPage() {
                     <div key={solve.id} className="flex justify-between items-center text-sm">
                       <div className="flex items-center space-x-2">
                         <span className="font-mono">{formatTime(solve.time)}</span>
-                        <span className="text-xs text-gray-400">({solve.scrambleType})</span>
+                        <span className="text-xs text-muted-foreground/70">({solve.scrambleType})</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <span className="text-gray-500">#{solves.length - index}</span>
+                        <span className="text-muted-foreground">#{solves.length - index}</span>
                         <Button size="sm" variant="ghost" onClick={() => deleteSolve(solve.id)}>
                           <X className="h-3 w-3" />
                         </Button>
                       </div>
                     </div>
                   ))}
-                  {solves.length === 0 && <div className="text-gray-500 text-center py-4">No solves yet</div>}
+                  {solves.length === 0 && <div className="text-muted-foreground text-center py-4">No solves yet</div>}
                 </div>
               </CardContent>
             </Card>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   )
 }
